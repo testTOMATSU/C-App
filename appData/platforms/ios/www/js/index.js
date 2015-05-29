@@ -34,6 +34,13 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+
+        //加速度センサ計測開始イベント
+        var start = document.getElementById('start');
+        start.addEventListener("click", startWatch, false);
+        //加速度センサ計測終了イベント
+        var stop = document.getElementById('stop');
+        stop.addEventListener("click", stopWatch, false);
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -49,3 +56,39 @@ var app = {
 };
 
 app.initialize();
+
+//================加速度センサ機能==============//
+function startWatch() {
+
+  
+  // Update acceleration every 3 seconds
+  var options = { frequency: 100 };
+  watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+  //watchID = navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+}
+
+// Stop watching the acceleration
+function stopWatch() {
+  if (watchID) {
+    navigator.accelerometer.clearWatch(watchID);
+    watchID = null;
+  }
+}
+function onSuccess(acceleration) {
+    var acc = acceleration;
+    var num = 15;
+    if (acc.x > num || acc.y > num || acc.z > num) {
+      alert('Shake it!');
+    }
+    /*
+    alert('Acceleration X: ' + acceleration.x + '\n' +
+          'Acceleration Y: ' + acceleration.y + '\n' +
+          'Acceleration Z: ' + acceleration.z + '\n' +
+          'Timestamp: '      + acceleration.timestamp + '\n');
+    */
+}
+
+function onError() {
+    alert('onError!');
+}
+//================/加速度センサ機能==============//
