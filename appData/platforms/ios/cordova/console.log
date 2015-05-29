@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 2015-05-29 16:17:10.231 CentrairApp[7070:204633] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/fukunagakazuki/Library/Developer/CoreSimulator/Devices/A5C5408F-DA4F-4929-BF1D-EC153BFFC2EA/data/Containers/Data/Application/E8F04215-BAFC-43A0-936C-17A3D274C1CA/Library/Cookies/Cookies.binarycookies
 2015-05-29 16:17:10.488 CentrairApp[7070:204633] Apache Cordova native platform version 3.8.0 is starting.
 2015-05-29 16:17:10.489 CentrairApp[7070:204633] Multi-tasking -> Device: YES, App: YES
 2015-05-29 16:17:10.502 CentrairApp[7070:204633] Unlimited access to network resources
 2015-05-29 16:17:10.510 CentrairApp[7070:204633] 
+=======
+2015-05-29 16:18:53.908 CentrairApp[52286:10579228] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/KatsuyaKubo/Library/Developer/CoreSimulator/Devices/FDAE67C9-5F9E-4BB9-AF9F-473ECEA48ED8/data/Containers/Data/Application/67FDEEDB-9AB6-440B-AF8F-810C51F30363/Library/Cookies/Cookies.binarycookies
+2015-05-29 16:18:54.315 CentrairApp[52286:10579228] Apache Cordova native platform version 3.8.0 is starting.
+2015-05-29 16:18:54.315 CentrairApp[52286:10579228] Multi-tasking -> Device: YES, App: YES
+2015-05-29 16:18:54.334 CentrairApp[52286:10579228] Unlimited access to network resources
+2015-05-29 16:18:54.350 CentrairApp[52286:10579228] 
+>>>>>>> 19f86459464a4808c603c6cf1c2a7f7e7eb355df
 
 Started backup to iCloud! Please be careful.
 Your application might be rejected by Apple if you store too much data.
@@ -10,6 +18,11 @@ For more information please read "iOS Data Storage Guidelines" at:
 https://developer.apple.com/icloud/documentation/data-storage/
 To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
 
+<<<<<<< HEAD
 2015-05-29 16:17:11.407 CentrairApp[7070:204633] Resetting plugins due to page load.
 2015-05-29 16:17:11.604 CentrairApp[7070:204633] Finished load of: file:///Users/fukunagakazuki/Library/Developer/CoreSimulator/Devices/A5C5408F-DA4F-4929-BF1D-EC153BFFC2EA/data/Containers/Bundle/Application/EAAD5C6B-30FD-4D36-BDCE-A7EFDCC7AB23/CentrairApp.app/www/index.html
 2015-05-29 16:19:30.313 CentrairApp[7070:206068] Terminating since there is no system app.
+=======
+2015-05-29 16:18:55.299 CentrairApp[52286:10579228] Resetting plugins due to page load.
+2015-05-29 16:18:55.505 CentrairApp[52286:10579228] Finished load of: file:///Users/KatsuyaKubo/Library/Developer/CoreSimulator/Devices/FDAE67C9-5F9E-4BB9-AF9F-473ECEA48ED8/data/Containers/Bundle/Application/76793FD1-AFE8-4CE0-BD85-42C55C76CC64/CentrairApp.app/www/index.html
+>>>>>>> 19f86459464a4808c603c6cf1c2a7f7e7eb355df
