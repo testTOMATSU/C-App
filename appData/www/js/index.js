@@ -33,14 +33,21 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+    //========================ここにイベントを書く=============================//
         app.receivedEvent('deviceready');
 
+        /*一時的にコメントアウト
         //加速度センサ計測開始イベント
         var start = document.getElementById('start');
         start.addEventListener("click", startWatch, false);
         //加速度センサ計測終了イベント
         var stop = document.getElementById('stop');
         stop.addEventListener("click", stopWatch, false);
+        */
+        //一時的にクリックイベントを付与
+        var soundButton = document.getElementById('sound');
+        soundButton.addEventListener("click", sound, false);
+    //========================/ここにイベントを書く=============================//
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -92,3 +99,10 @@ function onError() {
     alert('onError!');
 }
 //================/加速度センサ機能==============//
+//================一時的にタップで音を出す==============//
+function sound() {
+    //この中に音を鳴らす処理を書く
+    //今は一時的にalert
+    alert("音がなったよ");
+}
+//================/一時的にタップで音を出す==============//
