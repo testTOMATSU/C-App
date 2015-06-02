@@ -16,7 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
 var app = {
     // Application Constructor
     initialize: function() {
@@ -36,22 +35,18 @@ var app = {
     onDeviceReady: function() {
     //========================ここにイベントを書く=============================//
         app.receivedEvent('deviceready');
-        $(function(){
-        
-            /*一時的にコメントアウト
-            //加速度センサ計測開始イベント
-            var start = document.getElementById('start');
-            start.addEventListener("click", startWatch, false);
-            //加速度センサ計測終了イベント
-            var stop = document.getElementById('stop');
-            stop.addEventListener("click", stopWatch, false);
-            */
-            //一時的にクリックイベントを付与
-            //var soundButton = document.getElementById('sound');
-            //soundButton.addEventListener("click", sound, false);
-            $('#sound').click(sound);
-        });
-        
+
+        /*一時的にコメントアウト
+        //加速度センサ計測開始イベント
+        var start = document.getElementById('start');
+        start.addEventListener("click", startWatch, false);
+        //加速度センサ計測終了イベント
+        var stop = document.getElementById('stop');
+        stop.addEventListener("click", stopWatch, false);
+        */
+        //一時的にクリックイベントを付与
+        var soundButton = document.getElementById('sound');
+        soundButton.addEventListener("click", sound, false);
     //========================/ここにイベントを書く=============================//
     },
     // Update DOM on a Received Event
@@ -68,6 +63,7 @@ var app = {
 };
 
 app.initialize();
+
 //================加速度センサ機能==============//
 function startWatch() {
 
@@ -104,9 +100,9 @@ function onError() {
 }
 //================/加速度センサ機能==============//
 //================一時的にタップで音を出す==============//
-function sound() {
-    //この中に音を鳴らす処理を書く
-    //今は一時的にalert
-    alert("音がなったよ");
+function audio_play() {
+   audio.play();
 }
 //================/一時的にタップで音を出す==============//
+
+
