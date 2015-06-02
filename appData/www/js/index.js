@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -27,6 +28,10 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+        /*var module = ons.bootstrap('myApp', ['onsen','newsLoader']);
+        module.controller('AppController', function($scope) {
+          console.log("onsen is ready");
+        });*/
     },
     // deviceready Event Handler
     //
@@ -35,18 +40,22 @@ var app = {
     onDeviceReady: function() {
     //========================ここにイベントを書く=============================//
         app.receivedEvent('deviceready');
-
-        /*一時的にコメントアウト
-        //加速度センサ計測開始イベント
-        var start = document.getElementById('start');
-        start.addEventListener("click", startWatch, false);
-        //加速度センサ計測終了イベント
-        var stop = document.getElementById('stop');
-        stop.addEventListener("click", stopWatch, false);
-        */
-        //一時的にクリックイベントを付与
-        var soundButton = document.getElementById('sound');
-        soundButton.addEventListener("click", sound, false);
+        //$(function(){
+        
+            /*一時的にコメントアウト
+            //加速度センサ計測開始イベント
+            var start = document.getElementById('start');
+            start.addEventListener("click", startWatch, false);
+            //加速度センサ計測終了イベント
+            var stop = document.getElementById('stop');
+            stop.addEventListener("click", stopWatch, false);
+            */
+            //一時的にクリックイベントを付与
+            //var soundButton = document.getElementById('sound');
+            //soundButton.addEventListener("click", sound, false);
+            $('#sound').click(sound);
+        //});
+        
     //========================/ここにイベントを書く=============================//
     },
     // Update DOM on a Received Event
@@ -63,7 +72,6 @@ var app = {
 };
 
 app.initialize();
-
 //================加速度センサ機能==============//
 function startWatch() {
 
