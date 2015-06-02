@@ -41,12 +41,12 @@ var app = {
         var start = document.getElementById('start');
         start.addEventListener("click", startWatch, false);
         //加速度センサ計測終了イベント
-        var stop = document.getElementById('stop');
-        stop.addEventListener("click", stopWatch, false);
+        //var stop = document.getElementById('stop');
+        //stop.addEventListener("click", stopWatch, false);
         
         //一時的にクリックイベントを付与
         var soundButton = document.getElementById('sound');
-        soundButton.addEventListener("click", sound, false);
+        soundButton.addEventListener("click", audio_play, false);
     //========================/ここにイベントを書く=============================//
     },
     // Update DOM on a Received Event
@@ -98,7 +98,7 @@ function onSuccess(acceleration) {
 function onError() {
     alert('onError!');
 }
-/*
+
 //================/加速度センサ機能==============//
 
 function audio_play() {
@@ -112,7 +112,6 @@ function sound() {
     alert("音がなったよ");
 }
 //================/一時的にタップで音を出す==============//
-*/
 
 
 
