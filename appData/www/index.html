@@ -33,22 +33,18 @@
         <meta name="msapplication-tap-highlight" content="no">
         <meta charset="UTF-8">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" href="onsen/css/onsenui.css"/>
+        <link rel="stylesheet" href="onsen/css/onsen-css-components.css"/>
+        <link rel="stylesheet" href="css/index.css">
         <title>Hello World</title>
     </head>
-    <body>
-        
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-
-        
+    <body ng-controller="AppController">
         <!--サウンド読み込み-->
+        <audio id="audio">
+           <source src="sound/cym03.mp3">
+        </audio><br>
         
-       <audio id="audio">
-	   <source src="sound/cym03.mp3">
-	   </audio><br>
-        
-<div class="app">
+        <div class="app">
             <h1>Apache Cordova</h1>
             <div id="deviceready" class="blink">
                 <p class="event listening">Connecting to Device</p>
@@ -58,10 +54,14 @@
                 <!--<button id="start" class="btn">Start Watching!</button>
                 <button id="stop" class="btn">Stop Watching!</button>-->
                 <button id="sound" value="play">音を鳴らす(シンプル)</button><br>
-                <button id="start">音を鳴らす(加速度)</button>
+                <button id="start">音を鳴らす(加速度)</button><br>
                 <a href="shop.html">店舗一覧</a>
+                <p>{{angTest}}</p>
             </div>
-        </div>        
-        
+        </div>
+        <script src="onsen/js/angular/angular.js"></script>
+        <script src="onsen/js/onsenui.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>

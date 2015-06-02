@@ -27,6 +27,12 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+        var module = ons.bootstrap('myApp', ['onsen']);
+        module.controller('AppController', function($scope) {
+          console.log("onsen is ready");
+          //AngularJSのディレクティブの書式
+          $scope.angTest = "AngularJS is ready!";
+        });
     },
     // deviceready Event Handler
     //
