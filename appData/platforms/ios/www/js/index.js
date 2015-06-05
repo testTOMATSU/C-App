@@ -28,10 +28,19 @@ var app = {
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         var module = ons.bootstrap('myApp', ['onsen']);
+
+        //楽器ページのコントローラ
         module.controller('AppController', function($scope) {
           console.log("onsen is ready");
           //AngularJSのディレクティブの書式
           $scope.angTest = "AngularJS is ready!";
+        });
+
+        //店舗一覧ページのコントローラ
+        module.controller('ShopController', function($scope) {
+          console.log("shop is ready");
+          //AngularJSのディレクティブの書式
+          $scope.test = "( ｀д´)b ｵｯｹｰ!";
         });
     },
     // deviceready Event Handler

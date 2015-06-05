@@ -9,6 +9,11 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+        var module = ons.bootstrap('myApp', ['onsen']);
+        module.controller('ShopController', function($scope) {
+          console.log("shop is ready");
+          $scope.test = "( ｀д´)b ｵｯｹｰ!";
+        });
     },
     // deviceready Event Handler
     //
