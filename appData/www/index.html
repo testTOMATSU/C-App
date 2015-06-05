@@ -1,48 +1,78 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
     <head>
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
         <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
+        <meta charset="UTF-8">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>Hello World</title>
+        <link rel="stylesheet" href="onsen/css/onsenui.css"/>
+        <link rel="stylesheet" href="onsen/css/onsen-css-components.css"/>
+        <link rel="stylesheet" href="css/index.css">
+        <title>CentrairApp</title>
     </head>
-    <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-        </div>
+    <body ng-controller="AppController">
+        <!-- メニュー定義 -->
+        <ons-sliding-menu
+          main-page="index.html"
+          menu-page="menu.html"       
+          side="right"
+          max-slide-distance="250px"
+          var="menu">
+        </ons-sliding-menu>
+        <!--end/メニュー定義 -->
+
+        <!-- 楽器ページの内容 -->
+        <ons-template id="index.html">
+            <ons-page>
+                <!-- メニュー上部のツールバー -->
+                <ons-toolbar>
+                    <div class="right"><!-- サイドバーを開くボタン -->
+                        <ons-toolbar-button ng-click="menu.toggleMenu()"><ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
+                    </div>
+                    <div class="center">Title</div><!-- ページタイトル -->
+                </ons-toolbar>
+                <!-- end/メニュー上部のツールバー -->
+                <!-- サウンド読み込み -->
+                <audio id="audio">
+                   <source src="sound/cym03.mp3">
+                </audio><br>
+                <!-- end/サウンド読み込み -->
+                
+                <div class="app">
+                    <h1>Apache Cordova</h1>
+                    <div id="deviceready" class="blink">
+                        <p class="event listening">Connecting to Device</p>
+                        <p class="event received">Device is Ready</p>
+                    </div>
+                    <div id="btnBox">
+                        <!--<button id="start" class="btn">Start Watching!</button>
+                        <button id="stop" class="btn">Stop Watching!</button>-->
+                        <button id="sound" value="play">音を鳴らす(シンプル)</button><br>
+                        <button id="start">音を鳴らす(加速度)</button><br>
+                        <a href="shop.html">店舗一覧</a>
+                        <!-- AngularjsのDirective機能のテスト。消してもおｋ -->
+                        <p>{{angTest}}</p>
+                    </div>
+                </div>
+            </ons-page>
+        </ons-template>
+        <!-- end/楽器ページの内容 -->
+
+                <!-- メニュー部分 -->
+        <ons-template id="menu.html">
+            <ons-list>
+                <ons-list-item modifier="chevron" ng-click="menu.setMainPage('index.html', {closeMenu: true})">
+                    楽器ページ
+                </ons-list-item>
+                <ons-list-item modifier="chevron" ng-click="menu.setMainPage('shop.html', {closeMenu: true})">
+                    店舗一覧
+                </ons-list-item>
+            </ons-list>
+        </ons-template>
+        <!-- end/メニュー部分 -->
+        <script src="onsen/js/angular/angular.js"></script>
+        <script src="onsen/js/onsenui.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
     </body>
