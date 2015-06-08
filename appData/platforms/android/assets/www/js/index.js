@@ -37,7 +37,7 @@ var app = {
 
       //楽器ページのコントローラ
       module.controller('SoundController', ['$scope', function($scope){
-        console.log("sound is ready");
+        console.log("Sound page is ready");
         //AngularJSのディレクティブの書式
         $scope.angTest = "ここが楽器ページ！";
 
