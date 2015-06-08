@@ -26,63 +26,80 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-        var module = ons.bootstrap('myApp', ['onsen']);
+    //========================ここにイベントを書く=============================//
+      document.addEventListener('deviceready', this.onDeviceReady, false);
+      var module = ons.bootstrap('myApp', ['onsen']);
 
-        //楽器ページのコントローラ
-        module.controller('AppController', function($scope) {
-          console.log("onsen is ready");
-          //AngularJSのディレクティブの書式
-          $scope.angTest = "AngularJS is ready!";
-        });
+      //アプリ全体のコントローラ
+      module.controller('AppController', ['$scope', function($scope) {
+        console.log("onsen is ready");
+      }]);
 
-        //店舗一覧ページのコントローラ
-        module.controller('ShopController', function($scope) {
-          console.log("shop is ready");
-          //AngularJSのディレクティブの書式
-          $scope.test = "( ｀д´)b ｵｯｹｰ!";
-        });
+      //楽器ページのコントローラ
+      module.controller('SoundController', ['$scope', function($scope){
+        console.log("sound is ready");
+        //AngularJSのディレクティブの書式
+        $scope.angTest = "ここが楽器ページ！";
+
+
+        //各イベントを登録
+        $scope.startWatch = startWatch;//加速度センサ計測開始イベント
+        $scope.stopWatch = stopWatch;//加速度センサ計測終了イベント
+        $scope.audio_play = audio_play;//一時的にクリックイベントを付与
+
+        /*
+          ・上記のイベント登録について
+            1.書式
+              $scope.ディレクティブ名 = 関数名;
+            2.ディレクティブ名とは
+              html内にてng-click等のイベントに設定されている名前
+        */
+
+        $scope.onclick = testSound;//クリックイベントテスト用
+      }]);
+      
+      //店舗一覧ページのコントローラ
+      module.controller('ShopController', ['$scope', function($scope) {
+        console.log("Shop page is ready");
+        //AngularJSのディレクティブの書式
+        $scope.test = "ここに店舗情報を載せるよ！";
+      }]);
+
+      //マップページのコントローラ
+      module.controller('MapController', ['$scope', function($scope) {
+        console.log("Map page is ready.");
+        //AngularJSのディレクティブの書式
+        $scope.test = "ここにマップ画像とかを載せるよ！";
+      }]);
+    //========================/ここにイベントを書く=============================//
     },
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-    //========================ここにイベントを書く=============================//
-        app.receivedEvent('deviceready');
-
-
-        //加速度センサ計測開始イベント
-        var start = document.getElementById('start');
-        start.addEventListener("click", startWatch, false);
-        //加速度センサ計測終了イベント
-        //var stop = document.getElementById('stop');
-        //stop.addEventListener("click", stopWatch, false);
-        
-        //一時的にクリックイベントを付与
-        var soundButton = document.getElementById('sound');
-        soundButton.addEventListener("click", audio_play, false);
-    //========================/ここにイベントを書く=============================//
+      app.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
+        /*var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
 
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
 
-        console.log('Received Event: ' + id);
+        console.log('Received Event: ' + id);*/
     }
 };
 
-app.initialize();
+app.initialize();//以上の設定でアプリを起動
+
+
+//================以下、関数定義==============//
 
 //================加速度センサ機能==============//
-function startWatch() {
-
-  
+function startWatch() {  
   // Update acceleration every 3 seconds
   var options = { frequency: 100 };
   watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
@@ -118,6 +135,7 @@ function onError() {
 
 function audio_play() {
    audio.play();
+   console.log("play sound now!");
 }
 //================/一時的にタップで音を出す==============//
 //================一時的にタップで音を出す==============//
@@ -129,4 +147,6 @@ function sound() {
 //================/一時的にタップで音を出す==============//
 
 
-
+function testSound() {
+  alert("ok");
+}

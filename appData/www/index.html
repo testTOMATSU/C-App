@@ -14,7 +14,7 @@
     <body ng-controller="AppController">
         <!-- メニュー定義 -->
         <ons-sliding-menu
-          main-page="index.html"
+          main-page="sound.html"
           menu-page="menu.html"       
           side="right"
           max-slide-distance="250px"
@@ -22,59 +22,24 @@
         </ons-sliding-menu>
         <!--end/メニュー定義 -->
 
-        <!-- メニュー上部のツールバー -->
-        <ons-toolbar>
-            <div class="right"><!-- サイドバーを開くボタン -->
-                <ons-toolbar-button ng-click="menu.toggleMenu()"><ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
-            </div>
-            <div class="center">Title</div><!-- ページタイトル -->
-        </ons-toolbar>
-        <!-- end/メニュー上部のツールバー -->
-
-        <!-- 楽器ページの内容 -->
-        <ons-template id="index.html">
-            <ons-page>
-                <!-- サウンド読み込み -->
-                <audio id="audio">
-                   <source src="sound/cym03.mp3">
-                </audio><br>
-                <!-- end/サウンド読み込み -->
-                
-                <div class="app">
-                    <h1>Apache Cordova</h1>
-                    <div id="deviceready" class="blink">
-                        <p class="event listening">Connecting to Device</p>
-                        <p class="event received">Device is Ready</p>
-                    </div>
-                    <div id="btnBox">
-                        <!--<button id="start" class="btn">Start Watching!</button>
-                        <button id="stop" class="btn">Stop Watching!</button>-->
-                        <button id="sound" value="play">音を鳴らす(シンプル)</button><br>
-                        <button id="start">音を鳴らす(加速度)</button><br>
-                        <a href="shop.html">店舗一覧</a>
-                        <!-- AngularjsのDirective機能のテスト。消してもおｋ -->
-                        <p>{{angTest}}</p>
-                    </div>
-                </div>
-            </ons-page>
-        </ons-template>
-        <!-- end/楽器ページの内容 -->
-
-                <!-- メニュー部分 -->
+        <!-- メニュー部分 -->
         <ons-template id="menu.html">
             <ons-list>
-                <ons-list-item modifier="chevron" ng-click="menu.setMainPage('index.html', {closeMenu: true})">
+                <ons-list-item modifier="chevron" ng-click="menu.setMainPage('sound.html', {closeMenu: true})">
                     楽器ページ
                 </ons-list-item>
                 <ons-list-item modifier="chevron" ng-click="menu.setMainPage('shop.html', {closeMenu: true})">
                     店舗一覧
                 </ons-list-item>
+                <ons-list-item modifier="chevron" ng-click="menu.setMainPage('map.html', {closeMenu: true})">
+                    マップ
+                </ons-list-item>
             </ons-list>
         </ons-template>
         <!-- end/メニュー部分 -->
+        <script src="cordova.js"></script>
         <script src="onsen/js/angular/angular.js"></script>
         <script src="onsen/js/onsenui.js"></script>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+        <script src="js/index.js"></script>
     </body>
 </html>
