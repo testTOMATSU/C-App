@@ -35,6 +35,11 @@ var app = {
         console.log("onsen is ready");
       }]);
 
+      //メニューエリアのコントローラ
+      module.controller('MenuController', ['$scope', function($scope) {
+        console.log("Menu is ready");
+      }]);
+
       //楽器ページのコントローラ
       module.controller('SoundController', ['$scope', function($scope){
         console.log("Sound page is ready");
