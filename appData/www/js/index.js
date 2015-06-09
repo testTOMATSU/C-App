@@ -67,7 +67,7 @@ var app = {
       module.controller('ShopController', ['$scope', function($scope) {
         console.log("Shop page is ready");
         //AngularJSのディレクティブの書式
-        $scope.test = "ここに店舗情報を載せるよ！";
+        //$scope.test = "ここに店舗情報を載せるよ！";
       }]);
 
       //マップページのコントローラ

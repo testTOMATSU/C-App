@@ -35,6 +35,7 @@ var app = {
         console.log("onsen is ready");
       }]);
 
+      //メニューエリアのコントローラ
       module.controller('MenuController', ['$scope', function($scope) {
         console.log("Menu is ready");
       }]);
