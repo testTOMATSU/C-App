@@ -36,14 +36,14 @@ var app = {
     //========================ここにイベントを書く=============================//
         app.receivedEvent('deviceready');
 
-        /*一時的にコメントアウト
+
         //加速度センサ計測開始イベント
         var start = document.getElementById('start');
         start.addEventListener("click", startWatch, false);
         //加速度センサ計測終了イベント
         var stop = document.getElementById('stop');
         stop.addEventListener("click", stopWatch, false);
-        */
+        
         //一時的にクリックイベントを付与
         var soundButton = document.getElementById('sound');
         soundButton.addEventListener("click", sound, false);
@@ -85,7 +85,7 @@ function onSuccess(acceleration) {
     var acc = acceleration;
     var num = 15;
     if (acc.x > num || acc.y > num || acc.z > num) {
-      alert('Shake it!');
+		audio.play();
     }
     /*
     alert('Acceleration X: ' + acceleration.x + '\n' +
@@ -98,7 +98,13 @@ function onSuccess(acceleration) {
 function onError() {
     alert('onError!');
 }
+/*
 //================/加速度センサ機能==============//
+
+function audio_play() {
+   audio.play();
+}
+//================/一時的にタップで音を出す==============//
 //================一時的にタップで音を出す==============//
 function sound() {
     //この中に音を鳴らす処理を書く
@@ -106,3 +112,7 @@ function sound() {
     alert("音がなったよ");
 }
 //================/一時的にタップで音を出す==============//
+*/
+
+
+
