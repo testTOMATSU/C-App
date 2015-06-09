@@ -26,6 +26,9 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
+    AUDIO_LIST = {
+        "se00": new Audio("sound/cym03.mp3"),
+    };
     //========================ここにイベントを書く=============================//
       document.addEventListener('deviceready', this.onDeviceReady, false);
       var module = ons.bootstrap('myApp', ['onsen']);
@@ -134,8 +137,12 @@ function onError() {
 //================/加速度センサ機能==============//
 
 function audio_play() {
-   audio.play();
-   console.log("play sound now!");
+  // サウンド再生
+  AUDIO_LIST["se00"].play();
+  // 次呼ばれた時用に新たに生成
+  AUDIO_LIST["se00"] = new Audio( AUDIO_LIST["se00"].src );
+  //audio.play();
+  console.log("play sound now!");
 }
 //================/一時的にタップで音を出す==============//
 //================一時的にタップで音を出す==============//
