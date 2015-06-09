@@ -43,7 +43,10 @@ var app = {
 
 
         AUDIO_LIST = {
-          "se00": new Audio("sound/cym03.mp3"),
+			"se00": new Audio("sound/cym03.mp3"),
+			"se01": new Audio("sound/pafu.mp3"),
+			"se02": new Audio("sound/shake01.mp3"),
+			"se03": new Audio("sound/tambrin.mp3"), 
         };
 
 
@@ -105,11 +108,14 @@ app.initialize();//以上の設定でアプリを起動
 
 
 //================楽器再生==============//
-function audio_play() {
+function audio_play($event) {
+  var inst = $event.target.getAttribute("id");
+  
   // サウンド再生
-  AUDIO_LIST["se00"].play();
+  
+  AUDIO_LIST[inst].play();
   // 次呼ばれた時用に新たに生成
-  AUDIO_LIST["se00"] = new Audio( AUDIO_LIST["se00"].src );
+  AUDIO_LIST[inst] = new Audio( AUDIO_LIST[inst].src );
   //audio.play();
   console.log("play sound now!");
 }
@@ -152,15 +158,6 @@ function onError() {
 }
 
 //================/加速度センサ機能==============//
-
-<<<<<<< HEAD
-function audio_play() {
-
-}
-
-
-=======
->>>>>>> master
 
 //================/一時的にタップで音を出す==============//
 //================一時的にタップで音を出す==============//
