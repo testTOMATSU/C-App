@@ -112,41 +112,22 @@ app.initialize();//以上の設定でアプリを起動
 
 
 //================以下、関数定義==============//
-function audio_play() {
-   audio.play();
-   console.log("play sound now!");
-}
-
 
 //================楽器再生==============//
-function audio_play($event) {
-  var inst = $event.target.getAttribute("id");
+function audio_play() {
+  //var inst = $event.target.getAttribute("id");
   
   // サウンド再生
   
-  AUDIO_LIST[inst].play();
+  AUDIO_LIST["se00"].play();
   // 次呼ばれた時用に新たに生成
-  AUDIO_LIST[inst] = new Audio( AUDIO_LIST[inst].src );
+  AUDIO_LIST["se00"] = new Audio( AUDIO_LIST["se00"].src );
   //audio.play();
   console.log("play sound now!");
 }
 //================end/楽器再生==============//
 
 //================加速度センサ機能==============//
-function startWatch() {  
-  // Update acceleration every 3 seconds
-  var options = { frequency: 300 };
-  watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
-  //watchID = navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
-}
-
-// Stop watching the acceleration
-function stopWatch() {
-  if (watchID) {
-    navigator.accelerometer.clearWatch(watchID);
-    watchID = null;
-  }
-}
 function onSuccess(acceleration) {
     var acc = acceleration;
     var num = {"x": 10, "y": 15, "z": 15};
@@ -168,6 +149,20 @@ function onError() {
     alert('onError!');
 }
 
+function startWatch($event) {  
+  // Update acceleration every 3 seconds
+  var options = { frequency: 300 };
+  watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+  //watchID = navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+}
+
+// Stop watching the acceleration
+function stopWatch() {
+  if (watchID) {
+    navigator.accelerometer.clearWatch(watchID);
+    watchID = null;
+  }
+}
 //================/加速度センサ機能==============//
 
 
