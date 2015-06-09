@@ -35,6 +35,11 @@ var app = {
         console.log("onsen is ready");
       }]);
 
+      //メニューエリアのコントローラ
+      module.controller('MenuController', ['$scope', function($scope) {
+        console.log("Menu is ready");
+      }]);
+
       //楽器ページのコントローラ
       module.controller('SoundController', ['$scope', function($scope){
         console.log("Sound page is ready");
@@ -70,7 +75,7 @@ var app = {
       module.controller('ShopController', ['$scope', function($scope) {
         console.log("Shop page is ready");
         //AngularJSのディレクティブの書式
-        $scope.test = "ここに店舗情報を載せるよ！";
+        //$scope.test = "ここに店舗情報を載せるよ！";
       }]);
 
       //マップページのコントローラ
@@ -101,10 +106,16 @@ var app = {
     }
 };
 
+
+
 app.initialize();//以上の設定でアプリを起動
 
 
 //================以下、関数定義==============//
+function audio_play() {
+   audio.play();
+   console.log("play sound now!");
+}
 
 
 //================楽器再生==============//
@@ -159,7 +170,7 @@ function onError() {
 
 //================/加速度センサ機能==============//
 
-//================/一時的にタップで音を出す==============//
+
 //================一時的にタップで音を出す==============//
 function sound() {
     //この中に音を鳴らす処理を書く
