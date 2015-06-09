@@ -133,17 +133,24 @@ function onError() {
 
 //================/加速度センサ機能==============//
 
-function audio_play() {
-   audio.play();
-   console.log("play sound now!");
+function audio_play($event) {
+   var el = $event.target;
+   var inst = el.getAttribute("id");
+   
+   inst.play();
+   //console.log(el.getAttribute("id"));
+   
 }
+
+
+
 //================/一時的にタップで音を出す==============//
 //================一時的にタップで音を出す==============//
 function sound() {
     //この中に音を鳴らす処理を書く
     //今は一時的にalert
     alert("音がなったよ");
-}
+}　
 //================/一時的にタップで音を出す==============//
 
 
