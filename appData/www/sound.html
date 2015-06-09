@@ -1,0 +1,34 @@
+<!-- 楽器ページの内容 -->
+<ons-page ng-controller="SoundController">
+    <!-- メニュー上部のツールバー -->
+    <ons-toolbar>
+        <div class="right"><!-- サイドバーを開くボタン -->
+            <ons-toolbar-button ng-click="menu.toggleMenu()"><ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
+        </div>
+        <div class="center">せんとれあ</div><!-- ページタイトル -->
+    </ons-toolbar>
+    <!-- end/メニュー上部のツールバー -->
+    <!-- サウンド読み込み -->
+    <audio id="audio">
+       <source src="sound/cym03.mp3">
+    </audio><br>
+    <!-- end/サウンド読み込み -->
+    
+    <div class="app">
+        <h1>Apache Cordova</h1>
+        <!--<div id="deviceready" class="blink">
+            <p class="event listening">Connecting to Device</p>
+            <p class="event received">Device is Ready</p>
+        </div>-->
+        <div id="btnBox">
+            <button id="start" class="btn" ng-click="startWatch()">音を鳴らす(加速度)</button><br>
+            <button id="stop" class="btn" ng-click="stopWatch()">加速度センサ停止</button><br>
+            <button id="sound" value="play" ng-click="audio_play()">音を鳴らす(クリック)</button><br>
+
+            <!-- このpタグはAngularjsのDirective機能のテスト。消してもおｋ -->
+            <p>{{angTest}}</p>
+            <button ng-click="onclick()">click test</button>
+        </div>
+    </div>
+</ons-page>
+<!-- end/楽器ページの内容 -->
