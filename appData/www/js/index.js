@@ -112,11 +112,6 @@ app.initialize();//以上の設定でアプリを起動
 
 
 //================以下、関数定義==============//
-function audio_play() {
-   audio.play();
-   console.log("play sound now!");
-}
-
 
 //================楽器再生==============//
 function audio_play($event) {
