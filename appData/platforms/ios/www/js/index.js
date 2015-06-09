@@ -67,7 +67,7 @@ var app = {
       module.controller('ShopController', ['$scope', function($scope) {
         console.log("Shop page is ready");
         //AngularJSのディレクティブの書式
-        $scope.test = "ここに店舗情報を載せるよ！";
+        //$scope.test = "ここに店舗情報を載せるよ！";
       }]);
 
       //マップページのコントローラ
@@ -98,15 +98,21 @@ var app = {
     }
 };
 
+
+
 app.initialize();//以上の設定でアプリを起動
 
 
 //================以下、関数定義==============//
+function audio_play() {
+   audio.play();
+   console.log("play sound now!");
+}
 
 //================加速度センサ機能==============//
 function startWatch() {  
   // Update acceleration every 3 seconds
-  var options = { frequency: 100 };
+  var options = { frequency: 300 };
   watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
   //watchID = navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
 }
@@ -122,7 +128,7 @@ function onSuccess(acceleration) {
     var acc = acceleration;
     var num = 15;
     if (acc.x > num || acc.y > num || acc.z > num) {
-		audio.play();
+		audio_play();
     }
     /*
     alert('Acceleration X: ' + acceleration.x + '\n' +
@@ -138,10 +144,7 @@ function onError() {
 
 //================/加速度センサ機能==============//
 
-function audio_play() {
-   audio.play();
-   console.log("play sound now!");
-}
+
 //================/一時的にタップで音を出す==============//
 //================一時的にタップで音を出す==============//
 function sound() {
