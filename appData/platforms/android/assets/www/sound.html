@@ -32,12 +32,12 @@
     
     <div class="app">
         <div id="btnBox">
-            <button id="start" class="btn" ng-click="startWatch()">音を鳴らす(加速度)</button><br>
-            <button id="stop" class="btn" ng-click="stopWatch()">加速度センサ停止</button><br>
-            <button id="se00" ng-click="audio_play($event)">音を鳴らす(クリック)</button><br>
-            <button id="se01" ng-click="audio_play($event)">音を鳴らす(クリック)</button><br>
-            <button id="se02" ng-click="audio_play($event)">音を鳴らす(クリック)</button><br>
-            <button id="se03" ng-click="audio_play($event)">音を鳴らす(クリック)</button><br>
+            <!--<button id="start" class="btn" ng-click="startWatch()">音を鳴らす(加速度)</button><br><br><br>-->
+            <button id="stop" class="btn" ng-click="stopWatch()">加速度センサ停止</button><br><br><br>
+            <button id="se00" ng-click="startWatch($event)">音を鳴らす(クリック)</button><br><br><br>
+            <button id="se01" ng-click="startWatch($event)">音を鳴らす(クリック)</button><br><br><br>
+            <button id="se02" ng-click="startWatch($event)">音を鳴らす(クリック)</button><br><br><br>
+            <button id="se03" ng-click="startWatch($event)">音を鳴らす(クリック)</button><br><br><br>
 
             <!-- このpタグはAngularjsのDirective機能のテスト。消してもおｋ -->
             <p>{{angTest}}</p>
