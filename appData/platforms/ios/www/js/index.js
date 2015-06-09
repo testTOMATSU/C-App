@@ -47,6 +47,14 @@ var app = {
         $scope.angTest = "ここが楽器ページ！";
 
 
+        AUDIO_LIST = {
+			"se00": new Audio("sound/cym03.mp3"),
+			"se01": new Audio("sound/pafu.mp3"),
+			"se02": new Audio("sound/shake01.mp3"),
+			"se03": new Audio("sound/tambrin.mp3"), 
+        };
+
+
         //各イベントを登録
         $scope.startWatch = startWatch;//加速度センサ計測開始イベント
         $scope.stopWatch = stopWatch;//加速度センサ計測終了イベント
@@ -109,6 +117,21 @@ function audio_play() {
    console.log("play sound now!");
 }
 
+
+//================楽器再生==============//
+function audio_play($event) {
+  var inst = $event.target.getAttribute("id");
+  
+  // サウンド再生
+  
+  AUDIO_LIST[inst].play();
+  // 次呼ばれた時用に新たに生成
+  AUDIO_LIST[inst] = new Audio( AUDIO_LIST[inst].src );
+  //audio.play();
+  console.log("play sound now!");
+}
+//================end/楽器再生==============//
+
 //================加速度センサ機能==============//
 function startWatch() {  
   // Update acceleration every 3 seconds
@@ -126,9 +149,12 @@ function stopWatch() {
 }
 function onSuccess(acceleration) {
     var acc = acceleration;
-    var num = 15;
-    if (acc.x > num || acc.y > num || acc.z > num) {
-		audio_play();
+    var num = {"x": 10, "y": 15, "z": 15};
+    if (Math.abs(acc.x) > num["x"] ||
+        Math.abs(acc.y) > num["y"] ||
+        Math.abs(acc.z) > num["z"]
+    ) {
+		  audio_play();
     }
     /*
     alert('Acceleration X: ' + acceleration.x + '\n' +
@@ -145,13 +171,12 @@ function onError() {
 //================/加速度センサ機能==============//
 
 
-//================/一時的にタップで音を出す==============//
 //================一時的にタップで音を出す==============//
 function sound() {
     //この中に音を鳴らす処理を書く
     //今は一時的にalert
     alert("音がなったよ");
-}
+}　
 //================/一時的にタップで音を出す==============//
 
 

@@ -9,21 +9,35 @@
     </ons-toolbar>
     <!-- end/メニュー上部のツールバー -->
     <!-- サウンド読み込み -->
-    <audio id="audio">
+    
+    
+    <!-- シンバル１-->
+    <audio id="cym03">
        <source src="sound/cym03.mp3">
     </audio><br>
+    <!-- パフ-->
+    <audio id="pafu">
+       <source src="sound/pafu.mp3">
+    </audio><br>
+    <!-- マラカス-->
+    <audio id="shake01">
+       <source src="sound/shake01.mp3">
+    </audio><br>
+    <!-- タンバリン-->
+    <audio id="tambrin">
+       <source src="sound/tambrin.mp3">
+    </audio><br>
+    
     <!-- end/サウンド読み込み -->
     
     <div class="app">
-        <h1>Apache Cordova</h1>
-        <!--<div id="deviceready" class="blink">
-            <p class="event listening">Connecting to Device</p>
-            <p class="event received">Device is Ready</p>
-        </div>-->
         <div id="btnBox">
             <button id="start" class="btn" ng-click="startWatch()">音を鳴らす(加速度)</button><br>
             <button id="stop" class="btn" ng-click="stopWatch()">加速度センサ停止</button><br>
-            <button id="sound" value="play" ng-click="audio_play()">音を鳴らす(クリック)</button><br>
+            <button id="se00" ng-click="audio_play($event)">音を鳴らす(クリック)</button><br>
+            <button id="se01" ng-click="audio_play($event)">音を鳴らす(クリック)</button><br>
+            <button id="se02" ng-click="audio_play($event)">音を鳴らす(クリック)</button><br>
+            <button id="se03" ng-click="audio_play($event)">音を鳴らす(クリック)</button><br>
 
             <!-- このpタグはAngularjsのDirective機能のテスト。消してもおｋ -->
             <p>{{angTest}}</p>
