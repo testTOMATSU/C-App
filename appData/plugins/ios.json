@@ -12,6 +12,12 @@
                             "xml": false,
                             "count": 1
                         }
+                    ],
+                    "CoreGraphics.framework": [
+                        {
+                            "xml": false,
+                            "count": 1
+                        }
                     ]
                 }
             },
@@ -20,6 +26,10 @@
                     "/*": [
                         {
                             "xml": "<feature name=\"Accelerometer\"><param name=\"ios-package\" value=\"CDVAccelerometer\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"InAppBrowser\"><param name=\"ios-package\" value=\"CDVInAppBrowser\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -32,6 +42,9 @@
             "PACKAGE_NAME": "com.example.centrair"
         },
         "cordova-plugin-device-motion": {
+            "PACKAGE_NAME": "com.example.centrair"
+        },
+        "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.example.centrair"
         }
     },

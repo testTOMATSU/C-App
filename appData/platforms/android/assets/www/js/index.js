@@ -35,11 +35,24 @@ var app = {
         console.log("onsen is ready");
       }]);
 
+      //メニューエリアのコントローラ
+      module.controller('MenuController', ['$scope', function($scope) {
+        console.log("Menu is ready");
+      }]);
+
       //楽器ページのコントローラ
       module.controller('SoundController', ['$scope', function($scope){
         console.log("Sound page is ready");
         //AngularJSのディレクティブの書式
         $scope.angTest = "ここが楽器ページ！";
+
+
+        AUDIO_LIST = {
+			"se00": new Audio("sound/cym03.mp3"),
+			"se01": new Audio("sound/pafu.mp3"),
+			"se02": new Audio("sound/shake01.mp3"),
+			"se03": new Audio("sound/tambrin.mp3"), 
+        };
 
 
         //各イベントを登録
@@ -62,7 +75,7 @@ var app = {
       module.controller('ShopController', ['$scope', function($scope) {
         console.log("Shop page is ready");
         //AngularJSのディレクティブの書式
-        $scope.test = "ここに店舗情報を載せるよ！";
+        //$scope.test = "ここに店舗情報を載せるよ！";
       }]);
 
       //マップページのコントローラ
@@ -93,31 +106,36 @@ var app = {
     }
 };
 
+
+
 app.initialize();//以上の設定でアプリを起動
 
 
 //================以下、関数定義==============//
 
-//================加速度センサ機能==============//
-function startWatch() {  
-  // Update acceleration every 3 seconds
-  var options = { frequency: 100 };
-  watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
-  //watchID = navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+//================楽器再生==============//
+function audio_play() {
+  //var inst = $event.target.getAttribute("id");
+  
+  // サウンド再生
+  
+  AUDIO_LIST["se00"].play();
+  // 次呼ばれた時用に新たに生成
+  AUDIO_LIST["se00"] = new Audio( AUDIO_LIST["se00"].src );
+  //audio.play();
+  console.log("play sound now!");
 }
+//================end/楽器再生==============//
 
-// Stop watching the acceleration
-function stopWatch() {
-  if (watchID) {
-    navigator.accelerometer.clearWatch(watchID);
-    watchID = null;
-  }
-}
+//================加速度センサ機能==============//
 function onSuccess(acceleration) {
     var acc = acceleration;
-    var num = 15;
-    if (acc.x > num || acc.y > num || acc.z > num) {
-		audio.play();
+    var num = {"x": 10, "y": 15, "z": 15};
+    if (Math.abs(acc.x) > num["x"] ||
+        Math.abs(acc.y) > num["y"] ||
+        Math.abs(acc.z) > num["z"]
+    ) {
+		  audio_play();
     }
     /*
     alert('Acceleration X: ' + acceleration.x + '\n' +
@@ -131,19 +149,29 @@ function onError() {
     alert('onError!');
 }
 
+function startWatch($event) {  
+  // Update acceleration every 3 seconds
+  var options = { frequency: 300 };
+  watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+  //watchID = navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+}
+
+// Stop watching the acceleration
+function stopWatch() {
+  if (watchID) {
+    navigator.accelerometer.clearWatch(watchID);
+    watchID = null;
+  }
+}
 //================/加速度センサ機能==============//
 
-function audio_play() {
-   audio.play();
-   console.log("play sound now!");
-}
-//================/一時的にタップで音を出す==============//
+
 //================一時的にタップで音を出す==============//
 function sound() {
     //この中に音を鳴らす処理を書く
     //今は一時的にalert
     alert("音がなったよ");
-}
+}　
 //================/一時的にタップで音を出す==============//
 
 
