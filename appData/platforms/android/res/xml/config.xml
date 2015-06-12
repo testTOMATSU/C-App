@@ -8,9 +8,6 @@
     <feature name="Accelerometer">
         <param name="android-package" value="org.apache.cordova.devicemotion.AccelListener" />
     </feature>
-    <feature name="InAppBrowser">
-        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
-    </feature>
     <allow-intent href="market:*" />
     <name>CentrairApp</name>
     <description>
@@ -20,7 +17,7 @@
         Apache Cordova Team
     </author>
     <content src="index.html" />
-    <access browserOnly="true" origin="*" />
+    <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
