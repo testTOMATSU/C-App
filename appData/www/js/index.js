@@ -20,6 +20,12 @@
 //グローバル変数定義
 var inst = "se00";//楽器選択用
 var first_sound = true;
+var acc_x,acc_y,acc_z;
+
+//加速度初期値
+var base_x = 0;
+var base_y = 9;
+var base_z = 3;
 
 
 //アプリ本体
@@ -57,8 +63,8 @@ var app = {
 
         AUDIO_LIST = {
           "se00": new Audio("sound/cym03.mp3"),
-          "se01": new Audio("sound/shake01.mp3"),
-          "se02": new Audio("sound/tambrin.mp3"),
+          "se01": new Audio("sound/marakasu.mp3"),
+          "se02": new Audio("sound/tanbarin_1.mp3"),
           "se03": new Audio("sound/pafu.mp3"), 
         };
 
@@ -67,6 +73,11 @@ var app = {
         $scope.startWatch = startWatch;//加速度センサ計測開始イベント
         $scope.stopWatch = stopWatch;//加速度センサ計測終了イベント
         $scope.audio_play = audio_play;//一時的にクリックイベントを付与
+
+        //加速度確認用
+        $scope.acc_x = acc_x;
+        $scope.acc_y = acc_y;
+        $scope.acc_z = acc_z;
 
         /*
           ・上記のイベント登録について
@@ -175,9 +186,25 @@ function stopWatch() {
 
 function onSuccess(acceleration) {
     var acc = acceleration;
-    var num = {"x": 10, "y": 15, "z": 15};
+    var num = {"x": 5, "y": 10, "z": 10};
 
-    if (Math.abs(acc.x) > num['x'] ||
+    //加速度確認用変数に値をセット
+    acc_x = acc.x;
+    acc_y = acc.y;
+    acc_z = acc.z;
+
+    //前回計測時との差
+    var diff_x = base_x - acc.x;
+    var diff_y = base_y - acc.y;
+    var diff_z = base_z - acc.z;
+
+    //x値用
+    var acx = false;
+    if((acc.x > 2 && acc.x < 10) || (acc.x < -2 && acc.x > -10)){
+      acx = true;
+    }
+
+    if (acx === true ||
         Math.abs(acc.y) > num['y'] ||
         Math.abs(acc.z) > num['z']
     ){
