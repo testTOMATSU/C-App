@@ -56,10 +56,10 @@ var app = {
 
 
         AUDIO_LIST = {
-			"se00": new Audio("sound/cym03.mp3"),
-			"se01": new Audio("sound/pafu.mp3"),
-			"se02": new Audio("sound/shake01.mp3"),
-			"se03": new Audio("sound/tambrin.mp3"), 
+          "se00": new Audio("sound/cym03.mp3"),
+          "se01": new Audio("sound/pafu.mp3"),
+          "se02": new Audio("sound/shake01.mp3"),
+          "se03": new Audio("sound/tambrin.mp3"), 
         };
 
 
@@ -125,8 +125,7 @@ app.initialize();//以上の設定でアプリを起動
 
 //================楽器再生==============//
 function audio_play() {
-  //var inst = $event.target.getAttribute("id");
-  
+  //alert("shake");
   // サウンド再生
   console.log("audio_play by :"+inst);
   AUDIO_LIST[inst].play();
@@ -139,7 +138,7 @@ function audio_play() {
 
 //================加速度センサ機能==============//
 function startWatch($event) {
-  
+
   //同じ楽器２回選択で音停止
   if(first_sound === false){
     if (inst == $event.target.getAttribute("id")){
@@ -147,9 +146,10 @@ function startWatch($event) {
       return;
     }
   }
-
+  console.log($event.target);
   //どの楽器ボタンを選択したか取得
   inst = $event.target.getAttribute("id");
+  console.log($event.target);
   stopWatch();
   console.log("start! by :"+inst);
   // Update acceleration every 3 seconds
