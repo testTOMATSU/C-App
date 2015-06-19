@@ -16,6 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+//グローバル変数定義
+var inst = "se00";//楽器選択用
+var first_sound = true;
+
+
+//アプリ本体
 var app = {
     // Application Constructor
     initialize: function() {
@@ -43,15 +50,16 @@ var app = {
       //楽器ページのコントローラ
       module.controller('SoundController', ['$scope', function($scope){
         console.log("Sound page is ready");
+        first_sound = true;
         //AngularJSのディレクティブの書式
         $scope.angTest = "ここが楽器ページ！";
 
 
         AUDIO_LIST = {
-			"se00": new Audio("sound/cym03.mp3"),
-			"se01": new Audio("sound/pafu.mp3"),
-			"se02": new Audio("sound/shake01.mp3"),
-			"se03": new Audio("sound/tambrin.mp3"), 
+          "se00": new Audio("sound/cym03.mp3"),
+          "se01": new Audio("sound/pafu.mp3"),
+          "se02": new Audio("sound/shake01.mp3"),
+          "se03": new Audio("sound/tambrin.mp3"), 
         };
 
 
@@ -74,6 +82,7 @@ var app = {
       //店舗一覧ページのコントローラ
       module.controller('ShopController', ['$scope', function($scope) {
         console.log("Shop page is ready");
+        stopWatch();
         //AngularJSのディレクティブの書式
         //$scope.test = "ここに店舗情報を載せるよ！";
       }]);
@@ -81,6 +90,7 @@ var app = {
       //マップページのコントローラ
       module.controller('MapController', ['$scope', function($scope) {
         console.log("Map page is ready.");
+        stopWatch();
         //AngularJSのディレクティブの書式
         $scope.test = "ここにマップ画像とかを載せるよ！";
       }]);
@@ -115,27 +125,62 @@ app.initialize();//以上の設定でアプリを起動
 
 //================楽器再生==============//
 function audio_play() {
-  //var inst = $event.target.getAttribute("id");
-  
+  //alert("shake");
   // サウンド再生
-  
-  AUDIO_LIST["se00"].play();
+  console.log("audio_play by :"+inst);
+  AUDIO_LIST[inst].play();
   // 次呼ばれた時用に新たに生成
-  AUDIO_LIST["se00"] = new Audio( AUDIO_LIST["se00"].src );
+  AUDIO_LIST[inst] = new Audio( AUDIO_LIST[inst].src );
   //audio.play();
   console.log("play sound now!");
 }
 //================end/楽器再生==============//
 
 //================加速度センサ機能==============//
+function startWatch($event) {
+
+  //同じ楽器２回選択で音停止
+  if(first_sound === false){
+    if (inst == $event.target.getAttribute("id")){
+      stopWatch();
+      return;
+    }
+  }
+  console.log($event.target);
+  //どの楽器ボタンを選択したか取得
+  inst = $event.target.getAttribute("id");
+  console.log($event.target);
+  stopWatch();
+  console.log("start! by :"+inst);
+  // Update acceleration every 3 seconds
+  var options = { frequency: 300 };
+  watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+  first_sound = false;
+  //watchID = navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+}
+
+// Stop watching the acceleration
+function stopWatch() {
+
+  //二回目以降の楽器選択時は前の楽器を終了させる
+  if (first_sound === false) {
+    navigator.accelerometer.clearWatch(watchID);
+    watchID = null;
+    console.log("stop!");
+  }else{
+    console.log("まだ音ならしてないよ");
+  }
+}
+
 function onSuccess(acceleration) {
     var acc = acceleration;
     var num = {"x": 10, "y": 15, "z": 15};
-    if (Math.abs(acc.x) > num["x"] ||
-        Math.abs(acc.y) > num["y"] ||
-        Math.abs(acc.z) > num["z"]
-    ) {
-		  audio_play();
+
+    if (Math.abs(acc.x) > num['x'] ||
+        Math.abs(acc.y) > num['y'] ||
+        Math.abs(acc.z) > num['z']
+    ){
+      audio_play();
     }
     /*
     alert('Acceleration X: ' + acceleration.x + '\n' +
@@ -147,21 +192,6 @@ function onSuccess(acceleration) {
 
 function onError() {
     alert('onError!');
-}
-
-function startWatch($event) {  
-  // Update acceleration every 3 seconds
-  var options = { frequency: 300 };
-  watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
-  //watchID = navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
-}
-
-// Stop watching the acceleration
-function stopWatch() {
-  if (watchID) {
-    navigator.accelerometer.clearWatch(watchID);
-    watchID = null;
-  }
 }
 //================/加速度センサ機能==============//
 
@@ -178,3 +208,12 @@ function sound() {
 function testSound() {
   alert("ok");
 }
+
+//isset
+var isset = function(data){
+    if(data === "" || data === null || data === undefined){
+        return false;
+    }else{
+        return true;
+    }
+};

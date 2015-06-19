@@ -1,16 +1,18 @@
 <!-- 楽器ページの内容 -->
 <ons-page ng-controller="SoundController">
-    <!-- メニュー上部のツールバー -->
-    <ons-toolbar>
-        <div class="right"><!-- サイドバーを開くボタン -->
-            <ons-toolbar-button ng-click="menu.toggleMenu()"><ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
-        </div>
-        <div class="center">せんとれあ</div><!-- ページタイトル -->
-    </ons-toolbar>
-    <!-- end/メニュー上部のツールバー -->
-    <!-- サウンド読み込み -->
-    
-    
+  <!-- メニュー上部のツールバー -->
+  <ons-toolbar>
+    <div class="left">
+      <img src="img/logo.png"><!-- ページタイトル -->
+    </div>
+    <div class="right"><!-- サイドバーを開くボタン -->
+      <ons-toolbar-button ng-click="menu.toggleMenu()"><ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
+    </div>
+  </ons-toolbar>
+  <!-- end/メニュー上部のツールバー -->
+  <!-- サウンド読み込み -->
+  
+  <div id="wrapper">
     <!-- シンバル１-->
     <audio id="cym03">
        <source src="sound/cym03.mp3">
@@ -27,22 +29,39 @@
     <audio id="tambrin">
        <source src="sound/tambrin.mp3">
     </audio><br>
+
+
     
     <!-- end/サウンド読み込み -->
     
-    <div class="app">
-        <div id="btnBox">
-            <!--<button id="start" class="btn" ng-click="startWatch()">音を鳴らす(加速度)</button><br><br><br>-->
-            <button id="stop" class="btn" ng-click="stopWatch()">加速度センサ停止</button><br><br><br>
-            <button id="se00" ng-click="startWatch($event)">音を鳴らす(クリック)</button><br><br><br>
-            <button id="se01" ng-click="startWatch($event)">音を鳴らす(クリック)</button><br><br><br>
-            <button id="se02" ng-click="startWatch($event)">音を鳴らす(クリック)</button><br><br><br>
-            <button id="se03" ng-click="startWatch($event)">音を鳴らす(クリック)</button><br><br><br>
 
-            <!-- このpタグはAngularjsのDirective機能のテスト。消してもおｋ -->
-            <p>{{angTest}}</p>
-            <button ng-click="onclick()">click test</button>
-        </div>
-    </div>
+    <div id="main">
+      <!--<button id="start" class="btn" ng-click="startWatch()">音を鳴らす(加速度)</button><br><br><br>
+      <button id="stop" class="btn" ng-click="stopWatch()">加速度センサ停止</button><br><br><br>-->
+        <!--
+        <button id="se00" ng-click="startWatch($event)">シンバル</button><br><br><br
+        <button id="se01" ng-click="startWatch($event)">パフ</button><br><br><br>
+        <button id="se02" ng-click="startWatch($event)">マラカス</button><br><br><br>
+        <button id="se03" ng-click="startWatch($event)">タンバリン</button><br><br><br>
+        >-->
+      <div class="button_01 buttons">
+        <div id="se00" class="touch_area" ng-click="startWatch($event)"></div>
+        <img src="img/gakki03.png">
+      </div>
+      <div class="button_02 buttons">
+        <div id="se01" class="touch_area" ng-click="startWatch($event)"></div>
+        <img src="img/gakki02.png">
+      </div>
+      <div class="button_03 buttons">
+        <div id="se02" class="touch_area" ng-click="startWatch($event)"></div>
+        <img src="img/gakki01.png">
+      </div>
+      <div class="button_04 buttons">
+        <div id="se03" class="touch_area" ng-click="startWatch($event)"></div>
+        <img src="img/gakki04.png">
+      </div>
+      <div class="foo"><img src="img/foo.png"></div>
+    </div><!--end/#main-->
+  </div><!-- end/#wrapper -->
 </ons-page>
 <!-- end/楽器ページの内容 -->

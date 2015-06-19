@@ -1,0 +1,3 @@
+$function(){
+	ons.bootstrap();
+}
