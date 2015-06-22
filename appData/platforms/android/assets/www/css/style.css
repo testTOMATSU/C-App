@@ -50,6 +50,10 @@ ons-toolbar img {
 
 .buttons{
 	position: relative;
+	float: left;
+	background-color: white;
+	border-radius: 50%;
+	text-align: center;
 }
 
 .buttons img{
@@ -69,14 +73,13 @@ ons-toolbar img {
 
 /**********シンバル**********/
 .button_01 {
-	float: left;
 	width: 90px;
 	height: 90px;
 	margin-top: 10px;
-	background-color: white;
-	border-radius: 50%;
 	border: solid 5px #DE4830;
-	text-align: center;
+}
+.button_01_play{
+	border: dotted 5px #DE4830;
 }
 
 .button_01 img {
@@ -86,15 +89,14 @@ ons-toolbar img {
 
 /**********マラカス**********/
 .button_02 {
-	float: left;
 	width: 130px;
 	height: 130px;
 	margin-top: 10px;
 	margin-left: 20px;
-	background-color: white;
-	border-radius: 50%;
 	border: solid 5px #33BFDB;
-	text-align: center;
+}
+.button_02_play{
+	border: dotted 5px #33BFDB;
 }
 
 .button_02 img {
@@ -104,14 +106,13 @@ ons-toolbar img {
 
 /**********タンバリン**********/
 .button_03 {
-	float: left;
 	width: 130px;
 	height: 130px;
 	margin-top: 10px;
-	background-color: white;
-	border-radius: 50%;
 	border: solid 5px #8DCF3F;
-	text-align: center;
+}
+.button_03_play{
+	border: dotted 5px #8DCF3F;
 }
 
 .button_03 img {
@@ -121,15 +122,14 @@ ons-toolbar img {
 
 /**********パフ音**********/
 .button_04 {
-	float: left;
 	width: 90px;
 	height: 90px;
 	margin-top: 10px;
 	margin-left: 20px;
-	background-color: white;
-	border-radius: 50%;
 	border: solid 5px #FDC44F;
-	text-align: center;
+}
+.button_04_play{
+	border: dotted 5px #FDC44F;
 }
 
 .button_04 img {

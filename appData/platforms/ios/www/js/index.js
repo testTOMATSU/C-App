@@ -26,6 +26,8 @@ var vector = {"x": true, "y": true, "z": true};//振った方向判定
 
 //加速度初期値
 var base = {"x": 0, "y": 9, "z": 3, "v": "x"};//x軸,y軸,z軸,加速度最大軸
+var bt_border = {0:false,1:false,2:false,3:false};//楽器ボタンのcss変更用
+var pre_bt_num;
 
 //アプリ本体
 var app = {
@@ -73,6 +75,8 @@ var app = {
         $scope.stopWatch = stopWatch;//加速度センサ計測終了イベント
         $scope.audio_play = audio_play;//一時的にクリックイベントを付与
 
+        $scope.play_now = bt_border;
+
         /*
           ・上記のイベント登録について
             1.書式
@@ -81,7 +85,8 @@ var app = {
               html内にてng-click等のイベントに設定されている名前
         */
 
-        $scope.onclick = testSound;//クリックイベントテスト用
+        //var bt = document.getElementsByClassName('buttons');
+
       }]);
       
       //店舗一覧ページのコントローラ
@@ -143,16 +148,16 @@ function audio_play() {
 //================end/楽器再生==============//
 
 //================加速度センサ機能==============//
-function startWatch($event) {
+function startWatch($event,num) {
 
   //どの楽器ボタンを選択したか取得
   cur_inst = $event.target.getAttribute("id");
+  console.log("親これ"+$event.target.parentNode);
 
   //前回と今回で楽器が違うなら前回楽器はリセット
   if(inst != cur_inst && inst !== ""){
     inst_count[inst] = 0;
-    //設定値もリセット
-    base = {"x": 0, "y": 9, "z": 3, "v": "x"};
+    bt_border[pre_bt_num] = false;
   }
 
 
@@ -161,6 +166,9 @@ function startWatch($event) {
     console.log("とめるね！");
     stopWatch();
     console.log("かうんと"+inst_count[cur_inst]);
+    bt_border[num] = false;
+    //設定値もリセット
+    base = {"x": 0, "y": 9, "z": 3, "v": "x"};
   }else{//違うなら加速度センサスタート
     console.log("start! by :"+cur_inst);
     console.log("かうんと："+inst_count[cur_inst]);
@@ -168,6 +176,7 @@ function startWatch($event) {
     watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
     first_sound = false;
     //watchID = navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+    bt_border[num] = true;
   }
 
   //タップ回数をcountup
@@ -175,6 +184,10 @@ function startWatch($event) {
 
   //前回楽器に現在楽器を設定
   inst = cur_inst;
+  pre_bt_num = num;
+  console.log(pre_bt_num);
+  console.log("play_now["+num+"]:"+bt_border[num]);
+  console.log("================================================");
 }
 
 // Stop watching the acceleration
@@ -193,7 +206,7 @@ function stopWatch() {
 
 function onSuccess(acceleration) {
     var acc = acceleration; //加速度取得
-    var num = {"x": 4.5, "y": 4.5, "z": 4.5}; //振り範囲設定
+    var num = {"x": 2.5, "y": 4.5, "z": 4.5}; //振り範囲設定
     var hit = false;  //振り判定
     var max = "x";  //一番振れ幅の大きかった軸
 
@@ -258,33 +271,10 @@ function onSuccess(acceleration) {
       base["v"] = max;
     }
 
-    //x値用
-    /*
-    var acx = false;
-    if((acc.x > 2 && acc.x < 10) || (acc.x < -2 && acc.x > -10)){
-      acx = true;
-    }*/
-
-    //加速度の絶対値で判断
-    /*
-    if (Math.abs(diff_x) > num['x'] ||
-        Math.abs(diff_y) > num['y'] ||
-        Math.abs(diff_z) > num['z']
-    ){
-      if (diff_x > num['x'] ||
-          diff_y > num['y'] ||
-          diff_z > num['z']
-      ){
-      audio_play();
-      console.log("x:"+diff_x+"y:"+diff_y+"z:"+diff_z);
+    //振れ幅最大値が20を超えていた場合はリセット
+    if(base[max] > 20){
+      base = {"x": 0, "y": 9, "z": 3, "v": "x"};
     }
-    */
-    /*
-    alert('Acceleration X: ' + acceleration.x + '\n' +
-          'Acceleration Y: ' + acceleration.y + '\n' +
-          'Acceleration Z: ' + acceleration.z + '\n' +
-          'Timestamp: '      + acceleration.timestamp + '\n');
-    */
 }
 
 function onError() {
