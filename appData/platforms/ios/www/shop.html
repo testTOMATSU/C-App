@@ -8,16 +8,44 @@
     </ons-toolbar>
     <!-- end/メニュー上部のツールバー -->
     <div class="app">
-        <!--<ons-list>
-            <ons-list-item tappable="true">
-                <p>店舗名:{{name}}</p>
-                <img src="img/logo.png">
-                <p>場所:{{place}}</p>
-                <p>営業時間:{{time}}</p>
+        <ons-list><!-- ul,olタグ的なもの -->
+            <ons-list-item tappable="true"><!-- liタグ的なもの -->
+<!--                 <div class="list">
+                    <div class="sumnale">画像</div>
+                    <div class="list_detail">
+                        <div class="shop_name"><p>店舗名:{{kubo}}</p></div>
+                        <div class="shop_detail">
+                            <p>場所:{{place}}</p>
+                            <p>営業時間:{{time}}</p>
+                        </div>
+                    </div>
+                </div> -->
+
+
+                  <ons-navigator title="Navigator" var="myNavigator">
+                    <ons-page>
+                      <ons-toolbar>
+                        <div class="center">Basic List</div>
+                      </ons-toolbar>
+                      <ons-scroller>
+                        <ons-list>
+                          <ons-list-header>Numbers</ons-list-header>
+                          <ons-list-item>One</ons-list-item>
+                          <ons-list-item>Two</ons-list-item>
+                          <ons-list-item>Three</ons-list-item>
+                          <ons-list-item>Four</ons-list-item>
+                          <ons-list-item>Five</ons-list-item>
+                          <ons-list-item>Six</ons-list-item>
+                        </ons-list>
+                    </ons-scroller>
+                        </ons-page>
+                      </ons-navigator>
+
+
             </ons-list-item>
             <ons-list-item tappable="true">b</ons-list-item>
         </ons-list>
-        -->
-        <img src="img/all.png" style="width:100%;">
+        <!--<ul id="shop_list">
+        </ul>-->
     </div>
 </ons-page>

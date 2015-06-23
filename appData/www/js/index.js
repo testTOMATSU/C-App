@@ -99,6 +99,7 @@ var app = {
         console.log("Shop page is ready");
         pre_watchID = watchID;
         stopWatch();
+        $scope.kubo = "ホモ酒場";
         //AngularJSのディレクティブの書式
         //$scope.test = "ここに店舗情報を載せるよ！";
       }]);
