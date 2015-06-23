@@ -103,6 +103,14 @@ var app = {
       //$scope.test = "ここに店舗情報を載せるよ！";
     }]);
 
+    //店舗詳細ページのコントローラ
+    module.controller('DetailController', ['$scope', function($scope) {
+      console.log("Detail page is ready");
+      //stopWatch();
+      //AngularJSのディレクティブの書式
+      //$scope.test = "ここに店舗情報を載せるよ！";
+    }]);
+
     //マップページのコントローラ
     module.controller('MapController', ['$scope', function($scope) {
       console.log("Map page is ready.");
