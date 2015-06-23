@@ -18,9 +18,16 @@
  */
 
 //グローバル変数定義
-var inst = "se00";//楽器選択用
+var inst = "";//前回の楽器
+var cur_inst = "";//現在の楽器
 var first_sound = true;
+var inst_count = {"se00": 0, "se01": 0, "se02": 0, "se03": 0};
+var vector = {"x": true, "y": true, "z": true};//振った方向判定
 
+//加速度初期値
+var base = {"x": 0, "y": 9, "z": 3, "v": "x"};//x軸,y軸,z軸,加速度最大軸
+var bt_border = {0:false,1:false,2:false,3:false};//楽器ボタンのcss変更用
+var pre_bt_num;
 
 //アプリ本体
 var app = {
@@ -57,9 +64,9 @@ var app = {
 
         AUDIO_LIST = {
           "se00": new Audio("sound/cym03.mp3"),
-          "se01": new Audio("sound/pafu.mp3"),
-          "se02": new Audio("sound/shake01.mp3"),
-          "se03": new Audio("sound/tambrin.mp3"), 
+          "se01": new Audio("sound/marakasu.mp3"),
+          "se02": new Audio("sound/tanbarin_1.mp3"),
+          "se03": new Audio("sound/pafu.mp3"), 
         };
 
 
@@ -67,6 +74,8 @@ var app = {
         $scope.startWatch = startWatch;//加速度センサ計測開始イベント
         $scope.stopWatch = stopWatch;//加速度センサ計測終了イベント
         $scope.audio_play = audio_play;//一時的にクリックイベントを付与
+
+        $scope.play_now = bt_border;
 
         /*
           ・上記のイベント登録について
@@ -76,7 +85,8 @@ var app = {
               html内にてng-click等のイベントに設定されている名前
         */
 
-        $scope.onclick = testSound;//クリックイベントテスト用
+        //var bt = document.getElementsByClassName('buttons');
+
       }]);
       
       //店舗一覧ページのコントローラ
@@ -127,67 +137,144 @@ app.initialize();//以上の設定でアプリを起動
 function audio_play() {
   //alert("shake");
   // サウンド再生
-  console.log("audio_play by :"+inst);
-  AUDIO_LIST[inst].play();
+  console.log("audio_play by :"+cur_inst);
+  console.log("AUDIO_LIST[cur_inst] :"+AUDIO_LIST[cur_inst]);
+  AUDIO_LIST[cur_inst].play();
   // 次呼ばれた時用に新たに生成
-  AUDIO_LIST[inst] = new Audio( AUDIO_LIST[inst].src );
+  AUDIO_LIST[cur_inst] = new Audio( AUDIO_LIST[cur_inst].src );
   //audio.play();
   console.log("play sound now!");
 }
 //================end/楽器再生==============//
 
 //================加速度センサ機能==============//
-function startWatch($event) {
+function startWatch($event,num) {
+
+  //どの楽器ボタンを選択したか取得
+  cur_inst = $event.target.getAttribute("id");
+  console.log("親これ"+$event.target.parentNode);
+
+  //前回と今回で楽器が違うなら前回楽器はリセット
+  if(inst != cur_inst && inst !== ""){
+    inst_count[inst] = 0;
+    bt_border[pre_bt_num] = false;
+  }
+
 
   //同じ楽器２回選択で音停止
-  if(first_sound === false){
-    if (inst == $event.target.getAttribute("id")){
-      stopWatch();
-      return;
-    }
+  if(inst_count[cur_inst]%2 !== 0 && inst !== ""){//楽器タップ回数が奇数階だったら
+    console.log("とめるね！");
+    stopWatch();
+    console.log("かうんと"+inst_count[cur_inst]);
+    bt_border[num] = false;
+    //設定値もリセット
+    base = {"x": 0, "y": 9, "z": 3, "v": "x"};
+  }else{//違うなら加速度センサスタート
+    console.log("start! by :"+cur_inst);
+    console.log("かうんと："+inst_count[cur_inst]);
+    var options = { frequency: 40 };
+    watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+    first_sound = false;
+    //watchID = navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+    bt_border[num] = true;
   }
-  console.log($event.target);
-  //どの楽器ボタンを選択したか取得
-  inst = $event.target.getAttribute("id");
-  console.log($event.target);
-  stopWatch();
-  console.log("start! by :"+inst);
-  // Update acceleration every 3 seconds
-  var options = { frequency: 300 };
-  watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
-  first_sound = false;
-  //watchID = navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+
+  //タップ回数をcountup
+  inst_count[cur_inst]++;
+
+  //前回楽器に現在楽器を設定
+  inst = cur_inst;
+  pre_bt_num = num;
+  console.log(pre_bt_num);
+  console.log("play_now["+num+"]:"+bt_border[num]);
+  console.log("================================================");
 }
 
 // Stop watching the acceleration
 function stopWatch() {
 
   //二回目以降の楽器選択時は前の楽器を終了させる
-  if (first_sound === false) {
+  /*if (first_sound === false) {*/
+    console.log("stop!");
     navigator.accelerometer.clearWatch(watchID);
     watchID = null;
-    console.log("stop!");
+    /*
   }else{
     console.log("まだ音ならしてないよ");
-  }
+  }*/
 }
 
 function onSuccess(acceleration) {
-    var acc = acceleration;
-    var num = {"x": 10, "y": 15, "z": 15};
+    var acc = acceleration; //加速度取得
+    var num = {"x": 2.5, "y": 4.5, "z": 4.5}; //振り範囲設定
+    var hit = false;  //振り判定
+    var max = "x";  //一番振れ幅の大きかった軸
 
-    if (Math.abs(acc.x) > num['x'] ||
-        Math.abs(acc.y) > num['y'] ||
-        Math.abs(acc.z) > num['z']
-    ){
-      audio_play();
+    //前回計測時との差
+    var diff = {"x": 0, "y": 0, "z": 0};
+
+    //X軸
+    if(base["x"] * acc.x >= 0){  //前回値と今回値の正負が一致していたら
+      //絶対値で計算
+      diff["x"] = Math.abs(base["x"]) - Math.abs(acc.x);
+      vector["x"] = false;
+    }else{
+      //元の値で計算
+      diff["x"] = base["x"] - acc.x;
+      vector["x"] = true;
     }
-    /*
-    alert('Acceleration X: ' + acceleration.x + '\n' +
-          'Acceleration Y: ' + acceleration.y + '\n' +
-          'Acceleration Z: ' + acceleration.z + '\n' +
-          'Timestamp: '      + acceleration.timestamp + '\n');
-    */
+    //Y軸
+    if(base["y"] * acc.y >= 0){  //前回値と今回値の正負が一致していたら
+      //絶対値で計算
+      diff["y"] = Math.abs(base["y"]) - Math.abs(acc.y);
+      vector["y"] = false;
+    }else{
+      //元の値で計算
+      diff["y"] = base["y"] - acc.y;
+      vector["y"] = true;
+    }
+    //Z軸
+    if(base["z"] * acc.z >= 0){  //前回値と今回値の正負が一致していたら
+      //絶対値で計算
+      diff["z"] = Math.abs(base["z"]) - Math.abs(acc.z);
+      vector["z"] = false;
+    }else{
+      //元の値で計算
+      diff["z"] = base["z"] - acc.z;
+      vector["z"] = true;
+    }
+
+    //一番振れ幅の大きい軸を特定
+    if(diff["x"] > diff["y"] && diff["x"] > diff["z"]){
+      max = "x";
+    }else if(diff["y"] > diff["x"] && diff["y"] > diff["z"]){
+      max = "y";
+    }else{
+      max = "z";
+    }
+
+    //加速度最大軸が前回と異なるなら
+    if(base["v"] != max){
+      vector[max] = true; //振り方向は考慮しない(trueにする)
+    }
+
+    //振れ幅最大値が設定値を超えており、なおかつ振り方向が違う場合
+    if(diff[max] > num[max] && vector[max]){
+
+      audio_play();//音を鳴らす
+      console.log("x:"+diff["x"]+"y:"+diff["y"]+"z:"+diff["z"]);
+
+      //次回比較用に値をセット
+      base["x"] = acc.x;
+      base["y"] = acc.y;
+      base["z"] = acc.z;
+      base["v"] = max;
+    }
+
+    //振れ幅最大値が20を超えていた場合はリセット
+    if(base[max] > 20){
+      base = {"x": 0, "y": 9, "z": 3, "v": "x"};
+    }
 }
 
 function onError() {

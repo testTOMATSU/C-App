@@ -1,16 +1,15 @@
-<!-- メニュー部分 -->
-<ons-page ng-controller="MenuController">
-    <ons-list>
-        <ons-list-item modifier="chevron" ng-click="menu.setMainPage('sound.html', {closeMenu: true})">
-            楽器ページ
-        </ons-list-item>
-        <ons-list-item modifier="chevron" ng-click="menu.setMainPage('shop.html', {closeMenu: true})">
-            店舗一覧
-        </ons-list-item>
-        <ons-list-item modifier="chevron" ng-click="menu.setMainPage('map.html', {closeMenu: true})">
-            マップ
-        </ons-list-item>
-        <a href="http://www.centrair.jp" target=_blank>公式サイト</a>
-    </ons-list>
+<ons-page ng-controller="OfficialController">
+    <!-- メニュー上部のツールバー -->
+    <ons-toolbar>
+        <div class="right"><!-- サイドバーを開くボタン -->
+            <ons-toolbar-button ng-click="menu.toggleMenu()"><ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
+        </div>
+        <div class="center">公式サイト</div><!-- ページタイトル -->
+    </ons-toolbar>
+    <!-- end/メニュー上部のツールバー -->
+    <div class="app">
+        <p>{{test}}</p>
+        <!--<ul id="shop_list">
+        </ul>-->
+    </div>
 </ons-page>
-<!-- end/メニュー部分 -->

@@ -1,11 +1,5 @@
 @charset"utf-8";
 
-html,body {
-	margin: 0;
-	padding: 0;
-	height: 480px;
-}
-
 #wrapper {
 	height: 100%;
 	background-repeat:repeat;
@@ -26,113 +20,46 @@ ons-toolbar img {
 }
 
 #main {
+	position: relative;
 	width: 260px;
-	height: 380px;
-	margin: -40px auto 0;
+	height: 100%;
+	/*margin: -80px auto 0;*/
+	margin: 0 auto;
 }
+
+#instrumental{
+	position: absolute;
+	top: 100px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 100%;
+	height: 300px;
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    content: " ";
+    clear: both;
+    height: 0;
+    }
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+
 
 .buttons{
 	position: relative;
+	float: left;
+	background-color: white;
+	border-radius: 50%;
+	text-align: center;
 }
 
 .buttons img{
 	top: 0;
 	left: 0;
 	z-index: 2;
-}
-
-/**********シンバル**********/
-.button_01 {
-	float: left;
-	width: 90px;
-	height: 90px;
-	margin-top: 10px;
-	background-color: white;
-	border-radius: 50%;
-	border: solid 5px #DE4830;
-	text-align: center;
-}
-
-.button_01 img {
-	width: 75px;
-	margin-top: 10px;
-}
-
-/**********マラカス**********/
-.button_02 {
-	float: left;
-	width: 130px;
-	height: 130px;
-	margin-top: 10px;
-	margin-left: 20px;
-	background-color: white;
-	border-radius: 50%;
-	border: solid 5px #33BFDB;
-	text-align: center;
-}
-
-.button_02 img {
-	width: 110px;
-	margin-top: 15px;
-}
-
-/**********タンバリン**********/
-.button_03 {
-	float: left;
-	width: 130px;
-	height: 130px;
-	margin-top: 10px;
-	background-color: white;
-	border-radius: 50%;
-	border: solid 5px #8DCF3F;
-	text-align: center;
-}
-
-.button_03 img {
-	width: 100px;
-	margin-top: 10px;
-}
-
-/**********パフ音**********/
-.button_04 {
-	float: left;
-	width: 90px;
-	height: 90px;
-	margin-top: 10px;
-	margin-left: 20px;
-	background-color: white;
-	border-radius: 50%;
-	border: solid 5px #FDC44F;
-	text-align: center;
-}
-
-.button_04 img {
-	height: 70px;
-	margin-top: 15px;
-}
-
-.foo img {
-	float: right;
-	height: 120px;
-	margin-top: -40px;
-}
-
-#footer_menu {
-	width: 100%;
-	height: 50px;
-	background-color: #55acee;
-}
-
-.menubutton {
-	float: left;
-	width: 80px;
-	height: 30px;
-	margin-left: 15px;
-	margin-top: 10px;
-	line-height: 30px;
-	border-radius: 5px;
-	text-align: center;
-	background-color: white;
 }
 
 .touch_area{
@@ -142,4 +69,83 @@ ons-toolbar img {
 	height: 100%;
 	background-color: rgba(0,0,0,0);
 	z-index: 9999;
+}
+
+/**********シンバル**********/
+.button_01 {
+	width: 90px;
+	height: 90px;
+	margin-top: 10px;
+	border: solid 5px #DE4830;
+}
+.button_01_play{
+	border: dotted 5px #DE4830;
+}
+
+.button_01 img {
+	width: 75px;
+	margin-top: 10px;
+}
+
+/**********マラカス**********/
+.button_02 {
+	width: 130px;
+	height: 130px;
+	margin-top: 10px;
+	margin-left: 20px;
+	border: solid 5px #33BFDB;
+}
+.button_02_play{
+	border: dotted 5px #33BFDB;
+}
+
+.button_02 img {
+	width: 110px;
+	margin-top: 15px;
+}
+
+/**********タンバリン**********/
+.button_03 {
+	width: 130px;
+	height: 130px;
+	margin-top: 10px;
+	border: solid 5px #8DCF3F;
+}
+.button_03_play{
+	border: dotted 5px #8DCF3F;
+}
+
+.button_03 img {
+	width: 100px;
+	margin-top: 10px;
+}
+
+/**********パフ音**********/
+.button_04 {
+	width: 90px;
+	height: 90px;
+	margin-top: 10px;
+	margin-left: 20px;
+	border: solid 5px #FDC44F;
+}
+.button_04_play{
+	border: dotted 5px #FDC44F;
+}
+
+.button_04 img {
+	height: 70px;
+	margin-top: 15px;
+}
+
+.foo{
+	position: absolute;
+	bottom: 0;
+	/*float: right;*/
+	right: 0;
+	height: 120px;
+	margin-top: -40px;
+}
+
+.foo img {
+	height: 100%;
 }
