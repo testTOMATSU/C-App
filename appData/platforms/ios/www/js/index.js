@@ -28,6 +28,7 @@ var vector = {"x": true, "y": true, "z": true};//振った方向判定
 var base = {"x": 0, "y": 9, "z": 3, "v": "x"};//x軸,y軸,z軸,加速度最大軸
 var bt_border = {0:false,1:false,2:false,3:false};//楽器ボタンのcss変更用
 var pre_bt_num;
+var watchID = null;
 
 //アプリ本体
 var app = {
@@ -58,10 +59,8 @@ var app = {
       module.controller('SoundController', ['$scope', function($scope){
         console.log("Sound page is ready");
         first_sound = true;
-        //AngularJSのディレクティブの書式
-        $scope.angTest = "ここが楽器ページ！";
 
-
+        //楽器音声リスト
         AUDIO_LIST = {
           "se00": new Audio("sound/cym03.mp3"),
           "se01": new Audio("sound/marakasu.mp3"),
@@ -92,7 +91,7 @@ var app = {
       //店舗一覧ページのコントローラ
       module.controller('ShopController', ['$scope', function($scope) {
         console.log("Shop page is ready");
-        stopWatch();
+        //stopWatch();
         //AngularJSのディレクティブの書式
         //$scope.test = "ここに店舗情報を載せるよ！";
       }]);
@@ -100,9 +99,17 @@ var app = {
       //マップページのコントローラ
       module.controller('MapController', ['$scope', function($scope) {
         console.log("Map page is ready.");
-        stopWatch();
+        //stopWatch();
         //AngularJSのディレクティブの書式
-        $scope.test = "ここにマップ画像とかを載せるよ！";
+        $scope.test = "ここにマップ画像が表示されます";
+      }]);
+
+      //公式ページのコントローラ
+      module.controller('OfficialController', ['$scope', function($scope) {
+        console.log("Official page is ready.");
+        //stopWatch();
+        //AngularJSのディレクティブの書式
+        $scope.test = "公式サイトが表示されます";
       }]);
     //========================/ここにイベントを書く=============================//
     },
@@ -132,6 +139,14 @@ app.initialize();//以上の設定でアプリを起動
 
 
 //================以下、関数定義==============//
+//isset
+var isset = function(data){
+    if(data === "" || data === null || data === undefined){
+        return false;
+    }else{
+        return true;
+    }
+};
 
 //================楽器再生==============//
 function audio_play() {
@@ -158,6 +173,7 @@ function startWatch($event,num) {
   if(inst != cur_inst && inst !== ""){
     inst_count[inst] = 0;
     bt_border[pre_bt_num] = false;
+    stopWatch();
   }
 
 
@@ -193,15 +209,14 @@ function startWatch($event,num) {
 // Stop watching the acceleration
 function stopWatch() {
 
-  //二回目以降の楽器選択時は前の楽器を終了させる
-  /*if (first_sound === false) {*/
+  if (watchID != null) {
     console.log("stop!");
     navigator.accelerometer.clearWatch(watchID);
     watchID = null;
-    /*
+    //bt_border = {0:false,1:false,2:false,3:false};
   }else{
     console.log("まだ音ならしてないよ");
-  }*/
+  }
 }
 
 function onSuccess(acceleration) {
@@ -295,12 +310,3 @@ function sound() {
 function testSound() {
   alert("ok");
 }
-
-//isset
-var isset = function(data){
-    if(data === "" || data === null || data === undefined){
-        return false;
-    }else{
-        return true;
-    }
-};

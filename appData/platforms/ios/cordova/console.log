@@ -68,3 +68,87 @@ To disable web storage backup to iCloud, set the BackupWebStorage preference to 
 
 2015-06-09 09:56:10.857 CentrairApp[9637:428402] Resetting plugins due to page load.
 2015-06-09 09:56:10.933 CentrairApp[9637:428402] Finished load of: file:///Users/fukunagakazuki/Library/Developer/CoreSimulator/Devices/A5C5408F-DA4F-4929-BF1D-EC153BFFC2EA/data/Containers/Bundle/Application/0DC58F75-CF57-4AE0-A7BF-13CC3EC60EBD/CentrairApp.app/www/index.html
+2015-06-23 10:20:25.886 CentrairApp[79096:2653711] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/KatsuyaKubo/Library/Developer/CoreSimulator/Devices/FDAE67C9-5F9E-4BB9-AF9F-473ECEA48ED8/data/Containers/Data/Application/E852C522-1964-45A6-86A7-40C628D7CD35/Library/Cookies/Cookies.binarycookies
+2015-06-23 10:20:26.231 CentrairApp[79096:2653711] Apache Cordova native platform version 3.8.0 is starting.
+2015-06-23 10:20:26.232 CentrairApp[79096:2653711] Multi-tasking -> Device: YES, App: YES
+2015-06-23 10:20:26.251 CentrairApp[79096:2653711] Unlimited access to network resources
+2015-06-23 10:20:26.268 CentrairApp[79096:2653711] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-06-23 10:20:27.049 CentrairApp[79096:2653711] Resetting plugins due to page load.
+2015-06-23 10:20:27.447 CentrairApp[79096:2653711] Finished load of: file:///Users/KatsuyaKubo/Library/Developer/CoreSimulator/Devices/FDAE67C9-5F9E-4BB9-AF9F-473ECEA48ED8/data/Containers/Bundle/Application/0C1EEE87-2EE7-45FE-AF88-89D17C59DA2F/CentrairApp.app/www/index.html
+2015-06-23 10:22:14.850 CentrairApp[79291:2655062] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/KatsuyaKubo/Library/Developer/CoreSimulator/Devices/FDAE67C9-5F9E-4BB9-AF9F-473ECEA48ED8/data/Containers/Data/Application/1CBCF017-3177-4957-8DE5-0F21B4D9A22B/Library/Cookies/Cookies.binarycookies
+2015-06-23 10:22:14.908 CentrairApp[79291:2655062] Apache Cordova native platform version 3.8.0 is starting.
+2015-06-23 10:22:14.908 CentrairApp[79291:2655062] Multi-tasking -> Device: YES, App: YES
+2015-06-23 10:22:14.914 CentrairApp[79291:2655062] Unlimited access to network resources
+2015-06-23 10:22:14.917 CentrairApp[79291:2655062] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-06-23 10:22:15.075 CentrairApp[79291:2655062] Resetting plugins due to page load.
+2015-06-23 10:22:15.282 CentrairApp[79291:2655062] Finished load of: file:///Users/KatsuyaKubo/Library/Developer/CoreSimulator/Devices/FDAE67C9-5F9E-4BB9-AF9F-473ECEA48ED8/data/Containers/Bundle/Application/920D9D33-984F-48C3-A8A6-AD570C99B033/CentrairApp.app/www/index.html
+2015-06-23 10:23:56.215 CentrairApp[79523:2656890] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/KatsuyaKubo/Library/Developer/CoreSimulator/Devices/FDAE67C9-5F9E-4BB9-AF9F-473ECEA48ED8/data/Containers/Data/Application/0E957A8D-9478-49C3-A08A-8399D8009714/Library/Cookies/Cookies.binarycookies
+2015-06-23 10:23:56.349 CentrairApp[79523:2656890] Apache Cordova native platform version 3.8.0 is starting.
+2015-06-23 10:23:56.350 CentrairApp[79523:2656890] Multi-tasking -> Device: YES, App: YES
+2015-06-23 10:23:56.355 CentrairApp[79523:2656890] Unlimited access to network resources
+2015-06-23 10:23:56.358 CentrairApp[79523:2656890] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-06-23 10:23:56.535 CentrairApp[79523:2656890] Resetting plugins due to page load.
+2015-06-23 10:23:56.799 CentrairApp[79523:2656890] Finished load of: file:///Users/KatsuyaKubo/Library/Developer/CoreSimulator/Devices/FDAE67C9-5F9E-4BB9-AF9F-473ECEA48ED8/data/Containers/Bundle/Application/E07D6D2D-0152-46A9-9F5C-45ABE9C4E601/CentrairApp.app/www/index.html
+2015-06-23 10:37:10.896 CentrairApp[79890:2665621] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/KatsuyaKubo/Library/Developer/CoreSimulator/Devices/FDAE67C9-5F9E-4BB9-AF9F-473ECEA48ED8/data/Containers/Data/Application/552C3C6F-FB58-49B7-B3FA-B657B546A099/Library/Cookies/Cookies.binarycookies
+2015-06-23 10:37:11.020 CentrairApp[79890:2665621] Apache Cordova native platform version 3.8.0 is starting.
+2015-06-23 10:37:11.021 CentrairApp[79890:2665621] Multi-tasking -> Device: YES, App: YES
+2015-06-23 10:37:11.026 CentrairApp[79890:2665621] Unlimited access to network resources
+2015-06-23 10:37:11.031 CentrairApp[79890:2665621] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-06-23 10:37:11.212 CentrairApp[79890:2665621] Resetting plugins due to page load.
+2015-06-23 10:37:11.458 CentrairApp[79890:2665621] Finished load of: file:///Users/KatsuyaKubo/Library/Developer/CoreSimulator/Devices/FDAE67C9-5F9E-4BB9-AF9F-473ECEA48ED8/data/Containers/Bundle/Application/0B0C828B-46D6-4AAB-9191-5664582249A5/CentrairApp.app/www/index.html
+2015-06-23 11:03:12.731 CentrairApp[81982:2685491] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/KatsuyaKubo/Library/Developer/CoreSimulator/Devices/FDAE67C9-5F9E-4BB9-AF9F-473ECEA48ED8/data/Containers/Data/Application/706C4330-8C27-4821-BF1A-E20DC66F41A5/Library/Cookies/Cookies.binarycookies
+2015-06-23 11:03:12.838 CentrairApp[81982:2685491] Apache Cordova native platform version 3.8.0 is starting.
+2015-06-23 11:03:12.839 CentrairApp[81982:2685491] Multi-tasking -> Device: YES, App: YES
+2015-06-23 11:03:12.846 CentrairApp[81982:2685491] Unlimited access to network resources
+2015-06-23 11:03:12.854 CentrairApp[81982:2685491] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-06-23 11:03:13.145 CentrairApp[81982:2685491] Resetting plugins due to page load.
+2015-06-23 11:03:13.393 CentrairApp[81982:2685491] Finished load of: file:///Users/KatsuyaKubo/Library/Developer/CoreSimulator/Devices/FDAE67C9-5F9E-4BB9-AF9F-473ECEA48ED8/data/Containers/Bundle/Application/43E67F40-FC47-4139-88C9-697AF40856DB/CentrairApp.app/www/index.html
+2015-06-23 11:10:16.467 CentrairApp[82568:2691678] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/KatsuyaKubo/Library/Developer/CoreSimulator/Devices/FDAE67C9-5F9E-4BB9-AF9F-473ECEA48ED8/data/Containers/Data/Application/4BD796E7-F731-40BB-A326-0760A56D8D3D/Library/Cookies/Cookies.binarycookies
+2015-06-23 11:10:16.531 CentrairApp[82568:2691678] Apache Cordova native platform version 3.8.0 is starting.
+2015-06-23 11:10:16.531 CentrairApp[82568:2691678] Multi-tasking -> Device: YES, App: YES
+2015-06-23 11:10:16.537 CentrairApp[82568:2691678] Unlimited access to network resources
+2015-06-23 11:10:16.539 CentrairApp[82568:2691678] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-06-23 11:10:16.740 CentrairApp[82568:2691678] Resetting plugins due to page load.
+2015-06-23 11:10:16.946 CentrairApp[82568:2691678] Finished load of: file:///Users/KatsuyaKubo/Library/Developer/CoreSimulator/Devices/FDAE67C9-5F9E-4BB9-AF9F-473ECEA48ED8/data/Containers/Bundle/Application/5DAD842D-D57F-4554-AF19-E0D2A49583AC/CentrairApp.app/www/index.html

@@ -206,7 +206,7 @@ function stopWatch() {
 
 function onSuccess(acceleration) {
     var acc = acceleration; //加速度取得
-    var num = {"x": 4.5, "y": 4.5, "z": 4.5}; //振り範囲設定
+    var num = {"x": 2.5, "y": 4.5, "z": 4.5}; //振り範囲設定
     var hit = false;  //振り判定
     var max = "x";  //一番振れ幅の大きかった軸
 
