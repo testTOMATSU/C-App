@@ -94,6 +94,7 @@ var app = {
       module.controller('ShopController', ['$scope', function($scope) {
         console.log("Shop page is ready");
         stopWatch();
+        $scope.kubo = "ホモ酒場";
         //AngularJSのディレクティブの書式
         //$scope.test = "ここに店舗情報を載せるよ！";
       }]);

@@ -10,10 +10,16 @@
     <div class="app">
         <ons-list><!-- ul,olタグ的なもの -->
             <ons-list-item tappable="true"><!-- liタグ的なもの -->
-                <p>店舗名:{{name}}</p>
-                <img src="img/logo.png">
-                <p>場所:{{place}}</p>
-                <p>営業時間:{{time}}</p>
+                 <div class="list">
+                    <div class="sumnale">画像</div>
+                    <div class="list_detail">
+                        <div class="shop_name"><p>店舗名:{{kubo}}</p></div>
+                        <div class="shop_detail">
+                            <p>場所:{{place}}</p>
+                            <p>営業時間:{{time}}</p>
+                        </div>
+                    </div>
+                </div> 
             </ons-list-item>
             <ons-list-item tappable="true">b</ons-list-item>
         </ons-list>
