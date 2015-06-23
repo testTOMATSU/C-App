@@ -18,22 +18,17 @@
  */
 
 //グローバル変数定義
-var inst = "";//前回の楽器
-var cur_inst = "";//現在の楽器
-var first_sound = true;
-var inst_count = {"se00": 0, "se01": 0, "se02": 0, "se03": 0};
 var vector = {"x": true, "y": true, "z": true};//振った方向判定
 
 //加速度初期値
 var base = {"x": 0, "y": 9, "z": 3, "v": "x"};//x軸,y軸,z軸,加速度最大軸
 var bt_border = {0:false,1:false,2:false,3:false};//楽器ボタンのcss変更用
-var b_num = null;//css変更要素特定のための変数
-var pre_bt_num;
-var watchID = null;
 
-var curr_inst = null;
+var watchID = null;//加速度センサのID
+
+var curr_inst = null;//現在の楽器
 var save_inst = null;//楽器選択情報($event)の退避先
-var save_num = null;
+var save_num = null;//css情報の退避先
 
 //楽器音声リスト
 var AUDIO_LIST = {
@@ -73,6 +68,7 @@ var app = {
       console.log("Sound page is ready");
 
       if(save_inst != null && save_num != null){
+        stopWatch();//楽器P メニュー 楽器Pの手順で戻られたときのため
         startWatch(save_inst,save_num);
       }
 
@@ -111,8 +107,9 @@ var app = {
     module.controller('MapController', ['$scope', function($scope) {
       console.log("Map page is ready.");
       stopWatch();
+      //$scope.kubo = "ホモ酒場";
       //AngularJSのディレクティブの書式
-      $scope.test = "ここにマップ画像が表示されます";
+      //$scope.test = "ここにマップ画像が表示されます";
     }]);
 
     //公式ページのコントローラ
@@ -177,6 +174,7 @@ function audio_play() {
 function startWatch($event,num) {
  
   //どの楽器ボタンを選択したか取得
+  //楽器ボタンからの呼び出しか、ページ遷移での呼び出しか判断
   if(typeof($event) == "string"){
     curr_inst = $event;
   }else{
@@ -186,9 +184,12 @@ function startWatch($event,num) {
   console.log("save_inst:"+save_inst);
   console.log("curr_inst:"+curr_inst);
 
-  if(curr_inst == save_inst){
-    if(watchID != null){
+  /*======加速センサ開始・停止======*/
+  if(curr_inst == save_inst){//前回と同じ楽器をタップしたなら
+    if(watchID != null){//センサが動作中なら
+      //センサ停止(前回のセンサをとめる)
       stopWatch();
+      //前回楽器のcssクラスを解除
       bt_border[save_num] = false;
       curr_inst = null;
       num = null;
@@ -196,30 +197,24 @@ function startWatch($event,num) {
       //加速度センサスタート
       var options = { frequency: 40 };
       watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
-      //cssクラスを付与
+      //今回楽器にcssクラスを付与
       bt_border[num] = true;
     }
   }else{
     stopWatch();
+    //前回楽器のcssクラスを解除
     bt_border[save_num] = false;
     //加速度センサスタート
     var options = { frequency: 40 };
     watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
-    //cssクラスを付与
+    //今回楽器にcssクラスを付与
     bt_border[num] = true;
   }
+  /*======end/加速センサ開始・停止======*/
 
-  /*
-  if(watchID == null || save_num != null){
-    //前回選択した楽器のcssクラスを剥奪
-    bt_border[save_num] = false;
-  }else if(save_inst != curr_inst){
-    
-  }*/
-
-  //楽器情報取得
+  //今回の楽器を次回のために「前回楽器」として保存
   save_inst = curr_inst;
-  //css情報
+  //同様にcss情報も保存
   save_num = num;
   console.log("watchID:"+watchID);
 }
@@ -229,8 +224,6 @@ function stopWatch() {
   console.log("stop!");
   navigator.accelerometer.clearWatch(watchID);
   watchID = null;
-  //cssクラスをリセット
-  //bt_border = {0:false,1:false,2:false,3:false};
 }
 
 function onSuccess(acceleration) {
