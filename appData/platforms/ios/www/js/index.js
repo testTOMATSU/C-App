@@ -29,6 +29,7 @@ var base = {"x": 0, "y": 9, "z": 3, "v": "x"};//x軸,y軸,z軸,加速度最大�
 var bt_border = {0:false,1:false,2:false,3:false};//楽器ボタンのcss変更用
 var pre_bt_num;
 var watchID = null;
+var pre_watchID = null;//ページ移動時に選択楽器を保存しておく
 
 //アプリ本体
 var app = {
@@ -58,6 +59,10 @@ var app = {
       //楽器ページのコントローラ
       module.controller('SoundController', ['$scope', function($scope){
         console.log("Sound page is ready");
+
+        //前回のページ離脱時に楽器選択状態だったならwatchIDにセットしなおす
+        watchID = pre_watchID;
+
         first_sound = true;
 
         //楽器音声リスト
@@ -74,7 +79,8 @@ var app = {
         $scope.stopWatch = stopWatch;//加速度センサ計測終了イベント
         $scope.audio_play = audio_play;//一時的にクリックイベントを付与
 
-        $scope.play_now = bt_border;
+        $scope.play_now = bt_border;//選択楽器CSS
+        $scope.watch_id = watchID;
 
         /*
           ・上記のイベント登録について
@@ -91,7 +97,8 @@ var app = {
       //店舗一覧ページのコントローラ
       module.controller('ShopController', ['$scope', function($scope) {
         console.log("Shop page is ready");
-        //stopWatch();
+        pre_watchID = watchID;
+        stopWatch();
         //AngularJSのディレクティブの書式
         //$scope.test = "ここに店舗情報を載せるよ！";
       }]);
@@ -99,7 +106,8 @@ var app = {
       //マップページのコントローラ
       module.controller('MapController', ['$scope', function($scope) {
         console.log("Map page is ready.");
-        //stopWatch();
+        pre_watchID = watchID;
+        stopWatch();
         //AngularJSのディレクティブの書式
         $scope.test = "ここにマップ画像が表示されます";
       }]);
@@ -107,7 +115,8 @@ var app = {
       //公式ページのコントローラ
       module.controller('OfficialController', ['$scope', function($scope) {
         console.log("Official page is ready.");
-        //stopWatch();
+        pre_watchID = watchID;
+        stopWatch();
         //AngularJSのディレクティブの書式
         $scope.test = "公式サイトが表示されます";
       }]);
@@ -207,7 +216,7 @@ function startWatch($event,num) {
 }
 
 // Stop watching the acceleration
-function stopWatch() {
+function stopWatch(num) {
 
   if (watchID != null) {
     console.log("stop!");
@@ -216,6 +225,7 @@ function stopWatch() {
     //bt_border = {0:false,1:false,2:false,3:false};
   }else{
     console.log("まだ音ならしてないよ");
+    pre_watchID = null;
   }
 }
 
