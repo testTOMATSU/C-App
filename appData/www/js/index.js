@@ -104,6 +104,7 @@ var app = {
         stopWatch();
         //AngularJSのディレクティブの書式
         $scope.test = "ここにマップ画像とかを載せるよ！";
+        $scope.touch = touch;
       }]);
     //========================/ここにイベントを書く=============================//
     },
@@ -245,3 +246,13 @@ var isset = function(data){
         return true;
     }
 };
+function touch(su){
+  document.getElementById("map").style.backgroundImage = "url(img/back0"+su+".png)";
+  for(var i = 1;i <= 4;i++){
+    document.getElementById("lst"+i).style.display = "none";
+    document.getElementById("opa"+i).style.backgroundColor = "black";
+    document.getElementById("opa"+i).style.opacity = "0.2";
+  }
+  document.getElementById("lst"+su).style.display = "block";
+  document.getElementById("opa"+su).style.opacity = "0";
+}
