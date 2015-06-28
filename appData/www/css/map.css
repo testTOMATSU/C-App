@@ -13,7 +13,7 @@ html,body{
 }
 
 #main_map{
-	margin: 10px;
+	margin: 10px auto 0;
 	height: 10px;
 	width: 300px;
 }
