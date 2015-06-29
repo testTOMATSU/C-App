@@ -99,7 +99,6 @@ var app = {
     module.controller('ShopController', ['$scope', function($scope) {
       console.log("Shop page is ready");
       stopWatch();
-      $scope.kubo = "ホモ酒場";
       //AngularJSのディレクティブの書式
       //$scope.test = "ここに店舗情報を載せるよ！";
     }]);
@@ -116,6 +115,8 @@ var app = {
     module.controller('MapController', ['$scope', function($scope) {
       console.log("Map page is ready.");
       stopWatch();
+      $scope.touch = touch;
+      //$scope.kubo = "ホモ酒場";
       //AngularJSのディレクティブの書式
       //$scope.test = "ここにマップ画像が表示されます";
     }]);
@@ -324,4 +325,15 @@ function sound() {
 
 function testSound() {
   alert("ok");
+}
+
+function touch(su){
+  document.getElementById("map").style.backgroundImage = "url(img/back0"+su+".png)";
+  for(var i = 1;i <= 4;i++){
+    document.getElementById("lst"+i).style.display = "none";
+    document.getElementById("opa"+i).style.backgroundColor = "black";
+    document.getElementById("opa"+i).style.opacity = "0.2";
+  }
+  document.getElementById("lst"+su).style.display = "block";
+  document.getElementById("opa"+su).style.opacity = "0";
 }
