@@ -126,7 +126,9 @@ var app = {
       console.log("Official page is ready.");
       stopWatch();
       //AngularJSのディレクティブの書式
-      $scope.test = "公式サイトが表示されます";
+      //$scope.test = "公式サイトが表示されます";
+      var ref = window.open('http://apache.org', '_blank', 'location=yes');
+      ref.addEventListener('loadstart', function() { alert(event.url); });
     }]);
   //========================/ここにイベントを書く=============================//
   },
