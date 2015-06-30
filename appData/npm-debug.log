@@ -1,0 +1,91 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'cordova-icon', '-g' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 verbose cache add [ 'cordova-icon', null ]
+5 verbose cache add name=undefined spec="cordova-icon" args=["cordova-icon",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'cordova-icon',
+6 verbose parsed url   path: 'cordova-icon',
+6 verbose parsed url   href: 'cordova-icon' }
+7 silly lockFile 10188280-cordova-icon cordova-icon
+8 verbose lock cordova-icon /Users/KatsuyaKubo/.npm/10188280-cordova-icon.lock
+9 silly lockFile 10188280-cordova-icon cordova-icon
+10 silly lockFile 10188280-cordova-icon cordova-icon
+11 verbose addNamed [ 'cordova-icon', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile f1f680bf-cordova-icon cordova-icon@
+14 verbose lock cordova-icon@ /Users/KatsuyaKubo/.npm/f1f680bf-cordova-icon.lock
+15 silly addNameRange { name: 'cordova-icon', range: '*', hasData: false }
+16 verbose request where is /cordova-icon
+17 verbose request registry https://registry.npmjs.org/
+18 verbose request id cd88e26ea33af611
+19 verbose url raw /cordova-icon
+20 verbose url resolving [ 'https://registry.npmjs.org/', './cordova-icon' ]
+21 verbose url resolved https://registry.npmjs.org/cordova-icon
+22 verbose request where is https://registry.npmjs.org/cordova-icon
+23 info trying registry request attempt 1 at 10:11:19
+24 verbose etag "8Q3P9F2PZSL08IQQ98LWPA810"
+25 http GET https://registry.npmjs.org/cordova-icon
+26 http 200 https://registry.npmjs.org/cordova-icon
+27 silly registry.get cb [ 200,
+27 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+27 silly registry.get     etag: '"8SYHL8YOJ7AS7811YZL3SBBQB"',
+27 silly registry.get     'content-type': 'application/json',
+27 silly registry.get     'cache-control': 'max-age=60',
+27 silly registry.get     'content-length': '10058',
+27 silly registry.get     'accept-ranges': 'bytes',
+27 silly registry.get     date: 'Wed, 24 Jun 2015 01:11:26 GMT',
+27 silly registry.get     via: '1.1 varnish',
+27 silly registry.get     age: '0',
+27 silly registry.get     connection: 'keep-alive',
+27 silly registry.get     'x-served-by': 'cache-nrt6120-NRT',
+27 silly registry.get     'x-cache': 'MISS',
+27 silly registry.get     'x-cache-hits': '0',
+27 silly registry.get     'x-timer': 'S1435108286.773599,VS0,VE119',
+27 silly registry.get     vary: 'Accept' } ]
+28 silly addNameRange number 2 { name: 'cordova-icon', range: '*', hasData: true }
+29 silly addNameRange versions [ 'cordova-icon',
+29 silly addNameRange   [ '0.0.1', '0.0.2', '0.0.3', '0.0.4', '0.1.0', '0.2.0', '0.3.0' ] ]
+30 verbose addNamed [ 'cordova-icon', '0.3.0' ]
+31 verbose addNamed [ '0.3.0', '0.3.0' ]
+32 silly lockFile c6d7271c-cordova-icon-0-3-0 cordova-icon@0.3.0
+33 verbose lock cordova-icon@0.3.0 /Users/KatsuyaKubo/.npm/c6d7271c-cordova-icon-0-3-0.lock
+34 silly lockFile 9ba45ffc-dova-icon-cordova-icon-0-3-0-tgz https://registry.npmjs.org/cordova-icon/-/cordova-icon-0.3.0.tgz
+35 verbose lock https://registry.npmjs.org/cordova-icon/-/cordova-icon-0.3.0.tgz /Users/KatsuyaKubo/.npm/9ba45ffc-dova-icon-cordova-icon-0-3-0-tgz.lock
+36 verbose addRemoteTarball [ 'https://registry.npmjs.org/cordova-icon/-/cordova-icon-0.3.0.tgz',
+36 verbose addRemoteTarball   'e8197ceaad7b7ea1efdd186388658999a3ab694e' ]
+37 info retry fetch attempt 1 at 10:11:26
+38 verbose fetch to= /var/folders/mx/js4dkmnx11sbf1vgjk74krs00000gn/T/npm-12562-oThQFX4x/registry.npmjs.org/cordova-icon/-/cordova-icon-0.3.0.tgz
+39 http GET https://registry.npmjs.org/cordova-icon/-/cordova-icon-0.3.0.tgz
+40 http 200 https://registry.npmjs.org/cordova-icon/-/cordova-icon-0.3.0.tgz
+41 silly lockFile 9ba45ffc-dova-icon-cordova-icon-0-3-0-tgz https://registry.npmjs.org/cordova-icon/-/cordova-icon-0.3.0.tgz
+42 silly lockFile 9ba45ffc-dova-icon-cordova-icon-0-3-0-tgz https://registry.npmjs.org/cordova-icon/-/cordova-icon-0.3.0.tgz
+43 silly lockFile c6d7271c-cordova-icon-0-3-0 cordova-icon@0.3.0
+44 silly lockFile c6d7271c-cordova-icon-0-3-0 cordova-icon@0.3.0
+45 silly lockFile f1f680bf-cordova-icon cordova-icon@
+46 silly lockFile f1f680bf-cordova-icon cordova-icon@
+47 error Error: EACCES, mkdir '/Users/KatsuyaKubo/.npm/cordova-icon/0.3.0'
+47 error  { [Error: EACCES, mkdir '/Users/KatsuyaKubo/.npm/cordova-icon/0.3.0']
+47 error   errno: 3,
+47 error   code: 'EACCES',
+47 error   path: '/Users/KatsuyaKubo/.npm/cordova-icon/0.3.0' }
+48 error Please try running this command again as root/Administrator.
+49 error System Darwin 14.3.0
+50 error command "node" "/usr/local/bin/npm" "install" "cordova-icon" "-g"
+51 error cwd /Users/KatsuyaKubo/workspace/cordova/C-App/appData
+52 error node -v v0.10.33
+53 error npm -v 1.4.28
+54 error path /Users/KatsuyaKubo/.npm/cordova-icon/0.3.0
+55 error code EACCES
+56 error errno 3
+57 error stack Error: EACCES, mkdir '/Users/KatsuyaKubo/.npm/cordova-icon/0.3.0'
+58 verbose exit [ 3, true ]

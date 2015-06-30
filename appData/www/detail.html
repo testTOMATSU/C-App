@@ -1,0 +1,35 @@
+<ons-page ng-controller="DetailController">
+    <!-- メニュー上部のツールバー -->
+    <ons-toolbar>
+        <div class="left">
+            <ons-back-button>一覧へ</ons-back-button>
+        </div>
+        <div class="right"><!-- サイドバーを開くボタン -->
+            <ons-toolbar-button ng-click="menu.toggleMenu()"><ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
+        </div>
+        <div class="center">店舗詳細</div><!-- ページタイトル -->
+    </ons-toolbar>
+    <!-- end/メニュー上部のツールバー -->
+    <div class="app">
+        <img src="img/detail.png" style="width:100%;">
+        <!--
+        <ons-list>
+            <ons-list-item tappable="true">
+                 <div class="list">
+                    <div class="sumnale">画像</div>
+                    <div class="list_detail">
+                        <div class="shop_name"><p>店舗名:{{kubo}}</p></div>
+                        <div class="shop_detail">
+                            <p>場所:{{place}}</p>
+                            <p>営業時間:{{time}}</p>
+                        </div>
+                    </div>
+                </div> 
+            </ons-list-item>
+            <ons-list-item tappable="true">b</ons-list-item>
+        </ons-list>
+        -->
+        <!--<ul id="shop_list">
+        </ul>-->
+    </div>
+</ons-page>
