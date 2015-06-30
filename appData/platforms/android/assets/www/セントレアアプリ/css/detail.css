@@ -11,7 +11,7 @@ html,body {
 
 #main {
 	width: 280px;
-	padding:0 10px;
+	padding:10px;
 	height: 100%;
 	margin: 0 auto;
 	background-color: #02AEDC;
@@ -21,10 +21,12 @@ html,body {
 .title {
 	border-bottom: solid 1px;
 	width: 100px;
+	margin-bottom: 10px;
 }
 
 .shop img {
 	width: 280px;
+	margin: 10px 0;
 }
 
 .businesshours {
@@ -33,6 +35,7 @@ html,body {
 
 .menu {
 	font-size: 11px;
+	margin-top: 10px;
 }
 
 .menu img {
