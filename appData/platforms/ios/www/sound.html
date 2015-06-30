@@ -23,6 +23,7 @@
       
 
       <div id="main">
+        <div class="foo" ng-click="CharacterNavigator.pushPage('character.html', { animation : 'slide' } )"><img src="img/foo.png"></div>
         <div id="instrumental" class="clearfix">
           <div class="button_01 buttons" ng-class='{"button_01_play":play_now[0],"spin_infinite":play_now[0]}'>
             <div id="se00" class="touch_area" ng-click="startWatch($event,0)"></div>
@@ -69,7 +70,6 @@
             <img src="img/gakki11.png">
           </div>
         </div>
-        <div class="foo" ng-click="CharacterNavigator.pushPage('character.html', { animation : 'slide' } )"><img src="img/foo.png"></div>
       </div><!--end/#main-->
     </div><!-- end/#wrapper -->
   </ons-page>

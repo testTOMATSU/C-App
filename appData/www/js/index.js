@@ -51,6 +51,10 @@ var app = {
   initialize: function() {
       this.bindEvents();
   },
+  load: function(){
+    FastClick.attach(document.body);
+      console.log('fastclick適用');
+  },
   // Bind Event Listeners
   //
   // Bind any events that are required on startup. Common events are:
@@ -134,7 +138,7 @@ var app = {
       stopWatch();
       //AngularJSのディレクティブの書式
       //$scope.test = "公式サイトが表示されます";
-      var ref = window.open('http://www.centrair.jp', '_blank', 'location=yes');
+      var ref = window.open('http://www.centrair.jp', '_self', 'location=yes');
       ref.addEventListener('loadstart', function() { alert(event.url); });
     }]);
 
