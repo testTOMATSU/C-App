@@ -127,8 +127,18 @@ var app = {
       stopWatch();
       //AngularJSのディレクティブの書式
       //$scope.test = "公式サイトが表示されます";
-      var ref = window.open('http://apache.org', '_blank', 'location=yes');
+      var ref = window.open('http://www.centrair.jp', '_blank', 'location=yes');
       ref.addEventListener('loadstart', function() { alert(event.url); });
+    }]);
+
+    //キャラ紹介ページのコントローラ
+    module.controller('CharacterController', ['$scope', function($scope) {
+      console.log("Character page is ready.");
+      stopWatch();
+      //AngularJSのディレクティブの書式
+      //$scope.test = "公式サイトが表示されます";
+      //var ref = window.open('http://www.centrair.jp', '_blank', 'location=yes');
+      //ref.addEventListener('loadstart', function() { alert(event.url); });
     }]);
   //========================/ここにイベントを書く=============================//
   },
