@@ -254,5 +254,5 @@ function touch(su){
     document.getElementById("opa"+i).style.opacity = "0.2";
   }
   document.getElementById("lst"+su).style.display = "block";
-    document.getElementById("opa"+su).style.opacity = "0";
+  document.getElementById("opa"+su).style.opacity = "0";
 }

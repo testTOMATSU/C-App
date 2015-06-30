@@ -110,6 +110,75 @@ ons-toolbar img {
 	height: 70px;
 	margin-top: 15px;
 }
+/**********シンバル**********/
+.button_05 {
+	float: left;
+	width: 90px;
+	height: 90px;
+	margin-top: 10px;
+	background-color: white;
+	border-radius: 50%;
+	border: solid 5px #DE4830;
+	text-align: center;
+}
+
+.button_05 img {
+	width: 75px;
+	margin-top: 10px;
+}
+
+/**********マラカス**********/
+.button_06 {
+	float: left;
+	width: 130px;
+	height: 130px;
+	margin-top: 10px;
+	margin-left: 20px;
+	background-color: white;
+	border-radius: 50%;
+	border: solid 5px #33BFDB;
+	text-align: center;
+}
+
+.button_06 img {
+	width: 110px;
+	margin-top: 15px;
+}
+
+/**********タンバリン**********/
+.button_07 {
+	float: left;
+	width: 130px;
+	height: 130px;
+	margin-top: 10px;
+	background-color: white;
+	border-radius: 50%;
+	border: solid 5px #8DCF3F;
+	text-align: center;
+}
+
+.button_07 img {
+	width: 100px;
+	margin-top: 10px;
+}
+
+/**********パフ音**********/
+.button_08 {
+	float: left;
+	width: 90px;
+	height: 90px;
+	margin-top: 10px;
+	margin-left: 20px;
+	background-color: white;
+	border-radius: 50%;
+	border: solid 5px #FDC44F;
+	text-align: center;
+}
+
+.button_08 img {
+	height: 70px;
+	margin-top: 15px;
+}
 
 .foo img {
 	float: right;
