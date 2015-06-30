@@ -1,6 +1,9 @@
-<ons-page ng-controller="ShopController">
+<ons-page ng-controller="DetailController">
     <!-- メニュー上部のツールバー -->
     <ons-toolbar>
+        <div class="left">
+            <ons-back-button>一覧へ</ons-back-button>
+        </div>
         <div class="right"><!-- サイドバーを開くボタン -->
             <ons-toolbar-button ng-click="menu.toggleMenu()"><ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
         </div>
@@ -8,24 +11,25 @@
     </ons-toolbar>
     <!-- end/メニュー上部のツールバー -->
     <div class="app">
-        <div class="title">店舗詳細</div>
-        <div class="shop">
-            ◎みそかつ矢場とん<br />
-            <div class="businesshours">営業時間：10：00～21：00（L.O. 21：00）<br />
-            TEL：0569-84-8810<br />
-            場所：4階 レンガ通り</div>
-            <img src="img/shop.jpg">
-            <div class="businesshours">名古屋名物「みそかつ矢場とん」
-            南九州産の中でも最高級の豚肉、厳選された食材を使用し、秘伝のみそだれがかかった名古屋名物みそかつをご賞味下さい。</div>
-        </div>
-
-        <div class="menu">
-            <img src="img/menu_01.jpg">
-            <div class="content">
-                <span class="menu_name">鉄板とんかつ定食</span><br />
-                1,836円<br />
-                秘伝のみそだれをたっぷり。香ばしいにおいとあつあつの肉汁が絶品です。
-            </div>
-        </div>
+        <img src="img/detail.png" style="width:100%;">
+        <!--
+        <ons-list>
+            <ons-list-item tappable="true">
+                 <div class="list">
+                    <div class="sumnale">画像</div>
+                    <div class="list_detail">
+                        <div class="shop_name"><p>店舗名:{{kubo}}</p></div>
+                        <div class="shop_detail">
+                            <p>場所:{{place}}</p>
+                            <p>営業時間:{{time}}</p>
+                        </div>
+                    </div>
+                </div> 
+            </ons-list-item>
+            <ons-list-item tappable="true">b</ons-list-item>
+        </ons-list>
+        -->
+        <!--<ul id="shop_list">
+        </ul>-->
     </div>
 </ons-page>

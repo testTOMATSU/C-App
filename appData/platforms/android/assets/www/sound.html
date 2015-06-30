@@ -13,22 +13,23 @@
   <!-- サウンド読み込み -->
   
   <div id="wrapper">
+    <p>x:{{curr_acc["x"]}}<br>y:{{curr_acc["y"]}}<br>z:{{curr_acc["z"]}}</p>
     <!-- シンバル１-->
     <audio id="cym03">
        <source src="sound/cym03.mp3">
-    </audio><br>
+    </audio>
     <!-- パフ-->
     <audio id="pafu">
        <source src="sound/pafu.mp3">
-    </audio><br>
+    </audio>
     <!-- マラカス-->
     <audio id="shake01">
        <source src="sound/shake01.mp3">
-    </audio><br>
+    </audio>
     <!-- タンバリン-->
     <audio id="tambrin">
        <source src="sound/tambrin.mp3">
-    </audio><br>
+    </audio>
 
 
     
@@ -36,32 +37,23 @@
     
 
     <div id="main">
-      <!--<button id="start" class="btn" ng-click="startWatch()">音を鳴らす(加速度)</button><br><br><br>
-      <button id="stop" class="btn" ng-click="stopWatch()">加速度センサ停止</button><br><br><br>-->
-        <!--
-        <button id="se00" ng-click="startWatch($event)">シンバル</button><br><br><br
-        <button id="se01" ng-click="startWatch($event)">パフ</button><br><br><br>
-        <button id="se02" ng-click="startWatch($event)">マラカス</button><br><br><br>
-        <button id="se03" ng-click="startWatch($event)">タンバリン</button><br><br><br>
-        >-->
-      <!--<p>x:{{acc_x}}</p>
-      <p>y:{{acc_y}}</p>
-      <p>z:{{acc_z}}</p>-->
-      <div class="button_01 buttons">
-        <div id="se00" class="touch_area" ng-click="startWatch($event)"></div>
-        <img src="img/gakki03.png">
-      </div>
-      <div class="button_02 buttons">
-        <div id="se01" class="touch_area" ng-click="startWatch($event)"></div>
-        <img src="img/gakki02.png">
-      </div>
-      <div class="button_03 buttons">
-        <div id="se02" class="touch_area" ng-click="startWatch($event)"></div>
-        <img src="img/gakki01.png">
-      </div>
-      <div class="button_04 buttons">
-        <div id="se03" class="touch_area" ng-click="startWatch($event)"></div>
-        <img src="img/gakki04.png">
+      <div id="instrumental" class="clearfix">
+        <div class="button_01 buttons" ng-class='{"button_01_play":play_now[0],"spin_infinite":play_now[0]}'>
+          <div id="se00" class="touch_area" ng-click="startWatch($event,0)"></div>
+          <img src="img/gakki03.png">
+        </div>
+        <div class="button_02 buttons" ng-class='{"button_02_play":play_now[1],"spin_infinite":play_now[1]}'>
+          <div id="se01" class="touch_area" ng-click="startWatch($event,1)"></div>
+          <img src="img/gakki02.png">
+        </div>
+        <div class="button_03 buttons" ng-class='{"button_03_play":play_now[2],"spin_infinite":play_now[2]}'>
+          <div id="se02" class="touch_area" ng-click="startWatch($event,2)"></div>
+          <img src="img/gakki01.png">
+        </div>
+        <div class="button_04 buttons" ng-class='{"button_04_play":play_now[3],"spin_infinite":play_now[3]}'>
+          <div id="se03" class="touch_area" ng-click="startWatch($event,3)"></div>
+          <img src="img/gakki04.png">
+        </div>
       </div>
       <div class="foo"><img src="img/foo.png"></div>
     </div><!--end/#main-->
