@@ -24,10 +24,10 @@
     <allow-intent href="itms-apps:*" />
     <name>CentrairApp</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        中部国際空港主催、音楽祭のイベントアプリです。
     </description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+        真・戸松内閣
     </author>
     <content src="index.html" />
     <access browserOnly="true" origin="*" />
