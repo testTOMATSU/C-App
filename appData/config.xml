@@ -26,4 +26,5 @@
     <feature name="InAppBrowser">
         <param name="ios-package" value="CDVInAppBrowser" />
     </feature>
+    <preference name="DisallowOverscroll" value="false"/>
 </widget>
