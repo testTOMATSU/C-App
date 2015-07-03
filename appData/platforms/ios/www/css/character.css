@@ -76,6 +76,7 @@ ons-carousel-item {
   display: table;
   text-align: center;
 }
+
 .item-label {
   display: table-cell;
   vertical-align: middle;
@@ -84,6 +85,13 @@ ons-carousel-item {
   font-size: 0px;
   font-weight: bold;
 }
+
+.item-label img{
+	width:100px;
+	height:100px;
+}
+
+
 .cover-label {
   text-align: center;
   position: absolute;
@@ -117,9 +125,14 @@ ons-carousel-item {
 }
 
 .detail_right img{
+	width:150px;
+	height:150px;
+}
+
+.detail_right img{
 	position:absolute;
 	right:0;
-	bottom:0;
+	bottom:10%;
 }
 
 #chara_1{
