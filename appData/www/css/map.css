@@ -1,9 +1,9 @@
 @charset"utf-8";
 
-html,body{
-	margin: 0;
-	padding: 0;
-	background-color: #eee;
+.app{
+	background-color: #D5EAFF;
+	height: 100%;
+	overflow: scroll;
 }
 
 #head{
@@ -13,7 +13,8 @@ html,body{
 }
 
 #main_map{
-	margin: 10px auto 0;
+	margin: 0 auto;
+	padding-top: 10px;
 	height: 10px;
 	width: 300px;
 }

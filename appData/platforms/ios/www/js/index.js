@@ -166,6 +166,7 @@ var app = {
       console.log("Official page is ready.");
       stopWatch();
     }]);
+    /*
     //公式ページのコントローラ
     module.controller('WebViewController', ['$scope', function($scope) {
       console.log("WebView page is ready.");
@@ -173,7 +174,8 @@ var app = {
       var ref = window.open('http://www.centrair.jp', '_self', 'location=yes');
       ref.addEventListener('loadstart', function() { alert(event.url); });
     }]);
-
+    */
+  
     //キャラ紹介ページのコントローラ
     module.controller('CharacterController', ['$scope', function($scope) {
       console.log("Character page is ready.");
@@ -362,11 +364,15 @@ function onSuccess(acceleration) {
 
     audio_play();//音を鳴らす
 
+    //diff[pre_acc["v"]]とmaxが同じかどうか
+    // ...
+
     //次回比較用に値をセット
     pre_acc["x"] = acc.x;
     pre_acc["y"] = acc.y;
     pre_acc["z"] = acc.z;
     pre_acc["v"] = max;
+
   }
 
   //振れ幅最大値が20を超えていた場合はリセット

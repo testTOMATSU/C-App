@@ -19,9 +19,10 @@
 
 //グローバル変数定義
 var vector = {"x": true, "y": true, "z": true};//振った方向判定
+var vct_ignore = false;//前回振り方向と前々回振り方向が被ったかの判定
 
 //加速度初期値
-var base = {"x": 0, "y": 9, "z": 3, "v": "x"};//x軸,y軸,z軸,加速度最大軸
+var pre_acc = {"x": 0, "y": 9, "z": 3, "v": "x"};//x軸,y軸,z軸,加速度最大軸
 var bt_border = {0:false,1:false,2:false,3:false};//楽器ボタンのcss変更用
 
 var watchID = null;//加速度センサのID
@@ -31,6 +32,21 @@ var save_inst = null;//楽器選択情報($event)の退避先
 var save_num = null;//css情報の退避先
 
 //楽器音声リスト
+var AUDIO_LIST = {
+  "se00": null,
+  "se01": null,
+  "se02": null,
+  "se03": null, 
+  "se04": null,
+  "se05": null,
+  "se06": null,
+  "se07": null, 
+  "se08": null,
+  "se09": null,
+  "se10": null,
+};
+//楽器音声リスト
+/*
 var AUDIO_LIST = {
   "se00": new Media("sound/cym03.mp3"),
   "se01": new Media("sound/marakasu.mp3"),
@@ -44,6 +60,7 @@ var AUDIO_LIST = {
   "se09": new Media("sound/marakasu.mp3"),
   "se10": new Media("sound/tanbarin_1.mp3"),
 };
+*/
 
 //アプリ本体
 var app = {
@@ -54,10 +71,11 @@ var app = {
   load: function(){
     FastClick.attach(document.body);
     //console.log('fastclick適用');
+    /*
     for(var i=0; i < AUDIO_LIST.length; i++){
       AUDIO_LIST[i].load();
       //sconsole.log("load");
-    }
+    }*/
   },
   // Bind Event Listeners
   //
@@ -148,6 +166,7 @@ var app = {
       console.log("Official page is ready.");
       stopWatch();
     }]);
+    /*
     //公式ページのコントローラ
     module.controller('WebViewController', ['$scope', function($scope) {
       console.log("WebView page is ready.");
@@ -155,7 +174,8 @@ var app = {
       var ref = window.open('http://www.centrair.jp', '_self', 'location=yes');
       ref.addEventListener('loadstart', function() { alert(event.url); });
     }]);
-
+    */
+  
     //キャラ紹介ページのコントローラ
     module.controller('CharacterController', ['$scope', function($scope) {
       console.log("Character page is ready.");
@@ -173,6 +193,21 @@ var app = {
   // function, we must explicitly call 'app.receivedEvent(...);'
   onDeviceReady: function() {
     app.receivedEvent('deviceready');
+
+    //楽器音セット
+    AUDIO_LIST = {
+      "se00": new Media("sound/cym03.mp3"),
+      "se01": new Media("sound/marakasu.mp3"),
+      "se02": new Media("sound/tanbarin_1.mp3"),
+      "se03": new Media("sound/pafu.mp3"), 
+      "se04": new Media("sound/cym03.mp3"),
+      "se05": new Media("sound/marakasu.mp3"),
+      "se06": new Media("sound/tanbarin_1.mp3"),
+      "se07": new Media("sound/pafu.mp3"), 
+      "se08": new Media("sound/cym03.mp3"),
+      "se09": new Media("sound/marakasu.mp3"),
+      "se10": new Media("sound/tanbarin_1.mp3"),
+    };
   },
   // Update DOM on a Received Event
   receivedEvent: function(id) {
@@ -210,9 +245,9 @@ function audio_play() {
   console.log("AUDIO_LIST[curr_inst] :"+AUDIO_LIST[curr_inst]);
   AUDIO_LIST[curr_inst].play();
   // 次呼ばれた時用に新たに生成
-  AUDIO_LIST[curr_inst] = new Media( AUDIO_LIST[curr_inst].src );
+  AUDIO_LIST[curr_inst] = new Media(AUDIO_LIST[curr_inst].src);
   //audio.play();
-  console.log("play sound now!");
+  console.log("play sound now!:"+AUDIO_LIST[curr_inst].src);
 }
 //================end/楽器再生==============//
 
@@ -241,7 +276,7 @@ function startWatch($event,num) {
       num = null;
     }else{
       //加速度センサスタート
-      var options = { frequency: 40 };
+      var options = { frequency: 300 };
       watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
       //今回楽器にcssクラスを付与
       bt_border[num] = true;
@@ -251,7 +286,7 @@ function startWatch($event,num) {
     //前回楽器のcssクラスを解除
     bt_border[save_num] = false;
     //加速度センサスタート
-    var options = { frequency: 40 };
+    var options = { frequency: 300 };
     watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
     //今回楽器にcssクラスを付与
     bt_border[num] = true;
@@ -277,72 +312,74 @@ function onSuccess(acceleration) {
   var num = {"x": 2.5, "y": 4.5, "z": 4.5}; //振り範囲設定
   var hit = false;  //振り判定
   var max = "x";  //一番振れ幅の大きかった軸
+  var abs = {"x": 2.5, "y": 4.5, "z": 4.5}; //加速度の絶対値
+
+  console.log("=====================================");
+  console.log("acc.x:"+acc.x+"acc.y:"+acc.y+"acc.z:"+acc.z);
 
   //前回計測時との差
   var diff = {"x": 0, "y": 0, "z": 0};
 
   //X軸
-  if(base["x"] * acc.x >= 0){  //前回値と今回値の正負が一致していたら
-    //絶対値で計算
-    diff["x"] = Math.abs(base["x"]) - Math.abs(acc.x);
-    vector["x"] = false;
-  }else{
-    //元の値で計算
-    diff["x"] = base["x"] - acc.x;
-    vector["x"] = true;
-  }
+  diff["x"] = pre_acc["x"] - acc.x;
+  diff["x"] = Math.abs(diff["x"]);
   //Y軸
-  if(base["y"] * acc.y >= 0){  //前回値と今回値の正負が一致していたら
-    //絶対値で計算
-    diff["y"] = Math.abs(base["y"]) - Math.abs(acc.y);
-    vector["y"] = false;
-  }else{
-    //元の値で計算
-    diff["y"] = base["y"] - acc.y;
-    vector["y"] = true;
-  }
+  diff["y"] = pre_acc["y"] - acc.y;
+  diff["y"] = Math.abs(diff["y"]);
   //Z軸
-  if(base["z"] * acc.z >= 0){  //前回値と今回値の正負が一致していたら
-    //絶対値で計算
-    diff["z"] = Math.abs(base["z"]) - Math.abs(acc.z);
-    vector["z"] = false;
-  }else{
-    //元の値で計算
-    diff["z"] = base["z"] - acc.z;
-    vector["z"] = true;
-  }
+  diff["z"] = pre_acc["z"] - acc.z;
+  diff["z"] = Math.abs(diff["z"]);
 
   //一番振れ幅の大きい軸を特定
   if(diff["x"] > diff["y"] && diff["x"] > diff["z"]){
     max = "x";
+    vector["x"] = true;
+    vector["y"] = false;
+    vector["z"] = false;
   }else if(diff["y"] > diff["x"] && diff["y"] > diff["z"]){
     max = "y";
+    vector["x"] = false;
+    vector["y"] = true;
+    vector["z"] = false;
   }else{
     max = "z";
+    vector["x"] = false;
+    vector["y"] = false;
+    vector["z"] = true;
   }
 
   //加速度最大軸が前回と異なるなら
-  if(base["v"] != max){
+  if(pre_acc["v"] == max){
     vector[max] = true; //振り方向は考慮しない(trueにする)
+    //vct_ignore = true;
+  }else{
+    vector[max] = false;
+    //vct_ignore = false;
   }
+
+  console.log("diff.x:"+diff["x"]+"diff.y:"+diff["y"]+"diff.z:"+diff["z"]);
 
   //振れ幅最大値が設定値を超えており、なおかつ振り方向が違う場合
   if(diff[max] > num[max] && vector[max]){
 
     audio_play();//音を鳴らす
-    //console.log("x:"+diff["x"]+"y:"+diff["y"]+"z:"+diff["z"]);
+
+    //diff[pre_acc["v"]]とmaxが同じかどうか
+    // ...
 
     //次回比較用に値をセット
-    base["x"] = acc.x;
-    base["y"] = acc.y;
-    base["z"] = acc.z;
-    base["v"] = max;
+    pre_acc["x"] = acc.x;
+    pre_acc["y"] = acc.y;
+    pre_acc["z"] = acc.z;
+    pre_acc["v"] = max;
+
   }
 
   //振れ幅最大値が20を超えていた場合はリセット
-  if(base[max] > 20){
-    base = {"x": 0, "y": 9, "z": 3, "v": "x"};
+  if(Math.abs(pre_acc[max]) > 15){
+    pre_acc = {"x": 0, "y": 9, "z": 3, "v": "x"};
   }
+  console.log("=====================================");
 }
 
 function onError() {
