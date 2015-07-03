@@ -166,6 +166,7 @@ var app = {
       console.log("Official page is ready.");
       stopWatch();
     }]);
+    /*
     //公式ページのコントローラ
     module.controller('WebViewController', ['$scope', function($scope) {
       console.log("WebView page is ready.");
@@ -173,7 +174,8 @@ var app = {
       var ref = window.open('http://www.centrair.jp', '_self', 'location=yes');
       ref.addEventListener('loadstart', function() { alert(event.url); });
     }]);
-
+    */
+  
     //キャラ紹介ページのコントローラ
     module.controller('CharacterController', ['$scope', function($scope) {
       console.log("Character page is ready.");
