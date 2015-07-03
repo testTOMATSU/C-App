@@ -30,6 +30,8 @@ var curr_inst = null;//現在の楽器
 var save_inst = null;//楽器選択情報($event)の退避先
 var save_num = null;//css情報の退避先
 
+
+
 //楽器音声リスト
 var AUDIO_LIST = {
   "se00": new Audio("sound/cym03.mp3"),
@@ -146,6 +148,54 @@ var app = {
     module.controller('CharacterController', ['$scope', function($scope) {
       console.log("Character page is ready.");
       stopWatch();
+
+      var chara1 = document.getElementById("chara_foo");
+      var chara2 = document.getElementById("chara_nazo");
+      var chara3 = document.getElementById("chara_tori");
+      var chara4 = document.getElementById("chara_hiko");
+      var chara5 = document.getElementById("chara_jet");
+      
+      chara1.addEventListener('click', ch1, false);
+      chara2.addEventListener('click', ch2, false);
+      chara3.addEventListener('click', ch3, false);
+      chara4.addEventListener('click', ch4, false);
+      chara5.addEventListener('click', ch5, false);
+
+      function ch1(){
+        document.getElementById("chara_1").style.display="block";
+        document.getElementById("chara_2").style.display="none";
+        document.getElementById("chara_3").style.display="none";
+        document.getElementById("chara_4").style.display="none";
+        document.getElementById("chara_5").style.display="none";
+      }
+      function ch2(){
+        document.getElementById("chara_1").style.display="none";
+        document.getElementById("chara_2").style.display="block";
+        document.getElementById("chara_3").style.display="none";
+        document.getElementById("chara_4").style.display="none";
+        document.getElementById("chara_5").style.display="none";
+      }
+      function ch3(){
+        document.getElementById("chara_1").style.display="none";
+        document.getElementById("chara_2").style.display="none";
+        document.getElementById("chara_3").style.display="block";
+        document.getElementById("chara_4").style.display="none";
+        document.getElementById("chara_5").style.display="none";
+      }
+      function ch4(){
+        document.getElementById("chara_1").style.display="none";
+        document.getElementById("chara_2").style.display="none";
+        document.getElementById("chara_3").style.display="none";
+        document.getElementById("chara_4").style.display="block";
+        document.getElementById("chara_5").style.display="none";
+      }
+      function ch5(){
+        document.getElementById("chara_1").style.display="none";
+        document.getElementById("chara_2").style.display="none";
+        document.getElementById("chara_3").style.display="none";
+        document.getElementById("chara_4").style.display="none";
+        document.getElementById("chara_5").style.display="block";
+      }
       //AngularJSのディレクティブの書式
       //$scope.test = "公式サイトが表示されます";
       //var ref = window.open('http://www.centrair.jp', '_blank', 'location=yes');
