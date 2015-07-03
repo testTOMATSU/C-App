@@ -184,13 +184,13 @@ ons-toolbar img {
 	margin-top: 15px;
 }
 .foo{
-	position: fixed;
-	bottom: 0;
+	position: absolute;
+	top: 60px;
 	/*float: right;*/
 	right: 0;
-	height: 120px;
+	height: 80px;
 	margin-top: -40px;
-  z-index: 1000;
+  z-index: 9999;
 }
 
 .foo img {
