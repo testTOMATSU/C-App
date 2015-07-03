@@ -15,22 +15,7 @@
     
     <div id="wrapper">
       <!--<p>x:{{curr_acc["x"]}}<br>y:{{curr_acc["y"]}}<br>z:{{curr_acc["z"]}}</p>-->
-      <!-- シンバル１-->
-      <audio id="cym03">
-         <source src="sound/cym03.mp3">
-      </audio>
-      <!-- パフ-->
-      <audio id="pafu">
-         <source src="sound/pafu.mp3">
-      </audio>
-      <!-- マラカス-->
-      <audio id="shake01">
-         <source src="sound/shake01.mp3">
-      </audio>
-      <!-- タンバリン-->
-      <audio id="tambrin">
-         <source src="sound/tambrin.mp3">
-      </audio>
+
 
 
       
@@ -38,6 +23,7 @@
       
 
       <div id="main">
+        <div class="foo" ng-click="CharacterNavigator.pushPage('character.html', { animation : 'slide' } )"><img src="img/foo.png"></div>
         <div id="instrumental" class="clearfix">
           <div class="button_01 buttons" ng-class='{"button_01_play":play_now[0],"spin_infinite":play_now[0]}'>
             <div id="se00" class="touch_area" ng-click="startWatch($event,0)"></div>
@@ -55,8 +41,35 @@
             <div id="se03" class="touch_area" ng-click="startWatch($event,3)"></div>
             <img src="img/gakki04.png">
           </div>
+          <div class="button_05 buttons" ng-class='{"button_05_play":play_now[4],"spin_infinite":play_now[4]}'>
+            <div id="se04" class="touch_area" ng-click="startWatch($event,4)"></div>
+            <img src="img/gakki05.png">
+          </div>
+          <div class="button_06 buttons" ng-class='{"button_06_play":play_now[5],"spin_infinite":play_now[5]}'>
+            <div id="se05" class="touch_area" ng-click="startWatch($event,5)"></div>
+            <img src="img/gakki06.png">
+          </div>
+          <div class="button_07 buttons" ng-class='{"button_07_play":play_now[6],"spin_infinite":play_now[6]}'>
+            <div id="se06" class="touch_area" ng-click="startWatch($event,6)"></div>
+            <img src="img/gakki07.png">
+          </div>
+          <div class="button_08 buttons" ng-class='{"button_08_play":play_now[7],"spin_infinite":play_now[7]}'>
+            <div id="se07" class="touch_area" ng-click="startWatch($event,7)"></div>
+            <img src="img/gakki08.png">
+          </div>
+          <div class="button_09 buttons" ng-class='{"button_09_play":play_now[8],"spin_infinite":play_now[8]}'>
+            <div id="se08" class="touch_area" ng-click="startWatch($event,8)"></div>
+            <img src="img/gakki09.png">
+          </div>
+          <div class="button_10 buttons" ng-class='{"button_10_play":play_now[9],"spin_infinite":play_now[9]}'>
+            <div id="se09" class="touch_area" ng-click="startWatch($event,9)"></div>
+            <img src="img/gakki10.png">
+          </div>
+          <div class="button_11 buttons" ng-class='{"button_11_play":play_now[10],"spin_infinite":play_now[10]}'>
+            <div id="se10" class="touch_area" ng-click="startWatch($event,10)"></div>
+            <img src="img/gakki11.png">
+          </div>
         </div>
-        <div class="foo" ng-click="CharacterNavigator.pushPage('character.html', { animation : 'slide' } )"><img src="img/foo.png"></div>
       </div><!--end/#main-->
     </div><!-- end/#wrapper -->
   </ons-page>

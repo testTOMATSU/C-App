@@ -36,6 +36,13 @@ var AUDIO_LIST = {
   "se01": new Audio("sound/marakasu.mp3"),
   "se02": new Audio("sound/tanbarin_1.mp3"),
   "se03": new Audio("sound/pafu.mp3"), 
+  "se04": new Audio("sound/cym03.mp3"),
+  "se05": new Audio("sound/marakasu.mp3"),
+  "se06": new Audio("sound/tanbarin_1.mp3"),
+  "se07": new Audio("sound/pafu.mp3"), 
+  "se08": new Audio("sound/cym03.mp3"),
+  "se09": new Audio("sound/marakasu.mp3"),
+  "se10": new Audio("sound/tanbarin_1.mp3"),
 };
 
 //アプリ本体
@@ -43,6 +50,10 @@ var app = {
   // Application Constructor
   initialize: function() {
       this.bindEvents();
+  },
+  load: function(){
+    FastClick.attach(document.body);
+      console.log('fastclick適用');
   },
   // Bind Event Listeners
   //
@@ -127,7 +138,7 @@ var app = {
       stopWatch();
       //AngularJSのディレクティブの書式
       //$scope.test = "公式サイトが表示されます";
-      var ref = window.open('http://www.centrair.jp', '_blank', 'location=yes');
+      var ref = window.open('http://www.centrair.jp', '_self', 'location=yes');
       ref.addEventListener('loadstart', function() { alert(event.url); });
     }]);
 
