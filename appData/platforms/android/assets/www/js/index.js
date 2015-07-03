@@ -32,17 +32,17 @@ var save_num = null;//css情報の退避先
 
 //楽器音声リスト
 var AUDIO_LIST = {
-  "se00": new Audio("sound/cym03.mp3"),
-  "se01": new Audio("sound/marakasu.mp3"),
-  "se02": new Audio("sound/tanbarin_1.mp3"),
-  "se03": new Audio("sound/pafu.mp3"), 
-  "se04": new Audio("sound/cym03.mp3"),
-  "se05": new Audio("sound/marakasu.mp3"),
-  "se06": new Audio("sound/tanbarin_1.mp3"),
-  "se07": new Audio("sound/pafu.mp3"), 
-  "se08": new Audio("sound/cym03.mp3"),
-  "se09": new Audio("sound/marakasu.mp3"),
-  "se10": new Audio("sound/tanbarin_1.mp3"),
+  "se00": new Media("sound/cym03.mp3"),
+  "se01": new Media("sound/marakasu.mp3"),
+  "se02": new Media("sound/tanbarin_1.mp3"),
+  "se03": new Media("sound/pafu.mp3"), 
+  "se04": new Media("sound/cym03.mp3"),
+  "se05": new Media("sound/marakasu.mp3"),
+  "se06": new Media("sound/tanbarin_1.mp3"),
+  "se07": new Media("sound/pafu.mp3"), 
+  "se08": new Media("sound/cym03.mp3"),
+  "se09": new Media("sound/marakasu.mp3"),
+  "se10": new Media("sound/tanbarin_1.mp3"),
 };
 
 //アプリ本体
@@ -53,7 +53,11 @@ var app = {
   },
   load: function(){
     FastClick.attach(document.body);
-      console.log('fastclick適用');
+    //console.log('fastclick適用');
+    for(var i=0; i < AUDIO_LIST.length; i++){
+      AUDIO_LIST[i].load();
+      //sconsole.log("load");
+    }
   },
   // Bind Event Listeners
   //
@@ -77,6 +81,13 @@ var app = {
     //楽器ページのコントローラ
     module.controller('SoundController', ['$scope', function($scope){
       console.log("Sound page is ready");
+
+      //楽器音を事前読み込み
+      /*for(var i=0; i < AUDIO_LIST.length, i++){
+        //AUDIO_LIST[i].load();
+        console.log("load");
+      }*/
+      //console.log("load":+AUDIO_LIST);
 
       if(save_inst != null && save_num != null){
         stopWatch();//楽器P メニュー 楽器Pの手順で戻られたときのため
@@ -199,7 +210,7 @@ function audio_play() {
   console.log("AUDIO_LIST[curr_inst] :"+AUDIO_LIST[curr_inst]);
   AUDIO_LIST[curr_inst].play();
   // 次呼ばれた時用に新たに生成
-  AUDIO_LIST[curr_inst] = new Audio( AUDIO_LIST[curr_inst].src );
+  AUDIO_LIST[curr_inst] = new Media( AUDIO_LIST[curr_inst].src );
   //audio.play();
   console.log("play sound now!");
 }
