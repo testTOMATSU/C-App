@@ -362,11 +362,15 @@ function onSuccess(acceleration) {
 
     audio_play();//音を鳴らす
 
+    //diff[pre_acc["v"]]とmaxが同じかどうか
+    // ...
+
     //次回比較用に値をセット
     pre_acc["x"] = acc.x;
     pre_acc["y"] = acc.y;
     pre_acc["z"] = acc.z;
     pre_acc["v"] = max;
+
   }
 
   //振れ幅最大値が20を超えていた場合はリセット
