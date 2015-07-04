@@ -39,13 +39,15 @@
 		7E7966E51810823500FA85AD /* icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DB1810823500FA85AD /* icon-76@2x.png */; };
 		7E7966E61810823500FA85AD /* icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DC1810823500FA85AD /* icon-small.png */; };
 		7E7966E71810823500FA85AD /* icon-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DD1810823500FA85AD /* icon-small@2x.png */; };
-		8E09F8D08AC0418A8C2ACC02 /* CDVInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = A981BBB8DB494489B12DD005 /* CDVInAppBrowser.m */; };
 		B68F00FD15344306BF08E391 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E3D1444D4804DE691DF5077 /* CoreMotion.framework */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		32E32DFD206A460AACDFA774 /* CDVFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DAFA6B4C64B4B20A23942FA /* CDVFile.m */; };
 		9EEEFAD06D4641E2BAF75E8A /* CDVLocalFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 76F6C89073F94DA6BFA3083E /* CDVLocalFilesystem.m */; };
 		805D982804E949E18BDBA80B /* CDVAssetLibraryFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C2C4321105426F9D853811 /* CDVAssetLibraryFilesystem.m */; };
 		5AADC81D2B79402B89831D1B /* CDVSound.m in Sources */ = {isa = PBXBuildFile; fileRef = B288587F2E7949269BD25F33 /* CDVSound.m */; };
+		5380954410E543339013AB73 /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 01AF8FB013A644BAB2F379B6 /* CDVSplashScreen.m */; };
+		8BC251916A8640F5A020F2BE /* CDVViewController+SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 705733A12FA54A96864A78D3 /* CDVViewController+SplashScreen.m */; };
+		B4799A20048F44329F966D3A /* CDVInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8BDEE24AAE4AF5A34D3B00 /* CDVInAppBrowser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,8 +109,6 @@
 		7E7966DC1810823500FA85AD /* icon-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-small.png"; sourceTree = "<group>"; };
 		7E7966DD1810823500FA85AD /* icon-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-small@2x.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* CentrairApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "CentrairApp-Info.plist"; path = "../CentrairApp-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-		8EAB359D6348403883076CBC /* CDVInAppBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVInAppBrowser.h; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.h"; sourceTree = "<group>"; };
-		A981BBB8DB494489B12DD005 /* CDVInAppBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVInAppBrowser.m; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.m"; sourceTree = "<group>"; };
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
 		EB87FDF21871DA7A0020F90C /* merges */ = {isa = PBXFileReference; lastKnownFileType = folder; name = merges; path = ../../merges; sourceTree = "<group>"; };
 		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
@@ -122,6 +122,12 @@
 		A94CE6E27E5C46029E21010A /* CDVAssetLibraryFilesystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVAssetLibraryFilesystem.h"; path = "cordova-plugin-file/CDVAssetLibraryFilesystem.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		B288587F2E7949269BD25F33 /* CDVSound.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVSound.m"; path = "cordova-plugin-media/CDVSound.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		580126DBD53C46FD9C7B8B80 /* CDVSound.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVSound.h"; path = "cordova-plugin-media/CDVSound.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		01AF8FB013A644BAB2F379B6 /* CDVSplashScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVSplashScreen.m"; path = "cordova-plugin-splashscreen/CDVSplashScreen.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		705733A12FA54A96864A78D3 /* CDVViewController+SplashScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVViewController+SplashScreen.m"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		7C5B21A7650D4140850542A3 /* CDVSplashScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVSplashScreen.h"; path = "cordova-plugin-splashscreen/CDVSplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		ABAD37A77DE54F8D84475C50 /* CDVViewController+SplashScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVViewController+SplashScreen.h"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		DD8BDEE24AAE4AF5A34D3B00 /* CDVInAppBrowser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVInAppBrowser.m"; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		0BFE9028E50F4040B8CF94C5 /* CDVInAppBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVInAppBrowser.h"; path = "cordova-plugin-inappbrowser/CDVInAppBrowser.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,8 +230,6 @@
 			children = (
 				1DC1117D4A5146B8A5FBAD29 /* CDVAccelerometer.m */,
 				52F7DBDB81CA45A7AF6B3230 /* CDVAccelerometer.h */,
-				A981BBB8DB494489B12DD005 /* CDVInAppBrowser.m */,
-				8EAB359D6348403883076CBC /* CDVInAppBrowser.h */,
 				9DAFA6B4C64B4B20A23942FA /* CDVFile.m */,
 				76F6C89073F94DA6BFA3083E /* CDVLocalFilesystem.m */,
 				07C2C4321105426F9D853811 /* CDVAssetLibraryFilesystem.m */,
@@ -234,6 +238,12 @@
 				A94CE6E27E5C46029E21010A /* CDVAssetLibraryFilesystem.h */,
 				B288587F2E7949269BD25F33 /* CDVSound.m */,
 				580126DBD53C46FD9C7B8B80 /* CDVSound.h */,
+				01AF8FB013A644BAB2F379B6 /* CDVSplashScreen.m */,
+				705733A12FA54A96864A78D3 /* CDVViewController+SplashScreen.m */,
+				7C5B21A7650D4140850542A3 /* CDVSplashScreen.h */,
+				ABAD37A77DE54F8D84475C50 /* CDVViewController+SplashScreen.h */,
+				DD8BDEE24AAE4AF5A34D3B00 /* CDVInAppBrowser.m */,
+				0BFE9028E50F4040B8CF94C5 /* CDVInAppBrowser.h */,
 			);
 			name = Plugins;
 			path = CentrairApp/Plugins;
@@ -419,11 +429,13 @@
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
 				6F400B9D5761420DB1E40C26 /* CDVAccelerometer.m in Sources */,
-				8E09F8D08AC0418A8C2ACC02 /* CDVInAppBrowser.m in Sources */,
 				32E32DFD206A460AACDFA774 /* CDVFile.m in Sources */,
 				9EEEFAD06D4641E2BAF75E8A /* CDVLocalFilesystem.m in Sources */,
 				805D982804E949E18BDBA80B /* CDVAssetLibraryFilesystem.m in Sources */,
 				5AADC81D2B79402B89831D1B /* CDVSound.m in Sources */,
+				5380954410E543339013AB73 /* CDVSplashScreen.m in Sources */,
+				8BC251916A8640F5A020F2BE /* CDVViewController+SplashScreen.m in Sources */,
+				B4799A20048F44329F966D3A /* CDVInAppBrowser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
