@@ -1,0 +1,36 @@
+<ons-navigator title="Navigator" var="shopNavigator">
+    <ons-page ng-controller="ShopController">
+        <!-- メニュー上部のツールバー -->
+        <ons-toolbar>
+            <div class="right"><!-- サイドバーを開くボタン -->
+                <ons-toolbar-button ng-click="menu.toggleMenu()"><ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
+            </div>
+            <div class="center">店舗一覧</div><!-- ページタイトル -->
+        </ons-toolbar>
+        <!-- end/メニュー上部のツールバー -->
+        <div class="app" style="height:100%;width:100%;">
+            <div style="background:url(img/all.png);background-size:100% auto;height:100%;width:100%;position:relative;">
+                <div style="position: absolute;top: 70px;right: 28px;height: 28px;width: 120px;background:rgba(0,0,0,0);border: solid 1px #000;" ng-click="shopNavigator.pushPage('detail.html', { animation : 'slide' } )"></div>
+            </div>
+            <!--
+            <ons-list>
+                <ons-list-item tappable="true">
+                     <div class="list">
+                        <div class="sumnale">画像</div>
+                        <div class="list_detail">
+                            <div class="shop_name"><p>店舗名:{{kubo}}</p></div>
+                            <div class="shop_detail">
+                                <p>場所:{{place}}</p>
+                                <p>営業時間:{{time}}</p>
+                            </div>
+                        </div>
+                    </div> 
+                </ons-list-item>
+                <ons-list-item tappable="true">b</ons-list-item>
+            </ons-list>
+            -->
+            <!--<ul id="shop_list">
+            </ul>-->
+        </div>
+    </ons-page>
+</ons-navigator>
