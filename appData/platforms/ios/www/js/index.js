@@ -31,10 +31,12 @@ var curr_inst = null;//現在の楽器
 var save_inst = null;//楽器選択情報($event)の退避先
 var save_num = null;//css情報の退避先
 
+var switcher = true;//連続して楽器がなるのを防止する
 
+AUDIO_CRRENT = null;//再生用のAUDIOオブジェクト
 
 //楽器音声リスト
-var AUDIO_LIST = {
+AUDIO_LIST = {
   "se00": null,
   "se01": null,
   "se02": null,
@@ -296,15 +298,23 @@ var isset = function(data){
 
 //================楽器再生==============//
 function audio_play() {
-  //alert("shake");
+  if(AUDIO_CRRENT != null){
+    delete AUDIO_CRRENT;
+  }
+  AUDIO_CRRENT = AUDIO_LIST[curr_inst];
   // サウンド再生
   console.log("audio_play by :"+curr_inst);
-  console.log("AUDIO_LIST[curr_inst] :"+AUDIO_LIST[curr_inst]);
-  AUDIO_LIST[curr_inst].play();
+  console.log("AUDIO_CRRENT :"+AUDIO_CRRENT);
+  if(switcher){
+    AUDIO_CRRENT.play();
+    switcher = false;
+  }else{
+    switcher = true;
+  }
   // 次呼ばれた時用に新たに生成
-  AUDIO_LIST[curr_inst] = new Media(AUDIO_LIST[curr_inst].src);
+  //AUDIO_CRRENT = new Media(AUDIO_CRRENT.src);
   //audio.play();
-  console.log("play sound now!:"+AUDIO_LIST[curr_inst].src);
+  console.log("play sound now!:"+AUDIO_CRRENT.src);
 }
 //================end/楽器再生==============//
 
