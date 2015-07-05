@@ -1,0 +1,332 @@
+@charset "utf-8";
+
+@font-face {
+	font-family: 'main';
+	src: url(migmix-2p-regular.ttf);
+}
+
+body{
+	font-family: 'main';
+	line-height: 1.5;
+	/*font-family:Times New Roman , "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", Hiragino Mincho ProN , "MSP明朝","MS PMincho","MS 明朝",serif;*/
+}
+
+/****** レイアウト モバイルファースト*******************************/
+/*スマホサイズ設定　0 to 479px */
+
+#wrapper{
+	width: 100%;
+}
+#contents{
+	margin: 0 auto;
+	overflow: hidden;
+	min-width: 320px;
+}
+
+#contents .container{
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.main{
+	padding: 10px 0 0 10px;
+	width: 100%;
+	height: 250px;
+	background-image: url(../images/back1.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	overflow: hidden;
+}
+
+.m_ttl{
+	width: 100px;
+	height: 80px;
+}
+
+
+
+.m_sub_ttl{
+	color: white;
+	font-size: 30px;
+	width: 150px;
+	height: 50px;
+}
+
+.m_sub_ttl_ex{
+	font-weight: lighter;
+	color: white;
+	font-size: 15px;
+	margin-top: 20px;
+	width: 180px;
+	height: 50px;
+	float: left;
+}
+
+.m_phone{
+	margin-right: 30px;
+	width: 110px;
+	height: 230px;
+	float: right;
+}
+
+.m_phone img{
+	width: 100%;
+	
+}
+
+
+.res1{
+	margin: 30px 10px 0 10px;
+	font-size: 13px;
+	text-align: center;
+	height: 80px;
+}
+
+.res2{
+	margin-left: auto;
+	margin-right: auto;
+	width: 300px;
+	height: 60px;
+	display: -webkit-flexbox;
+    display: -moz-flexbox;
+    display: -ms-flexbox;
+    display: -o-flexbox;
+    display: flex;
+    justify-content: space-around;
+    overflow: hidden;
+}
+
+.down{
+	width: 120px;
+	height: 40px;
+}
+
+.res2 img{
+	width: 100%;
+}
+
+.g2{
+	margin-left: auto;
+	margin-right: auto;
+	width: 250px;
+	height: 500px;
+}
+
+.gimg{
+	width: 280px;
+	height: 300px;
+	float: left;
+}
+
+.gimg img{
+	width: 90%;
+}
+
+h2{
+	font-size: 30px;
+	width: 100%;
+	text-align: center;
+}
+
+
+.cfx{
+	clear: both;
+}
+
+#footer{
+	margin-top: 50px;
+	min-width: 320px;
+}
+
+
+
+#footer footer{
+	background-color: #ddd;
+	height: 150px;
+}
+
+.ft{
+	padding-top: 30px;
+	font-size: 13px;
+	height: 100px;
+	color: #888; 
+	text-align: center;
+}
+
+#header header,
+#contents .container,
+#footer footer {
+	min-width: 320px;
+}
+
+
+
+
+@media only screen and (min-width: 1024px) {/* デスクトップサイズ設定 */
+
+#contents{
+	min-width: 960px;
+}
+
+
+.main{
+	background-image: url(../images/back1.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding: 60px 0 0 100px;
+	width: 100%;
+	height: 610px;
+	overflow: hidden;
+}
+
+.m_ttl{
+	width: 200px;
+	height: 100px;
+}
+
+.main img{
+	width: 80%;
+}
+
+.m_sub_ttl{
+	color: white;
+	font-size: 90px;
+	margin-top: 20px;
+	width: 400px;
+	height: 130px;
+
+}
+
+.m_sub_ttl_ex{
+	color: white;
+	font-size: 35px;
+	margin-top: 50px;
+	width: 530px;
+	height: 150px;
+	float: left;	
+}
+
+.m_phone{
+	margin-right: 250px;
+	width: 400px;
+	height: 550px;
+	float: right;
+}
+
+.m_phone img{
+	width: 80%;
+}
+
+
+.res1{
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 960px;
+	height: 150px;
+	display: -webkit-flexbox;
+    display: -moz-flexbox;
+    display: -ms-flexbox;
+    display: -o-flexbox;
+    display: flex;
+    justify-content: space-around;
+    overflow: hidden;
+}
+
+
+.del{
+	font-size: 30px;
+	text-align: center;
+	width: 100%;
+	height: 200px;
+}
+
+
+.res2{
+	margin-left: auto;
+	margin-right: auto;
+	width: 960px;
+	height: 150px;
+	display: -webkit-flexbox;
+    display: -moz-flexbox;
+    display: -ms-flexbox;
+    display: -o-flexbox;
+    display: flex;
+    justify-content: space-around;
+    overflow: hidden;
+}
+
+
+.down{
+	width: 200px;
+	height: 50px;
+}
+
+
+.res3{
+	margin-left: auto;
+	margin-right: auto;
+	width: 960px;
+	height: 600px;
+	display: -webkit-flexbox;
+    display: -moz-flexbox;
+    display: -ms-flexbox;
+    display: -o-flexbox;
+    display: flex;
+    justify-content: space-around;
+    overflow: hidden;
+}
+
+
+.g2{
+	width: 300px;
+	height: 550px;
+}
+
+.g2 p{
+	margin-left: 25px;
+	width: 255px;
+}
+
+.gimg{
+	margin-left: 25px;
+	width: 280px;
+	height: 310px;
+	overflow: hidden;
+	
+}
+
+.gimg img{
+	width: 90%;
+}
+
+
+h2{
+	font-size: 30px;
+	width: 100%;
+	text-align: center;
+}
+
+.cfx{
+	clear: both;
+}
+
+.ft{
+	font-size: 15px;
+	padding-top: 50px;
+	color: #888; 
+	min-width: 960px;
+	text-align: center;
+	height: 90px;
+	background-color: #ddd;
+}
+
+
+
+#header header,
+#contents .container,
+#footer footer {
+	width: 100%;
+}
+
+}

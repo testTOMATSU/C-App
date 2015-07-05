@@ -12,6 +12,8 @@
     <access origin="*" browserOnly="true" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
+    <allow-intent href="http://mplus-fonts.sourceforge.jp/*" />
+    <allow-intent href="src:*" />
     <allow-intent href="tel:*" />
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />

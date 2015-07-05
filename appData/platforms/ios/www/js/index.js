@@ -174,15 +174,6 @@ var app = {
       stopWatch();
 
     }]);
-    /*
-    //公式ページのコントローラ
-    module.controller('WebViewController', ['$scope', function($scope) {
-      console.log("WebView page is ready.");
-      //$scope.test = "公式サイトが表示されます";
-      var ref = window.open('http://www.centrair.jp', '_self', 'location=yes');
-      ref.addEventListener('loadstart', function() { alert(event.url); });
-    }]);
-    */
   
     //キャラ紹介ページのコントローラ
     module.controller('CharacterController', ['$scope', function($scope) {
@@ -240,6 +231,13 @@ var app = {
       //$scope.test = "公式サイトが表示されます";
       //var ref = window.open('http://www.centrair.jp', '_blank', 'location=yes');
       //ref.addEventListener('loadstart', function() { alert(event.url); });
+    }]);
+
+    //プロモーションページのコントローラ
+    module.controller('PromotionController', ['$scope', function($scope) {
+      console.log("Promotion page is ready.");
+      stopWatch();
+
     }]);
   //========================/ここにイベントを書く=============================//
   },
