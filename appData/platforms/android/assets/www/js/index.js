@@ -167,6 +167,7 @@ var app = {
     module.controller('OfficialController', ['$scope', function($scope) {
       console.log("Official page is ready.");
       stopWatch();
+
     }]);
     /*
     //公式ページのコントローラ
@@ -258,6 +259,9 @@ var app = {
       "se09": new Media("sound/marakasu.mp3"),
       "se10": new Media("sound/tanbarin_1.mp3"),
     };
+
+    //読み込みができたならスプラッシュスクリーンを消す
+    cordova.exec(null, null, "SplashScreen", "hide", []);
   },
   // Update DOM on a Received Event
   receivedEvent: function(id) {

@@ -20,14 +20,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-        "id": "cordova-plugin-inappbrowser.inappbrowser",
-        "clobbers": [
-            "cordova.InAppBrowser.open",
-            "window.open"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-media/www/MediaError.js",
         "id": "cordova-plugin-media.MediaError",
         "clobbers": [
@@ -39,6 +31,21 @@ module.exports = [
         "id": "cordova-plugin-media.Media",
         "clobbers": [
             "window.Media"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "id": "cordova-plugin-inappbrowser.inappbrowser",
+        "clobbers": [
+            "cordova.InAppBrowser.open",
+            "window.open"
         ]
     },
     {
@@ -193,8 +200,9 @@ module.exports.metadata =
 {
     "cordova-plugin-whitelist": "1.0.0",
     "cordova-plugin-device-motion": "1.1.1-dev",
-    "cordova-plugin-inappbrowser": "1.0.1-dev",
     "cordova-plugin-media": "1.0.1",
+    "cordova-plugin-splashscreen": "2.1.1-dev",
+    "cordova-plugin-inappbrowser": "1.0.1",
     "cordova-plugin-file": "2.1.0"
 }
 // BOTTOM OF METADATA
