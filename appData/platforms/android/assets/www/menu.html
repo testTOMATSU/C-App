@@ -1,25 +1,20 @@
 <!-- メニュー部分 -->
 <ons-page ng-controller="MenuController">
     <ons-list>
-        <ons-list-item modifier="chevron" ng-click="menu.setMainPage('sound.html', {closeMenu: true})">
-            <i class="fa fa-music"></i>&nbsp;&nbsp;楽器ページ
+        <ons-list-item modifier="chevron" id="m_music" ng-click="menu.setMainPage('sound.html', {closeMenu: true});curr_page($event);" ng-class='{"curr_page":page_name == "m_music"}'>
+            <i class="fa fa-music"></i>&nbsp;&nbsp;なぞの楽器
         </ons-list-item>
-        <!--
-        <ons-list-item modifier="chevron" ng-click="menu.setMainPage('shop.html', {closeMenu: true})">
-            店舗一覧
+        <ons-list-item modifier="chevron" id="m_map" ng-click="menu.setMainPage('map.html', {closeMenu: true});curr_page($event);" ng-class='{"curr_page":page_name == "m_map"}'>
+            &nbsp;<i class="fa fa-map-marker"></i>&nbsp;&nbsp;会場マップ
         </ons-list-item>
-        -->
-        <ons-list-item modifier="chevron" ng-click="menu.setMainPage('map.html', {closeMenu: true})">
-            <i class="fa fa-map-marker"></i>&nbsp;&nbsp;マップ
+        <ons-list-item modifier="chevron" id="m_promo" ng-click="menu.setMainPage('promotion.html', {closeMenu: true});curr_page($event);" ng-class='{"curr_page":page_name == "m_promo"}'>
+            <i class="fa fa-info-circle"></i>&nbsp;&nbsp;このアプリについて
         </ons-list-item>
         <ons-list-item modifier="tappable" ng-click="webView('http://www.centrair.jp/')">
             <i class="fa fa-external-link"></i>&nbsp;&nbsp;中部国際空港公式サイト
         </ons-list-item>
         <ons-list-item modifier="tappable" ng-click="webView('http://www.centrair.jp/')">
             <i class="fa fa-external-link"></i>&nbsp;&nbsp;空港音楽祭公式サイト
-        </ons-list-item>
-        <ons-list-item modifier="chevron" ng-click="menu.setMainPage('promotion.html', {closeMenu: true})">
-            <i class="fa fa-info-circle"></i>&nbsp;&nbsp;このアプリについて
         </ons-list-item>
     </ons-list>
 </ons-page>

@@ -18,6 +18,8 @@
  */
 
 //グローバル変数定義
+var page_name = "m_music";//メニューバーの現在ページ
+
 var vector = {"x": true, "y": true, "z": true};//振った方向判定
 var vct_ignore = false;//前回振り方向と前々回振り方向が被ったかの判定
 
@@ -98,8 +100,13 @@ var app = {
     //メニューエリアのコントローラ
     module.controller('MenuController', ['$scope', function($scope) {
       console.log("Menu is ready");
+      $scope.page_name = page_name;
       $scope.webView = function(url){
         window.open(url, '_system');
+      }
+      $scope.curr_page = function($event) {
+        page_name = $event.target.getAttribute("id");
+        $scope.page_name = page_name;
       }
     }]);
 
@@ -130,49 +137,34 @@ var app = {
       $scope.save_inst = save_inst;
       $scope.save_num = save_num;
 
-      /*
-        ・上記のイベント登録について
-          1.書式
-            $scope.ディレクティブ名 = 関数名;
-          2.ディレクティブ名とは
-            html内にてng-click等のイベントに設定されている名前
-      */
+      //fooのセリフチェンジ
+      var balloon_bool = true;
+      $scope.balloon_fade = false;//アニメーション用
+      var balloon = document.getElementById('balloon_text');
+      setInterval(function(){
+        $scope.balloon_fade = true;
+        setTimeout(function(){
+          if(balloon_bool){
+            balloon.innerHTML = "がっきをタッチ！<br>スマホをふって！";
+            balloon_bool = false;
+          }else{
+            balloon.innerHTML = "ぼくにタッチ！<br>ともだちたくさん！";
+            balloon_bool = true;
+          }
+          console.log($scope.balloon_fade);
+        },1000);
 
-      //var bt = document.getElementsByClassName('buttons');
+        //balloon_fade = false;
+      },5000);
 
     }]);
     
-    //店舗一覧ページのコントローラ
-    module.controller('ShopController', ['$scope', function($scope) {
-      console.log("Shop page is ready");
-      stopWatch();
-      //AngularJSのディレクティブの書式
-      //$scope.test = "ここに店舗情報を載せるよ！";
-    }]);
-
-    //店舗詳細ページのコントローラ
-    module.controller('DetailController', ['$scope', function($scope) {
-      console.log("Detail page is ready");
-      //stopWatch();
-      //AngularJSのディレクティブの書式
-      //$scope.test = "ここに店舗情報を載せるよ！";
-    }]);
-
     //マップページのコントローラ
     module.controller('MapController', ['$scope', function($scope) {
       console.log("Map page is ready.");
       stopWatch();
+      page_name = "map";
       $scope.touch = touch;
-      //$scope.kubo = "ホモ酒場";
-      //AngularJSのディレクティブの書式
-      //$scope.test = "ここにマップ画像が表示されます";
-    }]);
-
-    //公式ページのコントローラ
-    module.controller('OfficialController', ['$scope', function($scope) {
-      console.log("Official page is ready.");
-      stopWatch();
-
     }]);
   
     //キャラ紹介ページのコントローラ
@@ -237,7 +229,6 @@ var app = {
     module.controller('PromotionController', ['$scope', function($scope) {
       console.log("Promotion page is ready.");
       stopWatch();
-
     }]);
   //========================/ここにイベントを書く=============================//
   },
@@ -303,7 +294,7 @@ function audio_play() {
   // サウンド再生
   console.log("audio_play by :"+curr_inst);
   console.log("AUDIO_CRRENT :"+AUDIO_CRRENT);
-  if(switcher){
+  if(true){
     AUDIO_CRRENT.play();
     switcher = false;
   }else{
@@ -373,26 +364,26 @@ function stopWatch() {
 }
 
 function onSuccess(acceleration) {
-  var acc = acceleration; //加速度取得
+  var acc = {"x": acceleration.x, "y": acceleration.y, "z": acceleration.z}; //加速度取得
   var num = {"x": 2.5, "y": 4.5, "z": 4.5}; //振り範囲設定
   var hit = false;  //振り判定
   var max = "x";  //一番振れ幅の大きかった軸
   var abs = {"x": 2.5, "y": 4.5, "z": 4.5}; //加速度の絶対値
 
   console.log("=====================================");
-  console.log("acc.x:"+acc.x+"acc.y:"+acc.y+"acc.z:"+acc.z);
+  console.log("acc['x']:"+acc['x']+"acc['y']:"+acc['y']+"acc['z']:"+acc['z']);
 
   //前回計測時との差
   var diff = {"x": 0, "y": 0, "z": 0};
 
   //X軸
-  diff["x"] = pre_acc["x"] - acc.x;
+  diff["x"] = pre_acc["x"] - acc['x'];
   diff["x"] = Math.abs(diff["x"]);
   //Y軸
-  diff["y"] = pre_acc["y"] - acc.y;
+  diff["y"] = pre_acc["y"] - acc['y'];
   diff["y"] = Math.abs(diff["y"]);
   //Z軸
-  diff["z"] = pre_acc["z"] - acc.z;
+  diff["z"] = pre_acc["z"] - acc['z'];
   diff["z"] = Math.abs(diff["z"]);
 
   //一番振れ幅の大きい軸を特定
@@ -424,8 +415,10 @@ function onSuccess(acceleration) {
 
   console.log("diff.x:"+diff["x"]+"diff.y:"+diff["y"]+"diff.z:"+diff["z"]);
 
-  //振れ幅最大値が設定値を超えており、なおかつ振り方向が違う場合
-  if(diff[max] > num[max] && vector[max]){
+  //振れ幅最大値が設定値を超えており、かつ端末が振り下ろされた時、かつ振り方向が違う場合
+  if(diff[max] > num[max] &&
+     Math.abs(acc[max]) > Math.abs(pre_acc[max]) &&
+     vector[max]){
 
     audio_play();//音を鳴らす
 
@@ -433,16 +426,16 @@ function onSuccess(acceleration) {
     // ...
 
     //次回比較用に値をセット
-    pre_acc["x"] = acc.x;
-    pre_acc["y"] = acc.y;
-    pre_acc["z"] = acc.z;
+    pre_acc["x"] = acc['x'];
+    pre_acc["y"] = acc['y'];
+    pre_acc["z"] = acc['z'];
     pre_acc["v"] = max;
 
   }
 
-  //振れ幅最大値が20を超えていた場合はリセット
-  if(Math.abs(pre_acc[max]) > 15){
-    pre_acc = {"x": 0, "y": 9, "z": 3, "v": "x"};
+  //振れ幅最大値が10を超えていた場合はリセット
+  if(Math.abs(pre_acc[max]) > 10){
+    pre_acc = {"x": 10, "y": 10, "z": 10, "v": "x"};
   }
   console.log("=====================================");
 }
