@@ -20,6 +20,7 @@
 //グローバル変数定義
 var page_name = "m_music";//メニューバーの現在ページ
 
+var play_cnt = 0;
 var vector = {"x": true, "y": true, "z": true};//振った方向判定
 var vct_ignore = false;//前回振り方向と前々回振り方向が被ったかの判定
 
@@ -139,22 +140,15 @@ var app = {
 
       //fooのセリフチェンジ
       var balloon_bool = true;
-      $scope.balloon_fade = false;//アニメーション用
-      var balloon = document.getElementById('balloon_text');
+      var balloon = document.getElementById('balloon');
       setInterval(function(){
-        $scope.balloon_fade = true;
-        setTimeout(function(){
-          if(balloon_bool){
-            balloon.innerHTML = "がっきをタッチ！<br>スマホをふって！";
-            balloon_bool = false;
-          }else{
-            balloon.innerHTML = "ぼくにタッチ！<br>ともだちたくさん！";
-            balloon_bool = true;
-          }
-          console.log($scope.balloon_fade);
-        },1000);
-
-        //balloon_fade = false;
+        if(balloon_bool){
+          balloon.innerHTML = "がっきをタッチ！<br>スマホをふって！";
+          balloon_bool = false;
+        }else{
+          balloon.innerHTML = "ぼくにタッチ！<br>ともだちたくさん！";
+          balloon_bool = true;
+        }
       },5000);
 
     }]);
@@ -171,6 +165,10 @@ var app = {
     module.controller('CharacterController', ['$scope', function($scope) {
       console.log("Character page is ready.");
       stopWatch();
+      var scope_target = document.getElementById('m_chara');
+      var menuScope = angular.element(scope_target).scope();
+      //console.log(menuScope);
+      menuScope.page_name = 'm_chara';
 
       var chara1 = document.getElementById("chara_foo");
       var chara2 = document.getElementById("chara_nazo");
@@ -245,13 +243,13 @@ var app = {
       "se01": new Media("sound/marakasu.mp3"),
       "se02": new Media("sound/tanbarin_1.mp3"),
       "se03": new Media("sound/pafu.mp3"), 
-      "se04": new Media("sound/cym03.mp3"),
-      "se05": new Media("sound/marakasu.mp3"),
-      "se06": new Media("sound/tanbarin_1.mp3"),
-      "se07": new Media("sound/pafu.mp3"), 
-      "se08": new Media("sound/cym03.mp3"),
-      "se09": new Media("sound/marakasu.mp3"),
-      "se10": new Media("sound/tanbarin_1.mp3"),
+      "se04": new Media("sound/suzu.mp3"),
+      "se05": new Media("sound/Onmtp-Ding01-1.mp3"),
+      "se06": new Media("sound/Castanets01-8.mp3"),
+      "se07": new Media("sound/snare.mp3"), 
+      "se08": new Media("sound/button08.mp3"),
+      "se09": new Media("sound/one16.mp3"),
+      "se10": new Media("sound/taiko.mp3"),
     };
 
     //読み込みができたならスプラッシュスクリーンを消す
@@ -287,23 +285,20 @@ var isset = function(data){
 
 //================楽器再生==============//
 function audio_play() {
-  if(AUDIO_CRRENT != null){
-    delete AUDIO_CRRENT;
-  }
-  AUDIO_CRRENT = AUDIO_LIST[curr_inst];
-  // サウンド再生
-  console.log("audio_play by :"+curr_inst);
-  console.log("AUDIO_CRRENT :"+AUDIO_CRRENT);
-  if(true){
+  if(play_cnt > 400){//前の音が鳴ってから400ms以上経ってるなら
+    if(AUDIO_CRRENT != null){
+      delete AUDIO_CRRENT;
+    }
+    AUDIO_CRRENT = AUDIO_LIST[curr_inst];
+    // サウンド再生
+    console.log("audio_play by :"+curr_inst);
+    console.log("AUDIO_CRRENT :"+AUDIO_CRRENT);
     AUDIO_CRRENT.play();
-    switcher = false;
-  }else{
-    switcher = true;
+    play_cnt = 0;
   }
   // 次呼ばれた時用に新たに生成
   //AUDIO_CRRENT = new Media(AUDIO_CRRENT.src);
   //audio.play();
-  console.log("play sound now!:"+AUDIO_CRRENT.src);
 }
 //================end/楽器再生==============//
 
@@ -332,7 +327,7 @@ function startWatch($event,num) {
       num = null;
     }else{
       //加速度センサスタート
-      var options = { frequency: 300 };
+      var options = { frequency: 40 };
       watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
       //今回楽器にcssクラスを付与
       bt_border[num] = true;
@@ -342,7 +337,7 @@ function startWatch($event,num) {
     //前回楽器のcssクラスを解除
     bt_border[save_num] = false;
     //加速度センサスタート
-    var options = { frequency: 300 };
+    var options = { frequency: 40 };
     watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
     //今回楽器にcssクラスを付与
     bt_border[num] = true;
@@ -370,7 +365,10 @@ function onSuccess(acceleration) {
   var max = "x";  //一番振れ幅の大きかった軸
   var abs = {"x": 2.5, "y": 4.5, "z": 4.5}; //加速度の絶対値
 
+  play_cnt += 40;//秒数加算
+
   console.log("=====================================");
+  console.log(play_cnt+"sec");
   console.log("acc['x']:"+acc['x']+"acc['y']:"+acc['y']+"acc['z']:"+acc['z']);
 
   //前回計測時との差
@@ -416,6 +414,7 @@ function onSuccess(acceleration) {
   console.log("diff.x:"+diff["x"]+"diff.y:"+diff["y"]+"diff.z:"+diff["z"]);
 
   //振れ幅最大値が設定値を超えており、かつ端末が振り下ろされた時、かつ振り方向が違う場合
+  /*
   if(diff[max] > num[max] &&
      Math.abs(acc[max]) > Math.abs(pre_acc[max]) &&
      vector[max]){
@@ -432,6 +431,18 @@ function onSuccess(acceleration) {
     pre_acc["v"] = max;
 
   }
+  */
+  if(diff["y"] > num["y"]){
+    audio_play();//音を鳴らす
+
+    //diff[pre_acc["v"]]とmaxが同じかどうか
+    // ...
+  }
+  //次回比較用に値をセット
+    pre_acc["x"] = acc['x'];
+    pre_acc["y"] = acc['y'];
+    pre_acc["z"] = acc['z'];
+    pre_acc["v"] = max;
 
   //振れ幅最大値が10を超えていた場合はリセット
   if(Math.abs(pre_acc[max]) > 10){

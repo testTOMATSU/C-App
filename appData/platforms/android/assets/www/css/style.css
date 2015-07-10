@@ -37,7 +37,8 @@ ons-toolbar img {
 	height: 100%;
 	/*margin: -80px auto 0;*/
 	margin: 0 auto;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 #instrumental{
@@ -231,8 +232,8 @@ ons-toolbar img {
 .right_balloon:after{
     border-color: rgba(133, 226, 73, 0);
     border-left-color: #fff;
-    border-width: 7px;
-    margin-top: -7px;
+    border-width: 6px;
+    margin-top: -6px;
 }
 .right_balloon:before{
     border-color: rgba(119, 119, 119, 0);
@@ -244,6 +245,18 @@ ons-toolbar img {
 .balloon_fade{
   transition-duration: 1s;
   transition-property: opacity;
+}
+
+#menu_chara{
+  display: block;
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: url(../img/character_01.png) no-repeat;
+  background-size: contain;
+  overflow: hidden;
 }
 
 .spin_infinite {

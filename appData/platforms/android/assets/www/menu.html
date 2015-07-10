@@ -4,6 +4,9 @@
         <ons-list-item modifier="chevron" id="m_music" ng-click="menu.setMainPage('sound.html', {closeMenu: true});curr_page($event);" ng-class='{"curr_page":page_name == "m_music"}'>
             <i class="fa fa-music"></i>&nbsp;&nbsp;なぞの楽器
         </ons-list-item>
+        <ons-list-item modifier="chevron" id="m_chara" ng-click="menu.setMainPage('character.html', {closeMenu: true});curr_page($event);" ng-class='{"curr_page":page_name == "m_chara"}'>
+            <i class="fa fa-smile-o"></i>&nbsp;&nbsp;キャラクター紹介
+        </ons-list-item>
         <ons-list-item modifier="chevron" id="m_map" ng-click="menu.setMainPage('map.html', {closeMenu: true});curr_page($event);" ng-class='{"curr_page":page_name == "m_map"}'>
             &nbsp;<i class="fa fa-map-marker"></i>&nbsp;&nbsp;会場マップ
         </ons-list-item>
@@ -17,5 +20,6 @@
             <i class="fa fa-external-link"></i>&nbsp;&nbsp;空港音楽祭公式サイト
         </ons-list-item>
     </ons-list>
+    <div id="menu_chara"></div>
 </ons-page>
 <!-- end/メニュー部分 -->

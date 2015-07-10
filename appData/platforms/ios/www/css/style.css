@@ -37,7 +37,8 @@ ons-toolbar img {
 	height: 100%;
 	/*margin: -80px auto 0;*/
 	margin: 0 auto;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 #instrumental{
@@ -175,8 +176,8 @@ ons-toolbar img {
 }
 /**********笛**********/
 .button_10 img {
-	height: 100px;
-	margin-top: 15px;
+	height: 90px;
+	margin-top: 20px;
 }
 /**********太鼓**********/
 .button_11 img {
