@@ -248,7 +248,7 @@ var app = {
       "se06": new Media("sound/Castanets01-8.mp3"),
       "se07": new Media("sound/snare.mp3"), 
       "se08": new Media("sound/button08.mp3"),
-      "se09": new Media("sound/one16.mp3"),
+      "se09": new Media("sound/se_maoudamashii_se_whistle01.mp3"),
       "se10": new Media("sound/taiko.mp3"),
     };
 

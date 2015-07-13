@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/KatsuyaKubo/workspace/cordova/C-App/appData/platforms/android/CordovaLib/assets"/></dataSet><dataSet config="release"><source path="/Users/KatsuyaKubo/workspace/cordova/C-App/appData/platforms/android/CordovaLib/src/release/assets"/></dataSet></merger>
