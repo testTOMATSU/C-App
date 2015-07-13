@@ -1,1 +1,4 @@
-/Users/KatsuyaKubo/workspace/cordova/C-App/appData/platforms/android/build/outputs/apk/android-release-unsigned.apk
+# リリース版
+/Users/KatsuyaKubo/workspace/cordova/C-App/appData/platforms/android/build/android-release-unsigned.apk
+# デバッグ版
+/Users/KatsuyaKubo/workspace/cordova/C-App/appData/platforms/android/build/android-debug-unsigned.apk
