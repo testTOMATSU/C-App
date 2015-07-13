@@ -11,7 +11,4 @@ ant-gen
 gen
 out
 /build
-!/build/outputs/apk/android-release-unsigned.apk
-!/build/outputs/apk/android-debug.apk
-!/build/outputs/apk/android-debug.apk
 # Gradle builds
