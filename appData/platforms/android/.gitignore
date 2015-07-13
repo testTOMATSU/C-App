@@ -10,5 +10,8 @@ ant-gen
 # Eclipse builds
 gen
 out
-# Gradle builds
 /build
+!/build/outputs/apk/android-release-unsigned.apk
+!/build/outputs/apk/android-debug.apk
+!/build/outputs/apk/android-debug.apk
+# Gradle builds
