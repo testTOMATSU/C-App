@@ -104,11 +104,11 @@ var app = {
       $scope.page_name = page_name;
       $scope.webView = function(url){
         window.open(url, '_system');
-      }
+      };
       $scope.curr_page = function($event) {
         page_name = $event.target.getAttribute("id");
         $scope.page_name = page_name;
-      }
+      };
     }]);
 
     //楽器ページのコントローラ
@@ -236,6 +236,12 @@ var app = {
   // function, we must explicitly call 'app.receivedEvent(...);'
   onDeviceReady: function() {
     app.receivedEvent('deviceready');
+    function getPath(){
+      var str = location.pathname;
+      var i = str.lastIndexOf('/');
+      return str.substring(0,i+1);
+    }
+    console.log("kokodesu:"+getPath());
 
     //楽器音セット
     AUDIO_LIST = {
@@ -251,6 +257,19 @@ var app = {
       "se09": new Media("sound/se_maoudamashii_se_whistle01.mp3"),
       "se10": new Media("sound/taiko.mp3"),
     };
+
+    /* 注意
+    new Media("sound/taiko.mp3"),
+    上記のファイルパス指定だと本来はAndroidでは再生されない
+    しかしplatforms/android/org/apache/cordova/media/FileHelper.java内の
+    uriString.startsWith()関数の引数を「file://」から「file:///android_asset/www/」に変えることで、
+    Mediaプラグインrootが変更され、音声ファイルが見つかるようになり、再生される
+    */
+
+    // var gsp = getsPath();
+    // var gp = getPath();
+    // console.log("getsPath:"+gsp+"sound/*");
+    // console.log("getPath:"+gp+"sound/*");
 
     //読み込みができたならスプラッシュスクリーンを消す
     cordova.exec(null, null, "SplashScreen", "hide", []);
@@ -283,6 +302,22 @@ var isset = function(data){
     }
 };
 
+// ===============ファイル読み取り関連============= //
+// function getFilesFromDirectory(fileSystem) {
+//   // FileSystemオブジェクトのrootプロパティには，DirectoryEntryオブジェクトが格納されている
+//   directoryEntry = fileSystem.root;
+
+//   // DirecotryEntryオブジェクトのcreateReaderメソッドを使い，
+//   // ディレクトリ内のファイルを読み込むためのDirectoryReaderオブジェクトを生成
+//   var directoryReader = directoryEntry.createReader();
+
+//   // DirectoryReaderオブジェクトのreadEntriesメソッドを使い，
+//   // ディレクトリ内のエントリを読み込み，コールバック関数に配列として渡す
+//   directoryReader.readEntries(putFileName, fail);
+// }
+// ===============end/ファイル読み取り関連============= //
+
+
 //================楽器再生==============//
 function audio_play() {
   if(play_cnt > 400){//前の音が鳴ってから400ms以上経ってるなら
@@ -290,15 +325,14 @@ function audio_play() {
       delete AUDIO_CRRENT;
     }
     AUDIO_CRRENT = AUDIO_LIST[curr_inst];
+
     // サウンド再生
     console.log("audio_play by :"+curr_inst);
     console.log("AUDIO_CRRENT :"+AUDIO_CRRENT);
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
     AUDIO_CRRENT.play();
     play_cnt = 0;
   }
-  // 次呼ばれた時用に新たに生成
-  //AUDIO_CRRENT = new Media(AUDIO_CRRENT.src);
-  //audio.play();
 }
 //================end/楽器再生==============//
 
@@ -312,6 +346,10 @@ function startWatch($event,num) {
   }else{
     curr_inst = $event.target.getAttribute("id");
   }
+
+  var kore = getsPath();
+
+  console.log("kore:"+kore);
 
   console.log("save_inst:"+save_inst);
   console.log("curr_inst:"+curr_inst);
@@ -337,7 +375,7 @@ function startWatch($event,num) {
     //前回楽器のcssクラスを解除
     bt_border[save_num] = false;
     //加速度センサスタート
-    var options = { frequency: 40 };
+    var options = {frequency: 40};
     watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
     //今回楽器にcssクラスを付与
     bt_border[num] = true;
@@ -351,11 +389,23 @@ function startWatch($event,num) {
   console.log("watchID:"+watchID);
 }
 
+function getsPath(){
+  var str = location.pathname;
+  var i = str.lastIndexOf('/');
+  return str.substring(0,i+1);
+}
+
 // Stop watching the acceleration
 function stopWatch() {
   console.log("stop!");
   navigator.accelerometer.clearWatch(watchID);
   watchID = null;
+}
+
+function getsPath(){
+  var str = location.pathname;
+  var i = str.lastIndexOf('/');
+  return str.substring(0,i+1);
 }
 
 function onSuccess(acceleration) {

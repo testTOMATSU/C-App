@@ -50,7 +50,9 @@ body{
 	height: 80px;
 }
 
-
+.m_ttl img{
+	width: 80%;
+}
 
 .m_sub_ttl{
 	color: white;
@@ -191,6 +193,10 @@ h2{
 .m_ttl{
 	width: 200px;
 	height: 100px;
+}
+
+.m_ttl img{
+	width: 80%;
 }
 
 .main img{

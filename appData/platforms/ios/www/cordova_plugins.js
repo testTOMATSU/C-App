@@ -44,6 +44,20 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/cordova-plugin-console/www/logger.js",
+        "id": "cordova-plugin-console.logger",
+        "clobbers": [
+            "cordova.logger"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-console/www/console-via-logger.js",
+        "id": "cordova-plugin-console.console",
+        "clobbers": [
+            "console"
+        ]
+    },
+    {
         "file": "plugins/cordova-plugin-file/www/DirectoryEntry.js",
         "id": "cordova-plugin-file.DirectoryEntry",
         "clobbers": [
@@ -198,6 +212,7 @@ module.exports.metadata =
     "cordova-plugin-media": "1.0.1",
     "cordova-plugin-splashscreen": "2.1.1-dev",
     "cordova-plugin-inappbrowser": "1.0.1",
+    "cordova-plugin-console": "1.0.1",
     "cordova-plugin-file": "2.1.0"
 }
 // BOTTOM OF METADATA
