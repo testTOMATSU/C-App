@@ -1,0 +1,309 @@
+@charset"utf-8";
+
+#wrapper {
+	height: 100%;
+  overflow: scroll;
+}
+
+#wrapper::before {
+  background:url('../img/haikei.gif') left top;
+  background-size: 100% auto;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 108px;
+  content: "";
+  z-index: -1;
+}
+
+ons-toolbar {
+	width: 100%;
+	height: 50px;
+	background-color: white;
+}
+
+ons-toolbar img {
+	margin-left: 10px;
+	height: 35px;
+	margin-top: 5px;
+}
+
+#main {
+	position: relative;
+	width: 260px;
+	height: 100%;
+	/*margin: -80px auto 0;*/
+	margin: 0 auto;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+#instrumental{
+	position: absolute;
+	top: 100px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 100%;
+	height: 100%;
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    content: " ";
+    clear: both;
+    height: 0;
+    }
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+
+
+.buttons{
+	position: relative;
+	float: left;
+	background-color: white;
+	border-radius: 50%;
+	text-align: center;
+}
+
+.buttons img{
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+
+.touch_area{
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0);
+	z-index: 9999;
+}
+
+/**********赤丸**********/
+.button_01,.button_05,.button_09{
+	width: 90px;
+	height: 90px;
+	margin-top: 10px;
+	border: solid 5px #DE4830;	
+}
+.button_01_play,.button_05_play,.button_09_play{
+	border: dotted 5px #DE4830;
+}
+/**********青丸**********/
+.button_02,.button_06,.button_10{
+	width: 130px;
+	height: 130px;
+	margin-top: 10px;
+	margin-left: 20px;
+	border: solid 5px #33BFDB;
+}
+.button_02_play,.button_06_play,.button_10_play{
+	border: dotted 5px #33BFDB;
+}
+/**********緑丸**********/
+.button_03,.button_07,.button_11{
+	width: 130px;
+	height: 130px;
+	margin-top: 10px;
+	border: solid 5px #8DCF3F;
+}
+.button_03_play,.button_07_play,.button_11_play{
+	border: dotted 5px #8DCF3F;
+}
+/**********黄丸**********/
+.button_04,.button_08{
+	width: 90px;
+	height: 90px;
+	margin-top: 10px;
+	margin-left: 20px;
+	margin-bottom: 40px;
+	border: solid 5px #FDC44F;
+}
+.button_04_play,.button_08_play{
+	border: dotted 5px #FDC44F;
+}
+
+/**********シンバル**********/
+.button_01 img {
+	width: 75px;
+	margin-top: 10px;
+}
+/**********マラカス**********/
+.button_02 img {
+	width: 110px;
+	margin-top: 15px;
+}
+/**********タンバリン**********/
+.button_03 img {
+	width: 100px;
+	margin-top: 10px;
+}
+/**********パフ音**********/
+.button_04 img {
+	height: 70px;
+	margin-top: 15px;
+}
+/**********鈴**********/
+.button_05 img {
+	width: 75px;
+	margin-top: 10px;
+}
+/**********トライアングル**********/
+.button_06 img {
+	width: 100px;
+	margin-top: 5px;
+}
+/**********カスタネット**********/
+.button_07 img {
+	width: 100px;
+	margin-top: 15px;
+}
+/**********スネアドラム**********/
+.button_08 img {
+	height: 60px;
+	margin-top: 18px;
+}
+/**********木琴**********/
+.button_09 img {
+	width: 75px;
+	margin-top: 30px;
+}
+/**********笛**********/
+.button_10 img {
+	height: 90px;
+	margin-top: 20px;
+}
+/**********太鼓**********/
+.button_11 img {
+	height: 100px;
+	margin-top: 15px;
+}
+.foo{
+	position: absolute;
+	top: 60px;
+	/*float: right;*/
+	right: 0;
+	height: 80px;
+	margin-top: -40px;
+  z-index: 9999;
+}
+
+.foo img {
+	height: 100%;
+}
+
+.curr_page{
+  background-color: #02AEDC;
+  color: #fff;
+}
+
+/*吹き出し*/
+.right_balloon{
+    position: relative;
+    background: #fff;
+    border: 3px solid #FFD464;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 15px;
+    clear: both;
+    max-width: 500px;
+    float: left;
+}
+#balloon_text{
+  opacity: 1;
+}
+.right_balloon:after,
+.right_balloon:before{
+    left: 100%;
+    top: 50%;
+    border: solid 3px transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+.right_balloon:after{
+    border-color: rgba(133, 226, 73, 0);
+    border-left-color: #fff;
+    border-width: 6px;
+    margin-top: -6px;
+}
+.right_balloon:before{
+    border-color: rgba(119, 119, 119, 0);
+    border-left-color: #FFD464;
+    border-width: 10px;
+    margin-top: -10px;
+}
+
+.balloon_fade{
+  transition-duration: 1s;
+  transition-property: opacity;
+}
+
+#menu_chara{
+  display: block;
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: url(../img/character_01.png) no-repeat;
+  background-size: contain;
+  overflow: hidden;
+}
+
+.spin_infinite {
+/* keyframes に任意の名前を付ける */
+  -moz-animation-name: 'rotate1';
+  -webkit-animation-name: 'rotate1';
+  animation-name: 'rotate1';
+  -goog-ms-animation-name: 'rotate1'; 
+
+ /* 1動作(ここでは1回転)あたりの秒数 */
+  -moz-animation-duration: 4s;
+  -webkit-animation-duration: 4s;
+  animation-duration: 4s;
+  -goog-ms-animation-duration: 4s;
+
+/* 動作の向き、初期値はnormal 、逆再生は alternate */
+  -moz-animation-direction: normal;
+  -webkit-animation-direction: normal;
+  animation-direction: normal;
+  -goog-ms-animation-direction: normal;
+ 
+/* 動き方 linear, ease, easein, ease-out, ease-in-out */
+  -moz-animation-timing-function: linear;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -goog-ms-animation-timing-function: linear;
+ 
+/* 動作 (ここでは回転) の回数を数値で指定、無限ループは infinite */
+  -moz-animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -goog-ms-animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes 'rotate1' {
+  from {
+  /* 最初の回転角 */
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -goog-ms-transform: rotate(0deg);
+  }
+  /* 1動作の最後 ( 1duration 後) の回転角 */
+  to {
+    -moz-transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+    -goog-ms-transform: rotate(-360deg);
+  }
+}
