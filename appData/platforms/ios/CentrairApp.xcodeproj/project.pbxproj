@@ -48,6 +48,7 @@
 		B4799A20048F44329F966D3A /* CDVInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = DD8BDEE24AAE4AF5A34D3B00 /* CDVInAppBrowser.m */; };
 		B68F00FD15344306BF08E391 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E3D1444D4804DE691DF5077 /* CoreMotion.framework */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
+		B3D630C8EE4A4C379B1E377B /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = A5991CF72F664916A2316F14 /* CDVLogger.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +129,8 @@
 		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = CentrairApp/config.xml; sourceTree = "<group>"; };
+		A5991CF72F664916A2316F14 /* CDVLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVLogger.m"; path = "cordova-plugin-console/CDVLogger.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		E3EE2A8D18E04674A7E1A691 /* CDVLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLogger.h"; path = "cordova-plugin-console/CDVLogger.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +247,8 @@
 				ABAD37A77DE54F8D84475C50 /* CDVViewController+SplashScreen.h */,
 				DD8BDEE24AAE4AF5A34D3B00 /* CDVInAppBrowser.m */,
 				0BFE9028E50F4040B8CF94C5 /* CDVInAppBrowser.h */,
+				A5991CF72F664916A2316F14 /* CDVLogger.m */,
+				E3EE2A8D18E04674A7E1A691 /* CDVLogger.h */,
 			);
 			name = Plugins;
 			path = CentrairApp/Plugins;
@@ -441,6 +446,7 @@
 				5380954410E543339013AB73 /* CDVSplashScreen.m in Sources */,
 				8BC251916A8640F5A020F2BE /* CDVViewController+SplashScreen.m in Sources */,
 				B4799A20048F44329F966D3A /* CDVInAppBrowser.m in Sources */,
+				B3D630C8EE4A4C379B1E377B /* CDVLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,9 +1,18 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
-        "file": "plugins/cordova-plugin-whitelist/whitelist.js",
-        "id": "cordova-plugin-whitelist.whitelist",
-        "runs": true
+        "file": "plugins/cordova-plugin-console/www/logger.js",
+        "id": "cordova-plugin-console.logger",
+        "clobbers": [
+            "cordova.logger"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-console/www/console-via-logger.js",
+        "id": "cordova-plugin-console.console",
+        "clobbers": [
+            "console"
+        ]
     },
     {
         "file": "plugins/cordova-plugin-device-motion/www/Acceleration.js",
@@ -17,35 +26,6 @@ module.exports = [
         "id": "cordova-plugin-device-motion.accelerometer",
         "clobbers": [
             "navigator.accelerometer"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-media/www/MediaError.js",
-        "id": "cordova-plugin-media.MediaError",
-        "clobbers": [
-            "window.MediaError"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-media/www/Media.js",
-        "id": "cordova-plugin-media.Media",
-        "clobbers": [
-            "window.Media"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
-        "id": "cordova-plugin-splashscreen.SplashScreen",
-        "clobbers": [
-            "navigator.splashscreen"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-        "id": "cordova-plugin-inappbrowser.inappbrowser",
-        "clobbers": [
-            "cordova.InAppBrowser.open",
-            "window.open"
         ]
     },
     {
@@ -193,17 +173,52 @@ module.exports = [
             "cordova"
         ],
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "id": "cordova-plugin-inappbrowser.inappbrowser",
+        "clobbers": [
+            "cordova.InAppBrowser.open",
+            "window.open"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-media/www/MediaError.js",
+        "id": "cordova-plugin-media.MediaError",
+        "clobbers": [
+            "window.MediaError"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-media/www/Media.js",
+        "id": "cordova-plugin-media.Media",
+        "clobbers": [
+            "window.Media"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-whitelist/whitelist.js",
+        "id": "cordova-plugin-whitelist.whitelist",
+        "runs": true
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "cordova-plugin-whitelist": "1.0.0",
+    "cordova-plugin-console": "1.0.1",
     "cordova-plugin-device-motion": "1.1.1-dev",
+    "cordova-plugin-file": "2.1.0",
+    "cordova-plugin-inappbrowser": "1.0.1",
     "cordova-plugin-media": "1.0.1",
     "cordova-plugin-splashscreen": "2.1.1-dev",
-    "cordova-plugin-inappbrowser": "1.0.1",
-    "cordova-plugin-file": "2.1.0"
+    "cordova-plugin-whitelist": "1.0.0"
 }
 // BOTTOM OF METADATA
 });

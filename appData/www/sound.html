@@ -18,57 +18,71 @@
 
 
 
-      
+      <!-- <p>{{switch_im}}</p> -->
       <!-- end/サウンド読み込み -->
       
 
       <div id="main"> 
-        <p id="balloon" class="right_balloon" ng-click="CharacterNavigator.pushPage('character.html', { animation : 'slide' } )"><span id="balloon_text">がっきをタッチ！<br>スマホをふって！</span></p>
-        <div class="foo" ng-click="CharacterNavigator.pushPage('character.html', { animation : 'slide' } )"><img src="img/foo.png"></div>
+        <p id="balloon" class="right_balloon"><span id="balloon_text" ng-bind-html="describe"></span></p>
+        <!-- <div class="foo" ng-click="CharacterNavigator.pushPage('character.html', { animation : 'slide' } )"><img src="img/foo.png"></div> -->
+        <div class="inst_switch" ng-click="changeListener()">
+          <img ng-src="img/{{switch_im}}.png">
+        </div>
         <div id="instrumental" class="clearfix">
           <div class="button_01 buttons" ng-class='{"button_01_play":play_now[0],"spin_infinite":play_now[0]}'>
             <div id="se00" class="touch_area" ng-click="startWatch($event,0)"></div>
-            <img src="img/gakki03.png">
+            <img src="img/gakki01.png" ng-show='inst_images["gakki1"]'>
+            <img src="img/gakki01_on.png" ng-show='inst_images["gakki1_on"]'>
           </div>
           <div class="button_02 buttons" ng-class='{"button_02_play":play_now[1],"spin_infinite":play_now[1]}'>
             <div id="se01" class="touch_area" ng-click="startWatch($event,1)"></div>
-            <img src="img/gakki02.png">
+            <img src="img/gakki02.png" ng-show='inst_images["gakki2"]'>
+            <img src="img/gakki02_on.png" ng-show='inst_images["gakki2_on"]'>
           </div>
           <div class="button_03 buttons" ng-class='{"button_03_play":play_now[2],"spin_infinite":play_now[2]}'>
             <div id="se02" class="touch_area" ng-click="startWatch($event,2)"></div>
-            <img src="img/gakki01.png">
+            <img src="img/gakki03.png" ng-show='inst_images["gakki3"]'>
+            <img src="img/gakki03_on.png" ng-show='inst_images["gakki3_on"]'>
           </div>
           <div class="button_04 buttons" ng-class='{"button_04_play":play_now[3],"spin_infinite":play_now[3]}'>
             <div id="se03" class="touch_area" ng-click="startWatch($event,3)"></div>
-            <img src="img/gakki04.png">
+            <img src="img/gakki04.png" ng-show='inst_images["gakki4"]'>
+            <img src="img/gakki04_on.png" ng-show='inst_images["gakki4_on"]'>
           </div>
           <div class="button_05 buttons" ng-class='{"button_05_play":play_now[4],"spin_infinite":play_now[4]}'>
             <div id="se04" class="touch_area" ng-click="startWatch($event,4)"></div>
-            <img src="img/gakki05.png">
+            <img src="img/gakki05.png" ng-show='inst_images["gakki5"]'>
+            <img src="img/gakki05_on.png" ng-show='inst_images["gakki5_on"]'>
           </div>
           <div class="button_06 buttons" ng-class='{"button_06_play":play_now[5],"spin_infinite":play_now[5]}'>
             <div id="se05" class="touch_area" ng-click="startWatch($event,5)"></div>
-            <img src="img/gakki06.png">
+            <img src="img/gakki06.png" ng-show='inst_images["gakki6"]'>
+            <img src="img/gakki06_on.png" ng-show='inst_images["gakki6_on"]'>
           </div>
           <div class="button_07 buttons" ng-class='{"button_07_play":play_now[6],"spin_infinite":play_now[6]}'>
             <div id="se06" class="touch_area" ng-click="startWatch($event,6)"></div>
-            <img src="img/gakki07.png">
+            <img src="img/gakki07.png" ng-show='inst_images["gakki7"]'>
+            <img src="img/gakki07_on.png" ng-show='inst_images["gakki7_on"]'>
           </div>
           <div class="button_08 buttons" ng-class='{"button_08_play":play_now[7],"spin_infinite":play_now[7]}'>
             <div id="se07" class="touch_area" ng-click="startWatch($event,7)"></div>
-            <img src="img/gakki08.png">
+            <img src="img/gakki08.png" ng-show='inst_images["gakki8"]'>
+            <img src="img/gakki08_on.png" ng-show='inst_images["gakki8_on"]'>
           </div>
           <div class="button_09 buttons" ng-class='{"button_09_play":play_now[8],"spin_infinite":play_now[8]}'>
             <div id="se08" class="touch_area" ng-click="startWatch($event,8)"></div>
-            <img src="img/gakki09.png">
+            <img src="img/gakki09.png" ng-show='inst_images["gakki9"]'>
+            <img src="img/gakki09_on.png" ng-show='inst_images["gakki9_on"]'>
           </div>
           <div class="button_10 buttons" ng-class='{"button_10_play":play_now[9],"spin_infinite":play_now[9]}'>
             <div id="se09" class="touch_area" ng-click="startWatch($event,9)"></div>
-            <img src="img/gakki10.jpg">
+            <img src="img/gakki10.png" ng-show='inst_images["gakki10"]'>
+            <img src="img/gakki10_on.png" ng-show='inst_images["gakki10_on"]'>
           </div>
           <div class="button_11 buttons" ng-class='{"button_11_play":play_now[10],"spin_infinite":play_now[10]}'>
             <div id="se10" class="touch_area" ng-click="startWatch($event,10)"></div>
-            <img src="img/gakki11.png">
+            <img src="img/gakki11.png" ng-show='inst_images["gakki11"]'>
+            <img src="img/gakki11_on.png" ng-show='inst_images["gakki11_on"]'>
           </div>
         </div>
       </div><!--end/#main-->

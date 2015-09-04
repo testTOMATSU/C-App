@@ -33,6 +33,6 @@ public class FileHelper {
         if (uriString.startsWith("file://")) {
             return Uri.parse(uriString).getPath();
         }
-        return uriString;
+        return "/android_asset/www/"+uriString;
     }
 }
