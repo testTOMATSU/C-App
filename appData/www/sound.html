@@ -18,12 +18,12 @@
 
 
 
-      <p>{{switch_im}}</p>
+      <!-- <p>{{switch_im}}</p> -->
       <!-- end/サウンド読み込み -->
       
 
       <div id="main"> 
-        <p id="balloon" class="right_balloon"><span id="balloon_text">がっきを選んで<br>スマホをふってね</span></p>
+        <p id="balloon" class="right_balloon"><span id="balloon_text" ng-bind-html="describe"></span></p>
         <!-- <div class="foo" ng-click="CharacterNavigator.pushPage('character.html', { animation : 'slide' } )"><img src="img/foo.png"></div> -->
         <div class="inst_switch" ng-click="changeListener()">
           <img ng-src="img/{{switch_im}}.png">

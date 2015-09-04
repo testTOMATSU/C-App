@@ -41,7 +41,7 @@ var listner = "shake";//楽器を鳴らすイベントリスナ
 var shake_switch = true;
 var tap_switch = false;
 
-var switch_im = "switch01";
+// var switch_im = "switch01";
 
 AUDIO_CRRENT = null;//再生用のAUDIOオブジェクト
 
@@ -172,7 +172,7 @@ var app = {
     }]);
 
     //楽器ページのコントローラ
-    module.controller('SoundController', ['$scope', function($scope){
+    module.controller('SoundController', ['$scope','$sce', function($scope,$sce){
       console.log("Sound page is ready");
 
       //楽器音を事前読み込み
@@ -187,13 +187,18 @@ var app = {
         startWatch(save_inst,save_num);
       }
 
-      $scope.switch_im = switch_im;
-
       //各イベントを登録
       $scope.startWatch = startWatch;//加速度センサ計測開始イベント
       $scope.stopWatch = stopWatch;//加速度センサ計測終了イベント
       $scope.audio_play = audio_play;//一時的にクリックイベントを付与
-      $scope.changeListener = changeListener($scope.switch_im);//イベントリスナ変更関数
+      $scope.switch_im = "switch01";//初期演奏モード
+      $scope.describe = $sce.trustAsHtml("がっきを選んで<br>スマホをふってね");//操作説明文
+
+      $scope.changeListener = function(){
+        var switcher = changeListener();//イベントリスナ変更関数
+        $scope.switch_im = switcher.im;
+        $scope.describe = $sce.trustAsHtml(switcher.describe);
+      };
 
       $scope.play_now = bt_border;
       $scope.inst_images = inst_images;
@@ -582,14 +587,18 @@ function instTap(num){
 
 
 //===============楽器再生のイベントリスナ変更===============//
-function changeListener(scope){
+function changeListener(){
+
+  var switch_im = "";
+  var message = "";
 
   //リスナ切り替え
   if(listner == "shake"){
     listner = "tap";
     shake_switch = false;
     tap_switch = true;
-    scope = "switch02";
+    switch_im = "switch02";
+    message = "がっきをえらんで<br>がっきにタッチ！";
 
     //加速度センサ計測停止
     stopWatch();
@@ -603,14 +612,16 @@ function changeListener(scope){
     listner = "shake";
     shake_switch = true;
     tap_switch = false;
-    scope = "switch01";
+    switch_im = "switch01";
+    message = "がっきをえらんで<br>スマホをふってね";
   }
 
   console.log("===========================");
-  console.log("scope:"+scope);
   console.log("shake_switch:"+shake_switch);
   console.log("tap_switch:"+tap_switch);
   console.log("===========================");
+
+  return {"im":switch_im, "describe":message};
 }
 //================end/楽器再生のイベントリスナ変更==============//
 
