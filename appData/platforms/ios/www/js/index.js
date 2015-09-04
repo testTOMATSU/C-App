@@ -18,10 +18,14 @@
  */
 
 //グローバル変数定義
+var page_name = "m_music";//メニューバーの現在ページ
+
+var play_cnt = 0;
 var vector = {"x": true, "y": true, "z": true};//振った方向判定
+var vct_ignore = false;//前回振り方向と前々回振り方向が被ったかの判定
 
 //加速度初期値
-var base = {"x": 0, "y": 9, "z": 3, "v": "x"};//x軸,y軸,z軸,加速度最大軸
+var pre_acc = {"x": 0, "y": 9, "z": 3, "v": "x"};//x軸,y軸,z軸,加速度最大軸
 var bt_border = {0:false,1:false,2:false,3:false};//楽器ボタンのcss変更用
 
 var watchID = null;//加速度センサのID
@@ -30,20 +34,40 @@ var curr_inst = null;//現在の楽器
 var save_inst = null;//楽器選択情報($event)の退避先
 var save_num = null;//css情報の退避先
 
+var switcher = true;//連続して楽器がなるのを防止する
+
+AUDIO_CRRENT = null;//再生用のAUDIOオブジェクト
+
 //楽器音声リスト
-var AUDIO_LIST = {
-  "se00": new Audio("sound/cym03.mp3"),
-  "se01": new Audio("sound/marakasu.mp3"),
-  "se02": new Audio("sound/tanbarin_1.mp3"),
-  "se03": new Audio("sound/pafu.mp3"), 
-  "se04": new Audio("sound/cym03.mp3"),
-  "se05": new Audio("sound/marakasu.mp3"),
-  "se06": new Audio("sound/tanbarin_1.mp3"),
-  "se07": new Audio("sound/pafu.mp3"), 
-  "se08": new Audio("sound/cym03.mp3"),
-  "se09": new Audio("sound/marakasu.mp3"),
-  "se10": new Audio("sound/tanbarin_1.mp3"),
+AUDIO_LIST = {
+  "se00": null,
+  "se01": null,
+  "se02": null,
+  "se03": null, 
+  "se04": null,
+  "se05": null,
+  "se06": null,
+  "se07": null, 
+  "se08": null,
+  "se09": null,
+  "se10": null,
 };
+//楽器音声リスト
+/*
+var AUDIO_LIST = {
+  "se00": new Media("sound/cym03.mp3"),
+  "se01": new Media("sound/marakasu.mp3"),
+  "se02": new Media("sound/tanbarin_1.mp3"),
+  "se03": new Media("sound/pafu.mp3"), 
+  "se04": new Media("sound/cym03.mp3"),
+  "se05": new Media("sound/marakasu.mp3"),
+  "se06": new Media("sound/tanbarin_1.mp3"),
+  "se07": new Media("sound/pafu.mp3"), 
+  "se08": new Media("sound/cym03.mp3"),
+  "se09": new Media("sound/marakasu.mp3"),
+  "se10": new Media("sound/tanbarin_1.mp3"),
+};
+*/
 
 //アプリ本体
 var app = {
@@ -53,7 +77,12 @@ var app = {
   },
   load: function(){
     FastClick.attach(document.body);
-      console.log('fastclick適用');
+    //console.log('fastclick適用');
+    /*
+    for(var i=0; i < AUDIO_LIST.length; i++){
+      AUDIO_LIST[i].load();
+      //sconsole.log("load");
+    }*/
   },
   // Bind Event Listeners
   //
@@ -72,11 +101,26 @@ var app = {
     //メニューエリアのコントローラ
     module.controller('MenuController', ['$scope', function($scope) {
       console.log("Menu is ready");
+      $scope.page_name = page_name;
+      $scope.webView = function(url){
+        window.open(url, '_system');
+      };
+      $scope.curr_page = function($event) {
+        page_name = $event.target.getAttribute("id");
+        $scope.page_name = page_name;
+      };
     }]);
 
     //楽器ページのコントローラ
     module.controller('SoundController', ['$scope', function($scope){
       console.log("Sound page is ready");
+
+      //楽器音を事前読み込み
+      /*for(var i=0; i < AUDIO_LIST.length, i++){
+        //AUDIO_LIST[i].load();
+        console.log("load");
+      }*/
+      //console.log("load":+AUDIO_LIST);
 
       if(save_inst != null && save_num != null){
         stopWatch();//楽器P メニュー 楽器Pの手順で戻られたときのため
@@ -94,62 +138,95 @@ var app = {
       $scope.save_inst = save_inst;
       $scope.save_num = save_num;
 
-      /*
-        ・上記のイベント登録について
-          1.書式
-            $scope.ディレクティブ名 = 関数名;
-          2.ディレクティブ名とは
-            html内にてng-click等のイベントに設定されている名前
-      */
-
-      //var bt = document.getElementsByClassName('buttons');
+      //fooのセリフチェンジ
+      var balloon_bool = true;
+      var balloon = document.getElementById('balloon');
+      setInterval(function(){
+        if(balloon_bool){
+          balloon.innerHTML = "がっきをタッチ！<br>スマホをふって！";
+          balloon_bool = false;
+        }else{
+          balloon.innerHTML = "ぼくにタッチ！<br>ともだちたくさん！";
+          balloon_bool = true;
+        }
+      },5000);
 
     }]);
     
-    //店舗一覧ページのコントローラ
-    module.controller('ShopController', ['$scope', function($scope) {
-      console.log("Shop page is ready");
-      stopWatch();
-      //AngularJSのディレクティブの書式
-      //$scope.test = "ここに店舗情報を載せるよ！";
-    }]);
-
-    //店舗詳細ページのコントローラ
-    module.controller('DetailController', ['$scope', function($scope) {
-      console.log("Detail page is ready");
-      //stopWatch();
-      //AngularJSのディレクティブの書式
-      //$scope.test = "ここに店舗情報を載せるよ！";
-    }]);
-
     //マップページのコントローラ
     module.controller('MapController', ['$scope', function($scope) {
       console.log("Map page is ready.");
       stopWatch();
+      page_name = "map";
       $scope.touch = touch;
-      //$scope.kubo = "ホモ酒場";
-      //AngularJSのディレクティブの書式
-      //$scope.test = "ここにマップ画像が表示されます";
     }]);
-
-    //公式ページのコントローラ
-    module.controller('OfficialController', ['$scope', function($scope) {
-      console.log("Official page is ready.");
-      stopWatch();
-      //AngularJSのディレクティブの書式
-      //$scope.test = "公式サイトが表示されます";
-      var ref = window.open('http://www.centrair.jp', '_self', 'location=yes');
-      ref.addEventListener('loadstart', function() { alert(event.url); });
-    }]);
-
+  
     //キャラ紹介ページのコントローラ
     module.controller('CharacterController', ['$scope', function($scope) {
       console.log("Character page is ready.");
       stopWatch();
+      var scope_target = document.getElementById('m_chara');
+      var menuScope = angular.element(scope_target).scope();
+      //console.log(menuScope);
+      menuScope.page_name = 'm_chara';
+
+      var chara1 = document.getElementById("chara_foo");
+      var chara2 = document.getElementById("chara_nazo");
+      var chara3 = document.getElementById("chara_tori");
+      var chara4 = document.getElementById("chara_hiko");
+      var chara5 = document.getElementById("chara_jet");
+      
+      chara1.addEventListener('click', ch1, false);
+      chara2.addEventListener('click', ch2, false);
+      chara3.addEventListener('click', ch3, false);
+      chara4.addEventListener('click', ch4, false);
+      chara5.addEventListener('click', ch5, false);
+
+      function ch1(){
+        document.getElementById("chara_1").style.display="block";
+        document.getElementById("chara_2").style.display="none";
+        document.getElementById("chara_3").style.display="none";
+        document.getElementById("chara_4").style.display="none";
+        document.getElementById("chara_5").style.display="none";
+      }
+      function ch2(){
+        document.getElementById("chara_1").style.display="none";
+        document.getElementById("chara_2").style.display="block";
+        document.getElementById("chara_3").style.display="none";
+        document.getElementById("chara_4").style.display="none";
+        document.getElementById("chara_5").style.display="none";
+      }
+      function ch3(){
+        document.getElementById("chara_1").style.display="none";
+        document.getElementById("chara_2").style.display="none";
+        document.getElementById("chara_3").style.display="block";
+        document.getElementById("chara_4").style.display="none";
+        document.getElementById("chara_5").style.display="none";
+      }
+      function ch4(){
+        document.getElementById("chara_1").style.display="none";
+        document.getElementById("chara_2").style.display="none";
+        document.getElementById("chara_3").style.display="none";
+        document.getElementById("chara_4").style.display="block";
+        document.getElementById("chara_5").style.display="none";
+      }
+      function ch5(){
+        document.getElementById("chara_1").style.display="none";
+        document.getElementById("chara_2").style.display="none";
+        document.getElementById("chara_3").style.display="none";
+        document.getElementById("chara_4").style.display="none";
+        document.getElementById("chara_5").style.display="block";
+      }
       //AngularJSのディレクティブの書式
       //$scope.test = "公式サイトが表示されます";
       //var ref = window.open('http://www.centrair.jp', '_blank', 'location=yes');
       //ref.addEventListener('loadstart', function() { alert(event.url); });
+    }]);
+
+    //プロモーションページのコントローラ
+    module.controller('PromotionController', ['$scope', function($scope) {
+      console.log("Promotion page is ready.");
+      stopWatch();
     }]);
   //========================/ここにイベントを書く=============================//
   },
@@ -159,6 +236,43 @@ var app = {
   // function, we must explicitly call 'app.receivedEvent(...);'
   onDeviceReady: function() {
     app.receivedEvent('deviceready');
+    function getPath(){
+      var str = location.pathname;
+      var i = str.lastIndexOf('/');
+      return str.substring(0,i+1);
+    }
+    console.log("kokodesu:"+getPath());
+
+    //楽器音セット
+    AUDIO_LIST = {
+      "se00": new Media("sound/cym03.mp3"),
+      "se01": new Media("sound/marakasu.mp3"),
+      "se02": new Media("sound/tanbarin_1.mp3"),
+      "se03": new Media("sound/pafu.mp3"), 
+      "se04": new Media("sound/suzu.mp3"),
+      "se05": new Media("sound/Onmtp-Ding01-1.mp3"),
+      "se06": new Media("sound/Castanets01-8.mp3"),
+      "se07": new Media("sound/snare.mp3"), 
+      "se08": new Media("sound/button08.mp3"),
+      "se09": new Media("sound/se_maoudamashii_se_whistle01.mp3"),
+      "se10": new Media("sound/taiko.mp3"),
+    };
+
+    /* 注意
+    new Media("sound/taiko.mp3"),
+    上記のファイルパス指定だと本来はAndroidでは再生されない
+    しかしplatforms/android/org/apache/cordova/media/FileHelper.java内の
+    uriString.startsWith()関数の引数を「file://」から「file:///android_asset/www/」に変えることで、
+    Mediaプラグインrootが変更され、音声ファイルが見つかるようになり、再生される
+    */
+
+    // var gsp = getsPath();
+    // var gp = getPath();
+    // console.log("getsPath:"+gsp+"sound/*");
+    // console.log("getPath:"+gp+"sound/*");
+
+    //読み込みができたならスプラッシュスクリーンを消す
+    cordova.exec(null, null, "SplashScreen", "hide", []);
   },
   // Update DOM on a Received Event
   receivedEvent: function(id) {
@@ -188,17 +302,37 @@ var isset = function(data){
     }
 };
 
+// ===============ファイル読み取り関連============= //
+// function getFilesFromDirectory(fileSystem) {
+//   // FileSystemオブジェクトのrootプロパティには，DirectoryEntryオブジェクトが格納されている
+//   directoryEntry = fileSystem.root;
+
+//   // DirecotryEntryオブジェクトのcreateReaderメソッドを使い，
+//   // ディレクトリ内のファイルを読み込むためのDirectoryReaderオブジェクトを生成
+//   var directoryReader = directoryEntry.createReader();
+
+//   // DirectoryReaderオブジェクトのreadEntriesメソッドを使い，
+//   // ディレクトリ内のエントリを読み込み，コールバック関数に配列として渡す
+//   directoryReader.readEntries(putFileName, fail);
+// }
+// ===============end/ファイル読み取り関連============= //
+
+
 //================楽器再生==============//
 function audio_play() {
-  //alert("shake");
-  // サウンド再生
-  console.log("audio_play by :"+curr_inst);
-  console.log("AUDIO_LIST[curr_inst] :"+AUDIO_LIST[curr_inst]);
-  AUDIO_LIST[curr_inst].play();
-  // 次呼ばれた時用に新たに生成
-  AUDIO_LIST[curr_inst] = new Audio( AUDIO_LIST[curr_inst].src );
-  //audio.play();
-  console.log("play sound now!");
+  if(play_cnt > 400){//前の音が鳴ってから400ms以上経ってるなら
+    if(AUDIO_CRRENT != null){
+      delete AUDIO_CRRENT;
+    }
+    AUDIO_CRRENT = AUDIO_LIST[curr_inst];
+
+    // サウンド再生
+    console.log("audio_play by :"+curr_inst);
+    console.log("AUDIO_CRRENT :"+AUDIO_CRRENT);
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    AUDIO_CRRENT.play();
+    play_cnt = 0;
+  }
 }
 //================end/楽器再生==============//
 
@@ -212,6 +346,10 @@ function startWatch($event,num) {
   }else{
     curr_inst = $event.target.getAttribute("id");
   }
+
+  var kore = getsPath();
+
+  console.log("kore:"+kore);
 
   console.log("save_inst:"+save_inst);
   console.log("curr_inst:"+curr_inst);
@@ -237,7 +375,7 @@ function startWatch($event,num) {
     //前回楽器のcssクラスを解除
     bt_border[save_num] = false;
     //加速度センサスタート
-    var options = { frequency: 40 };
+    var options = {frequency: 40};
     watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
     //今回楽器にcssクラスを付与
     bt_border[num] = true;
@@ -251,6 +389,12 @@ function startWatch($event,num) {
   console.log("watchID:"+watchID);
 }
 
+function getsPath(){
+  var str = location.pathname;
+  var i = str.lastIndexOf('/');
+  return str.substring(0,i+1);
+}
+
 // Stop watching the acceleration
 function stopWatch() {
   console.log("stop!");
@@ -258,77 +402,103 @@ function stopWatch() {
   watchID = null;
 }
 
+function getsPath(){
+  var str = location.pathname;
+  var i = str.lastIndexOf('/');
+  return str.substring(0,i+1);
+}
+
 function onSuccess(acceleration) {
-  var acc = acceleration; //加速度取得
+  var acc = {"x": acceleration.x, "y": acceleration.y, "z": acceleration.z}; //加速度取得
   var num = {"x": 2.5, "y": 4.5, "z": 4.5}; //振り範囲設定
   var hit = false;  //振り判定
   var max = "x";  //一番振れ幅の大きかった軸
+  var abs = {"x": 2.5, "y": 4.5, "z": 4.5}; //加速度の絶対値
+
+  play_cnt += 40;//秒数加算
+
+  console.log("=====================================");
+  console.log(play_cnt+"sec");
+  console.log("acc['x']:"+acc['x']+"acc['y']:"+acc['y']+"acc['z']:"+acc['z']);
 
   //前回計測時との差
   var diff = {"x": 0, "y": 0, "z": 0};
 
   //X軸
-  if(base["x"] * acc.x >= 0){  //前回値と今回値の正負が一致していたら
-    //絶対値で計算
-    diff["x"] = Math.abs(base["x"]) - Math.abs(acc.x);
-    vector["x"] = false;
-  }else{
-    //元の値で計算
-    diff["x"] = base["x"] - acc.x;
-    vector["x"] = true;
-  }
+  diff["x"] = pre_acc["x"] - acc['x'];
+  diff["x"] = Math.abs(diff["x"]);
   //Y軸
-  if(base["y"] * acc.y >= 0){  //前回値と今回値の正負が一致していたら
-    //絶対値で計算
-    diff["y"] = Math.abs(base["y"]) - Math.abs(acc.y);
-    vector["y"] = false;
-  }else{
-    //元の値で計算
-    diff["y"] = base["y"] - acc.y;
-    vector["y"] = true;
-  }
+  diff["y"] = pre_acc["y"] - acc['y'];
+  diff["y"] = Math.abs(diff["y"]);
   //Z軸
-  if(base["z"] * acc.z >= 0){  //前回値と今回値の正負が一致していたら
-    //絶対値で計算
-    diff["z"] = Math.abs(base["z"]) - Math.abs(acc.z);
-    vector["z"] = false;
-  }else{
-    //元の値で計算
-    diff["z"] = base["z"] - acc.z;
-    vector["z"] = true;
-  }
+  diff["z"] = pre_acc["z"] - acc['z'];
+  diff["z"] = Math.abs(diff["z"]);
 
   //一番振れ幅の大きい軸を特定
   if(diff["x"] > diff["y"] && diff["x"] > diff["z"]){
     max = "x";
+    vector["x"] = true;
+    vector["y"] = false;
+    vector["z"] = false;
   }else if(diff["y"] > diff["x"] && diff["y"] > diff["z"]){
     max = "y";
+    vector["x"] = false;
+    vector["y"] = true;
+    vector["z"] = false;
   }else{
     max = "z";
+    vector["x"] = false;
+    vector["y"] = false;
+    vector["z"] = true;
   }
 
   //加速度最大軸が前回と異なるなら
-  if(base["v"] != max){
+  if(pre_acc["v"] == max){
     vector[max] = true; //振り方向は考慮しない(trueにする)
+    //vct_ignore = true;
+  }else{
+    vector[max] = false;
+    //vct_ignore = false;
   }
 
-  //振れ幅最大値が設定値を超えており、なおかつ振り方向が違う場合
-  if(diff[max] > num[max] && vector[max]){
+  console.log("diff.x:"+diff["x"]+"diff.y:"+diff["y"]+"diff.z:"+diff["z"]);
+
+  //振れ幅最大値が設定値を超えており、かつ端末が振り下ろされた時、かつ振り方向が違う場合
+  /*
+  if(diff[max] > num[max] &&
+     Math.abs(acc[max]) > Math.abs(pre_acc[max]) &&
+     vector[max]){
 
     audio_play();//音を鳴らす
-    //console.log("x:"+diff["x"]+"y:"+diff["y"]+"z:"+diff["z"]);
+
+    //diff[pre_acc["v"]]とmaxが同じかどうか
+    // ...
 
     //次回比較用に値をセット
-    base["x"] = acc.x;
-    base["y"] = acc.y;
-    base["z"] = acc.z;
-    base["v"] = max;
-  }
+    pre_acc["x"] = acc['x'];
+    pre_acc["y"] = acc['y'];
+    pre_acc["z"] = acc['z'];
+    pre_acc["v"] = max;
 
-  //振れ幅最大値が20を超えていた場合はリセット
-  if(base[max] > 20){
-    base = {"x": 0, "y": 9, "z": 3, "v": "x"};
   }
+  */
+  if(diff["y"] > num["y"]){
+    audio_play();//音を鳴らす
+
+    //diff[pre_acc["v"]]とmaxが同じかどうか
+    // ...
+  }
+  //次回比較用に値をセット
+    pre_acc["x"] = acc['x'];
+    pre_acc["y"] = acc['y'];
+    pre_acc["z"] = acc['z'];
+    pre_acc["v"] = max;
+
+  //振れ幅最大値が10を超えていた場合はリセット
+  if(Math.abs(pre_acc[max]) > 10){
+    pre_acc = {"x": 10, "y": 10, "z": 10, "v": "x"};
+  }
+  console.log("=====================================");
 }
 
 function onError() {

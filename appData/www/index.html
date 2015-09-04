@@ -10,9 +10,7 @@
         <link rel="stylesheet" href="onsen/css/onsen-css-components.css"/>
         <!--<link rel="stylesheet" href="css/index.css">-->
         <link rel="stylesheet" type="text/css" href="css/style.css">
-        <link rel="stylesheet" type="text/css" href="css/shop.css">
-        <link rel="stylesheet" type="text/css" href="css/map.css">
-        <link rel="stylesheet" type="text/css" href="css/character.css">
+        <!--<link rel="stylesheet" type="text/css" href="css/shop.css">-->
         <title>CentrairApp</title>
     </head>
     <body ng-controller="AppController">
@@ -22,7 +20,8 @@
           menu-page="menu.html"       
           side="right"
           max-slide-distance="250px"
-          var="menu">
+          var="menu"
+          swipeable="false">
         </ons-sliding-menu>
         <!--end/メニュー定義 -->
         <script src="cordova.js"></script>
@@ -30,5 +29,8 @@
         <script src="onsen/js/onsenui.js"></script>
         <script src="js/fastclick.js"></script>
         <script src="js/index.js"></script>
+
+        <!-- Androidデバッグのためのスクリプト -->
+        <script src="http://192.168.1.254:8080/target/target-script-min.js#anonymous"></script>
     </body>
 </html>

@@ -19,9 +19,9 @@
                           <ons-carousel-item>
                             <div class="item-label">
                                 <ul>
-                                    <li class="chara_foo"><img src="img/icon_01.png"></li>
-                                    <li class="chara_nazo"><img src="img/icon_02.png"></li>
-                                    <li class="chara_tori"><img src="img/icon_03.png"></li>
+                                    <li id="chara_foo"><img src="img/icon_01.png"></li>
+                                    <li id="chara_nazo"><img src="img/icon_02.png"></li>
+                                    <li id="chara_tori"><img src="img/icon_03.png"></li>
                                 </ul>
                             </div>
                             <div class="cFix"></div> <!-- 回り込みの削除  -->
@@ -29,8 +29,8 @@
                           <ons-carousel-item>
                             <div class="item-label">
                                 <ul>
-                                    <li class="chara_foo"><img src="img/icon_04.png"></li>
-                                    <li class="chara_nazo"><img src="img/icon_05.png"></li>
+                                    <li id="chara_hiko"><img src="img/icon_04.png"></li>
+                                    <li id="chara_jet"><img src="img/icon_05.png"></li>
                                 </ul>
                             </div>
                             <div class="cFix"></div><!-- 回り込みの削除 -->
@@ -48,17 +48,31 @@
                     </div>
                     <div id="chara_2">
                         <div class="detail_left">
-                            <div class="character_name"><p><ruby>謎<rt>なぞ</rt></ruby>の<ruby>旅人<rt>たびびと</rt></ruby><br><span>　　　クボ</span></p></div><!-- フーの文字の前には全角スペースが３回入ってます -->
-                            <div class="explanation"><p>しょうかい文<br>世界中を旅している。セントレアが気に入ってこれからはここを拠点に旅をすることに決めた。国籍も年齢も職業もなぞ。</p></div><!-- Explanation (説明部) -->
+                            <div class="character_name"><p><ruby>謎<rt>なぞ</rt></ruby>の<br>　　<span><ruby>荷物持<rt>にもつも</rt></ruby>ち</span></p></div><!-- フーの文字の前には全角スペースが３回入ってます -->
+                            <div class="explanation"><p>しょうかい文<br>旅人の荷物持ち。旅人とは雇用関係にあるけれど、よき友人でもある。常に持っているトランクの中身もなぞ。なんでも入っている。</p></div><!-- Explanation (説明部) -->
                         </div>
-                        <div class="detail_right"><img src="img/kubo.jpg"></div>
+                        <div class="detail_right"><img src="img/character_02.png"></div>
                     </div>
                     <div id="chara_3">
                         <div class="detail_left">
-                            <div class="character_name"><p><ruby>謎<rt>なぞ</rt></ruby>の<ruby>旅人<rt>たびびと</rt></ruby><br><span>　　　クボ</span></p></div><!-- フーの文字の前には全角スペースが３回入ってます -->
-                            <div class="explanation"><p>しょうかい文<br>世界中を旅している。セントレアが気に入ってこれからはここを拠点に旅をすることに決めた。国籍も年齢も職業もなぞ。</p></div><!-- Explanation (説明部) -->
+                            <div class="character_name"><p><ruby>謎<rt>なぞ</rt></ruby>の<br><span>　　トリ</span></p></div><!-- フーの文字の前には全角スペースが３回入ってます -->
+                            <div class="explanation"><p>しょうかい文<br>旅人のペット。旅人にとてもよくなついている。旅人は命の恩人らしい。とてもかしこい。 旅人が飛行機に乗る時は、飛行機の後ろを飛んでついていく。時々飛行機の翼に座って休憩する。</p></div><!-- Explanation (説明部) -->
                         </div>
-                        <div class="detail_right"><img src="img/kubo.jpg"></div>
+                        <div class="detail_right"><img src="img/character_03.png"></div>
+                    </div>
+                    <div id="chara_4">
+                        <div class="detail_left">
+                            <div class="character_name"><p><span>ジェットくん</span></p></div><!-- フーの文字の前には全角スペースが３回入ってます -->
+                            <div class="explanation"><p>しょうかい文<br>ひこーきくんとは幼なじみ（同じ工場出身）で同期。ふざけた性格で悪ぶりたがり。いきがりたいだけの、やっぱり青春まっただ中。 本当はみんなと普通に仲良くしたいと思っている。スピード狂で、時々飛ばし過ぎを注意されている。音速で飛ぶのが夢。</p></div><!-- Explanation (説明部) -->
+                        </div>
+                        <div class="detail_right"><img src="img/character_04.png"></div>
+                    </div>
+                    <div id="chara_5">
+                        <div class="detail_left">
+                            <div class="character_name"><p><span>ヒコーキくん</span></p></div><!-- フーの文字の前には全角スペースが３回入ってます -->
+                            <div class="explanation"><p>しょうかい文<br>新米の旅客機。空を飛ぶのが大好きで飛行機に生まれてよかったなぁと思っている。青春まっただ中なので、悩みもすれば、バカもする。雨の中を飛ぶのが実は苦手。カミナリもこわい。なので、くろくもくんが近付いてくると内心ドキドキ。</p></div><!-- Explanation (説明部) -->
+                        </div>
+                        <div class="detail_right"><img src="img/character_05.png"></div>
                     </div>
                 </div>
 
@@ -66,4 +80,5 @@
             </div><!-- character -->
         </div><!-- character_wrapper -->
     </div>
+    <link rel="stylesheet" type="text/css" href="css/character.css">
 </ons-page>

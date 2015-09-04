@@ -22,7 +22,8 @@
       <!-- end/サウンド読み込み -->
       
 
-      <div id="main">
+      <div id="main"> 
+        <p id="balloon" class="right_balloon" ng-click="CharacterNavigator.pushPage('character.html', { animation : 'slide' } )"><span id="balloon_text">がっきをタッチ！<br>スマホをふって！</span></p>
         <div class="foo" ng-click="CharacterNavigator.pushPage('character.html', { animation : 'slide' } )"><img src="img/foo.png"></div>
         <div id="instrumental" class="clearfix">
           <div class="button_01 buttons" ng-class='{"button_01_play":play_now[0],"spin_infinite":play_now[0]}'>
