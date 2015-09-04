@@ -90,10 +90,12 @@ ons-toolbar img {
 	height: 90px;
 	margin-top: 10px;
 	border: solid 5px #DE4830;	
+	animation: rumble 0.12s linear infinite;
 }
 .button_01_play,.button_05_play,.button_09_play{
 	border: dotted 5px #DE4830;
 }
+
 /**********青丸**********/
 .button_02,.button_06,.button_10{
 	width: 130px;
@@ -133,6 +135,8 @@ ons-toolbar img {
 	width: 75px;
 	margin-top: 10px;
 }
+
+
 /**********マラカス**********/
 .button_02 img {
 	width: 110px;
