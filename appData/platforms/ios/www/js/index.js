@@ -36,6 +36,13 @@ var save_num = null;//css情報の退避先
 
 var switcher = true;//連続して楽器がなるのを防止する
 
+var listner = "shake";//楽器を鳴らすイベントリスナ
+
+var shake_switch = true;
+var tap_switch = false;
+
+var switch_im = "switch01";
+
 AUDIO_CRRENT = null;//再生用のAUDIOオブジェクト
 
 //楽器音声リスト
@@ -52,6 +59,59 @@ AUDIO_LIST = {
   "se09": null,
   "se10": null,
 };
+
+//楽器画像リスト
+// var inst_images = {
+//   0:"img/gakki03.png",
+//   1:"img/gakki03_on.png",
+//   2:"img/gakki02.png",
+//   3:"img/gakki02_on.png",
+//   4:"img/gakki01.png",
+//   5:"img/gakki01_on.png",
+//   6:"img/gakki04.png",
+//   7:"img/gakki04_on.png",
+//   8:"img/gakki05.png",
+//   9:"img/gakki05_on.png",
+//   10:"img/gakki06.png",
+//   11:"img/gakki06_on.png",
+//   12:"img/gakki07.png",
+//   13:"img/gakki07_on.png",
+//   14:"img/gakki08.png",
+//   15:"img/gakki08_on.png",
+//   16:"img/gakki09.png",
+//   17:"img/gakki09_on.png",
+//   18:"img/gakki10.png",
+//   19:"img/gakki10_on.png",
+//   20:"img/gakki11.png",
+//   21:"img/gakki11_on.png",
+// };
+var inst_images = {
+  "gakki1":true,
+  "gakki1_on":false,
+  "gakki2":true,
+  "gakki2_on":false,
+  "gakki3":true,
+  "gakki3_on":false,
+  "gakki4":true,
+  "gakki4_on":false,
+  "gakki5":true,
+  "gakki5_on":false,
+  "gakki6":true,
+  "gakki6_on":false,
+  "gakki7":true,
+  "gakki7_on":false,
+  "gakki8":true,
+  "gakki8_on":false,
+  "gakki9":true,
+  "gakki9_on":false,
+  "gakki10":true,
+  "gakki10_on":false,
+  "gakki11":true,
+  "gakki11_on":false,
+};
+
+var inst_num_crr = 0;//退避先
+
 //楽器音声リスト
 /*
 var AUDIO_LIST = {
@@ -127,29 +187,37 @@ var app = {
         startWatch(save_inst,save_num);
       }
 
+      $scope.switch_im = switch_im;
+
       //各イベントを登録
       $scope.startWatch = startWatch;//加速度センサ計測開始イベント
       $scope.stopWatch = stopWatch;//加速度センサ計測終了イベント
       $scope.audio_play = audio_play;//一時的にクリックイベントを付与
+      $scope.changeListener = changeListener($scope.switch_im);//イベントリスナ変更関数
 
       $scope.play_now = bt_border;
+      $scope.inst_images = inst_images;
+
+      // $scope.shake_switch = shake_switch;
+      // $scope.tap_switch = tap_switch;
 
       $scope.curr_inst = curr_inst;
       $scope.save_inst = save_inst;
       $scope.save_num = save_num;
 
+
       //fooのセリフチェンジ
-      var balloon_bool = true;
-      var balloon = document.getElementById('balloon');
-      setInterval(function(){
-        if(balloon_bool){
-          balloon.innerHTML = "がっきをタッチ！<br>スマホをふって！";
-          balloon_bool = false;
-        }else{
-          balloon.innerHTML = "ぼくにタッチ！<br>ともだちたくさん！";
-          balloon_bool = true;
-        }
-      },5000);
+      // var balloon_bool = true;
+      // var balloon = document.getElementById('balloon');
+      // setInterval(function(){
+      //   if(balloon_bool){
+      //     balloon.innerHTML = "がっきをタッチ！<br>スマホをふって！";
+      //     balloon_bool = false;
+      //   }else{
+      //     balloon.innerHTML = "ぼくにタッチ！<br>ともだちたくさん！";
+      //     balloon_bool = true;
+      //   }
+      // },5000);
 
     }]);
     
@@ -266,11 +334,6 @@ var app = {
     Mediaプラグインrootが変更され、音声ファイルが見つかるようになり、再生される
     */
 
-    // var gsp = getsPath();
-    // var gp = getPath();
-    // console.log("getsPath:"+gsp+"sound/*");
-    // console.log("getPath:"+gp+"sound/*");
-
     //読み込みができたならスプラッシュスクリーンを消す
     cordova.exec(null, null, "SplashScreen", "hide", []);
   },
@@ -320,7 +383,7 @@ var isset = function(data){
 
 //================楽器再生==============//
 function audio_play() {
-  if(play_cnt > 400){//前の音が鳴ってから400ms以上経ってるなら
+  if(play_cnt > 400 || listner != "shake"){//前の音が鳴ってから400ms以上経ってるなら
     if(AUDIO_CRRENT != null){
       delete AUDIO_CRRENT;
     }
@@ -329,7 +392,6 @@ function audio_play() {
     // サウンド再生
     console.log("audio_play by :"+curr_inst);
     console.log("AUDIO_CRRENT :"+AUDIO_CRRENT);
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
     AUDIO_CRRENT.play();
     play_cnt = 0;
   }
@@ -347,12 +409,15 @@ function startWatch($event,num) {
     curr_inst = $event.target.getAttribute("id");
   }
 
-  var kore = getsPath();
-
-  console.log("kore:"+kore);
-
   console.log("save_inst:"+save_inst);
   console.log("curr_inst:"+curr_inst);
+
+  //イベントリスナがシェイクかどうかチェック
+  if(listner != "shake"){
+    //シェイクでないのならタップイベントとして扱う
+    instTap(num);
+    return;
+  }
 
   /*======加速センサ開始・停止======*/
   if(curr_inst == save_inst){//前回と同じ楽器をタップしたなら
@@ -369,6 +434,9 @@ function startWatch($event,num) {
       watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
       //今回楽器にcssクラスを付与
       bt_border[num] = true;
+      // 楽器画像変更
+      inst_images["gakki"+(num+1)] = false;
+      inst_images["gakki"+(num+1)+"_on"] = true;
     }
   }else{
     stopWatch();
@@ -379,6 +447,9 @@ function startWatch($event,num) {
     watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
     //今回楽器にcssクラスを付与
     bt_border[num] = true;
+    // 楽器画像変更
+    inst_images["gakki"+(num+1)] = false;
+    inst_images["gakki"+(num+1)+"_on"] = true;
   }
   /*======end/加速センサ開始・停止======*/
 
@@ -389,23 +460,15 @@ function startWatch($event,num) {
   console.log("watchID:"+watchID);
 }
 
-function getsPath(){
-  var str = location.pathname;
-  var i = str.lastIndexOf('/');
-  return str.substring(0,i+1);
-}
-
 // Stop watching the acceleration
 function stopWatch() {
   console.log("stop!");
   navigator.accelerometer.clearWatch(watchID);
   watchID = null;
-}
 
-function getsPath(){
-  var str = location.pathname;
-  var i = str.lastIndexOf('/');
-  return str.substring(0,i+1);
+  //楽器画像復元
+  inst_images["gakki"+(save_num+1)] = true;
+  inst_images["gakki"+(save_num+1)+"_on"] = false;
 }
 
 function onSuccess(acceleration) {
@@ -502,18 +565,54 @@ function onSuccess(acceleration) {
 }
 
 function onError() {
-    alert('onError!');
+  alert('onError!');
 }
 //================/加速度センサ機能==============//
 
+//================タップで楽器音再生==============//
+function instTap(num){
 
-//================一時的にタップで音を出す==============//
-function sound() {
-    //この中に音を鳴らす処理を書く
-    //今は一時的にalert
-    alert("音がなったよ");
-}　
-//================/一時的にタップで音を出す==============//
+  //css適用
+  // 楽器画像変更
+  inst_images["gakki"+(num+1)] = false;
+  inst_images["gakki"+(num+1)+"_on"] = true;
+  audio_play();//音楽再生
+}
+//================end/タップで楽器音再生==============//
+
+
+//===============楽器再生のイベントリスナ変更===============//
+function changeListener(scope){
+
+  //リスナ切り替え
+  if(listner == "shake"){
+    listner = "tap";
+    shake_switch = false;
+    tap_switch = true;
+    scope = "switch02";
+
+    //加速度センサ計測停止
+    stopWatch();
+    //楽器のcssクラスを解除
+    bt_border[save_num] = false;
+    curr_inst = null;
+    num = null;
+    save_inst = curr_inst;
+    save_num = num;
+  }else{
+    listner = "shake";
+    shake_switch = true;
+    tap_switch = false;
+    scope = "switch01";
+  }
+
+  console.log("===========================");
+  console.log("scope:"+scope);
+  console.log("shake_switch:"+shake_switch);
+  console.log("tap_switch:"+tap_switch);
+  console.log("===========================");
+}
+//================end/楽器再生のイベントリスナ変更==============//
 
 
 function testSound() {
