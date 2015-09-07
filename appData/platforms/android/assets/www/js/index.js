@@ -40,6 +40,7 @@ var listner = "shake";//楽器を鳴らすイベントリスナ
 
 var shake_switch = true;
 var tap_switch = false;
+var tap_css = {0:false,1:false,2:false,3:false,4:false,5:false,6:false,7:false,8:false,9:false,10:false};
 
 // var switch_im = "switch01";
 
@@ -198,6 +199,16 @@ var app = {
         var switcher = changeListener();//イベントリスナ変更関数
         $scope.switch_im = switcher.im;
         $scope.describe = $sce.trustAsHtml(switcher.describe);
+        $scope.inst_images = inst_images;
+
+        angular.forEach($scope.inst_images, function(value, key){
+          if(key%2 == 0){
+            value = true;
+          }else{
+            value = false;
+          }
+          console.log("inst_images"+key+":"+value);
+        });
       };
 
       $scope.play_now = bt_border;
@@ -209,6 +220,7 @@ var app = {
       $scope.curr_inst = curr_inst;
       $scope.save_inst = save_inst;
       $scope.save_num = save_num;
+      $scope.tap_css = tap_css;
 
 
       //fooのセリフチェンジ
@@ -363,11 +375,11 @@ app.initialize();//以上の設定でアプリを起動
 //================以下、関数定義==============//
 //isset
 var isset = function(data){
-    if(data === "" || data === null || data === undefined){
-        return false;
-    }else{
-        return true;
-    }
+  if(data === "" || data === null || data === undefined){
+      return false;
+  }else{
+      return true;
+  }
 };
 
 // ===============ファイル読み取り関連============= //
@@ -608,17 +620,36 @@ function changeListener(){
     num = null;
     save_inst = curr_inst;
     save_num = num;
+    for(var i=0;i<11;i++){
+      tap_css[i] = true;
+    }
   }else{
     listner = "shake";
     shake_switch = true;
     tap_switch = false;
     switch_im = "switch01";
     message = "がっきをえらんで<br>スマホをふってね";
+    for(var i=0;i<11;i++){
+      tap_css[i] = false;
+    }
+    //楽器画像を全て影に
+    // angular.forEach(inst_images, function(value, key){
+    //   // console.log(key+":"+value);
+    //   if(key%2 == 0){
+    //     value = true;
+    //   }else{
+    //     value = false;
+    //   }
+    // });
   }
 
   console.log("===========================");
   console.log("shake_switch:"+shake_switch);
   console.log("tap_switch:"+tap_switch);
+  console.log("inst_images"+inst_images);
+  // angular.forEach(inst_images, function(value, key){
+  //   console.log("inst_images"+key+":"+value);
+  // });
   console.log("===========================");
 
   return {"im":switch_im, "describe":message};
@@ -629,6 +660,10 @@ function changeListener(){
 function testSound() {
   alert("ok");
 }
+
+// function inst_image_reset() {
+//   $scope.inst_images = inst_images;
+// }
 
 function touch(su){
   document.getElementById("map").style.backgroundImage = "url(img/back0"+su+".png)";

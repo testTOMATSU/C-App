@@ -40,6 +40,7 @@ var listner = "shake";//楽器を鳴らすイベントリスナ
 
 var shake_switch = true;
 var tap_switch = false;
+var tap_css = {0:false,1:false,2:false,3:false,4:false,5:false,6:false,7:false,8:false,9:false,10:false};
 
 // var switch_im = "switch01";
 
@@ -208,7 +209,6 @@ var app = {
           }
           console.log("inst_images"+key+":"+value);
         });
-        console.log("呼ばれてるよね？");
       };
 
       $scope.play_now = bt_border;
@@ -220,6 +220,7 @@ var app = {
       $scope.curr_inst = curr_inst;
       $scope.save_inst = save_inst;
       $scope.save_num = save_num;
+      $scope.tap_css = tap_css;
 
 
       //fooのセリフチェンジ
@@ -619,13 +620,18 @@ function changeListener(){
     num = null;
     save_inst = curr_inst;
     save_num = num;
+    for(var i=0;i<11;i++){
+      tap_css[i] = true;
+    }
   }else{
     listner = "shake";
     shake_switch = true;
     tap_switch = false;
     switch_im = "switch01";
     message = "がっきをえらんで<br>スマホをふってね";
-
+    for(var i=0;i<11;i++){
+      tap_css[i] = false;
+    }
     //楽器画像を全て影に
     // angular.forEach(inst_images, function(value, key){
     //   // console.log(key+":"+value);

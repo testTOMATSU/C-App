@@ -304,3 +304,27 @@ ons-toolbar img {
     90% { transform: translate(2px, 4px) rotate(0deg); }
     100% { transform: translate(2px, -3px) rotate(-1deg); }
 }
+.tap{
+  position: relative;
+  overflow: hidden;
+}
+.tap:after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  border-radius: 50%;
+  opacity: 0;
+  background-color: rgba(116,217,232, 0.7);
+  transition: opacity 1s, width 1s, height 1s;
+}
+.tap:active:after {
+  content: "";
+  width: 0;
+  height: 0;
+  opacity: 1;
+  transition: opacity 0s, width 0s, height 0s;
+}
