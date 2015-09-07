@@ -199,14 +199,17 @@ var app = {
         $scope.switch_im = switcher.im;
         $scope.describe = $sce.trustAsHtml(switcher.describe);
         $scope.inst_images = inst_images;
-
+        var arr_num = 0;
         angular.forEach($scope.inst_images, function(value, key){
-          if(key%2 == 0){
-            value = true;
+          if(arr_num%2 == 0){
+            // value = true;
+            $scope.inst_images[key] = true;
           }else{
-            value = false;
+            // value = false;
+            $scope.inst_images[key] = false;
           }
-          console.log("inst_images"+key+":"+value);
+          arr_num++;
+          console.log(key+":"+arr_num+":"+value);
         });
       };
 
