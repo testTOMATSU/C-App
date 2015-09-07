@@ -199,6 +199,8 @@ var app = {
         var switcher = changeListener();//イベントリスナ変更関数
         $scope.switch_im = switcher.im;
         $scope.describe = $sce.trustAsHtml(switcher.describe);
+
+        //楽器画像を全て影に
         $scope.inst_images = inst_images;
         var arr_num = 0;
         angular.forEach($scope.inst_images, function(value, key){
