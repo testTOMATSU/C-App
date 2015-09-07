@@ -198,6 +198,17 @@ var app = {
         var switcher = changeListener();//イベントリスナ変更関数
         $scope.switch_im = switcher.im;
         $scope.describe = $sce.trustAsHtml(switcher.describe);
+        $scope.inst_images = inst_images;
+
+        angular.forEach($scope.inst_images, function(value, key){
+          if(key%2 == 0){
+            value = true;
+          }else{
+            value = false;
+          }
+          console.log("inst_images"+key+":"+value);
+        });
+        console.log("呼ばれてるよね？");
       };
 
       $scope.play_now = bt_border;
@@ -363,11 +374,11 @@ app.initialize();//以上の設定でアプリを起動
 //================以下、関数定義==============//
 //isset
 var isset = function(data){
-    if(data === "" || data === null || data === undefined){
-        return false;
-    }else{
-        return true;
-    }
+  if(data === "" || data === null || data === undefined){
+      return false;
+  }else{
+      return true;
+  }
 };
 
 // ===============ファイル読み取り関連============= //
@@ -614,11 +625,25 @@ function changeListener(){
     tap_switch = false;
     switch_im = "switch01";
     message = "がっきをえらんで<br>スマホをふってね";
+
+    //楽器画像を全て影に
+    // angular.forEach(inst_images, function(value, key){
+    //   // console.log(key+":"+value);
+    //   if(key%2 == 0){
+    //     value = true;
+    //   }else{
+    //     value = false;
+    //   }
+    // });
   }
 
   console.log("===========================");
   console.log("shake_switch:"+shake_switch);
   console.log("tap_switch:"+tap_switch);
+  console.log("inst_images"+inst_images);
+  // angular.forEach(inst_images, function(value, key){
+  //   console.log("inst_images"+key+":"+value);
+  // });
   console.log("===========================");
 
   return {"im":switch_im, "describe":message};
@@ -629,6 +654,10 @@ function changeListener(){
 function testSound() {
   alert("ok");
 }
+
+// function inst_image_reset() {
+//   $scope.inst_images = inst_images;
+// }
 
 function touch(su){
   document.getElementById("map").style.backgroundImage = "url(img/back0"+su+".png)";
