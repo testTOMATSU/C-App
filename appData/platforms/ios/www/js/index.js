@@ -42,8 +42,6 @@ var shake_switch = true;
 var tap_switch = false;
 var tap_css = {0:false,1:false,2:false,3:false,4:false,5:false,6:false,7:false,8:false,9:false,10:false};
 
-// var switch_im = "switch01";
-
 AUDIO_CRRENT = null;//再生用のAUDIOオブジェクト
 
 //楽器音声リスト
@@ -61,31 +59,6 @@ AUDIO_LIST = {
   "se10": null,
 };
 
-//楽器画像リスト
-// var inst_images = {
-//   0:"img/gakki03.png",
-//   1:"img/gakki03_on.png",
-//   2:"img/gakki02.png",
-//   3:"img/gakki02_on.png",
-//   4:"img/gakki01.png",
-//   5:"img/gakki01_on.png",
-//   6:"img/gakki04.png",
-//   7:"img/gakki04_on.png",
-//   8:"img/gakki05.png",
-//   9:"img/gakki05_on.png",
-//   10:"img/gakki06.png",
-//   11:"img/gakki06_on.png",
-//   12:"img/gakki07.png",
-//   13:"img/gakki07_on.png",
-//   14:"img/gakki08.png",
-//   15:"img/gakki08_on.png",
-//   16:"img/gakki09.png",
-//   17:"img/gakki09_on.png",
-//   18:"img/gakki10.png",
-//   19:"img/gakki10_on.png",
-//   20:"img/gakki11.png",
-//   21:"img/gakki11_on.png",
-// };
 var inst_images = {
   "gakki1":true,
   "gakki1_on":false,
@@ -113,23 +86,6 @@ var inst_images = {
 
 var inst_num_crr = 0;//退避先
 
-//楽器音声リスト
-/*
-var AUDIO_LIST = {
-  "se00": new Media("sound/cym03.mp3"),
-  "se01": new Media("sound/marakasu.mp3"),
-  "se02": new Media("sound/tanbarin_1.mp3"),
-  "se03": new Media("sound/pafu.mp3"), 
-  "se04": new Media("sound/cym03.mp3"),
-  "se05": new Media("sound/marakasu.mp3"),
-  "se06": new Media("sound/tanbarin_1.mp3"),
-  "se07": new Media("sound/pafu.mp3"), 
-  "se08": new Media("sound/cym03.mp3"),
-  "se09": new Media("sound/marakasu.mp3"),
-  "se10": new Media("sound/tanbarin_1.mp3"),
-};
-*/
-
 //アプリ本体
 var app = {
   // Application Constructor
@@ -137,22 +93,12 @@ var app = {
       this.bindEvents();
   },
   load: function(){
-    FastClick.attach(document.body);
-    //console.log('fastclick適用');
-    /*
-    for(var i=0; i < AUDIO_LIST.length; i++){
-      AUDIO_LIST[i].load();
-      //sconsole.log("load");
-    }*/
   },
-  // Bind Event Listeners
-  //
-  // Bind any events that are required on startup. Common events are:
-  // 'load', 'deviceready', 'offline', and 'online'.
+
   bindEvents: function() {
   //========================ここにイベントを書く=============================//
     document.addEventListener('deviceready', this.onDeviceReady, false);
-    var module = ons.bootstrap('myApp', ['onsen']);
+    var module = ons.bootstrap('myApp', ['onsen','ngTouch']);
 
     //アプリ全体のコントローラ
     module.controller('AppController', ['$scope', function($scope) {
@@ -175,13 +121,6 @@ var app = {
     //楽器ページのコントローラ
     module.controller('SoundController', ['$scope','$sce', function($scope,$sce){
       console.log("Sound page is ready");
-
-      //楽器音を事前読み込み
-      /*for(var i=0; i < AUDIO_LIST.length, i++){
-        //AUDIO_LIST[i].load();
-        console.log("load");
-      }*/
-      //console.log("load":+AUDIO_LIST);
 
       if(save_inst != null && save_num != null){
         stopWatch();//楽器P メニュー 楽器Pの手順で戻られたときのため
@@ -318,6 +257,12 @@ var app = {
       console.log("Promotion page is ready.");
       stopWatch();
     }]);
+
+    //免責事項ページのコントローラ
+    module.controller('DisclaimerController', ['$scope', function($scope) {
+      console.log("Disclaimer page is ready.");
+      stopWatch();
+    }]);
   //========================/ここにイベントを書く=============================//
   },
   // deviceready Event Handler
@@ -407,7 +352,7 @@ var isset = function(data){
 function audio_play() {
   if(play_cnt > 400 || listner != "shake"){//前の音が鳴ってから400ms以上経ってるなら
     if(AUDIO_CRRENT != null){
-      delete AUDIO_CRRENT;
+      AUDIO_CRRENT.release();
     }
     AUDIO_CRRENT = AUDIO_LIST[curr_inst];
 
@@ -596,6 +541,7 @@ function instTap(num){
 
   //css適用
   // 楽器画像変更
+  
   inst_images["gakki"+(num+1)] = false;
   inst_images["gakki"+(num+1)+"_on"] = true;
   audio_play();//音楽再生
@@ -670,13 +616,13 @@ function testSound() {
 //   $scope.inst_images = inst_images;
 // }
 
-function touch(su){
-  document.getElementById("map").style.backgroundImage = "url(img/back0"+su+".png)";
-  for(var i = 1;i <= 4;i++){
-    document.getElementById("lst"+i).style.display = "none";
-    document.getElementById("opa"+i).style.backgroundColor = "black";
-    document.getElementById("opa"+i).style.opacity = "0.2";
-  }
-  document.getElementById("lst"+su).style.display = "block";
-  document.getElementById("opa"+su).style.opacity = "0";
-}
+// function touch(su){
+//   document.getElementById("map").style.backgroundImage = "url(img/back0"+su+".png)";
+//   for(var i = 1;i <= 4;i++){
+//     document.getElementById("lst"+i).style.display = "none";
+//     document.getElementById("opa"+i).style.backgroundColor = "black";
+//     document.getElementById("opa"+i).style.opacity = "0.2";
+//   }
+//   document.getElementById("lst"+su).style.display = "block";
+//   document.getElementById("opa"+su).style.opacity = "0";
+// }

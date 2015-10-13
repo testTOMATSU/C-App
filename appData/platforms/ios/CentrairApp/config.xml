@@ -41,7 +41,7 @@
         中部国際空港主催、音楽祭のイベントアプリです。
     </description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">
-        真・戸松内閣
+        HAL東京 真・戸松内閣 班
     </author>
     <content src="index.html" />
     <access browserOnly="true" origin="*" />

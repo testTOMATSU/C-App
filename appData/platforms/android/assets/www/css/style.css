@@ -321,6 +321,14 @@ ons-toolbar img {
   background-color: rgba(116,217,232, 0.7);
   transition: opacity 1s, width 1s, height 1s;
 }
+
+.tap_active:after{
+  content: "";
+  width: 0;
+  height: 0;
+  opacity: 1;
+  transition: opacity 0s, width 0s, height 0s;
+}
 .tap:active:after {
   content: "";
   width: 0;
