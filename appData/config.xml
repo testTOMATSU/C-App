@@ -14,7 +14,7 @@
     </author>
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" version="1" />
-    <access origin="*" browserOnly="true" />
+    <access origin="http://www.centrair.jp" browserOnly="true" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="http://mplus-fonts.sourceforge.jp/*" />
