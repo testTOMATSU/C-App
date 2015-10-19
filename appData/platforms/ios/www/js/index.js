@@ -106,15 +106,26 @@ var app = {
     }]);
 
     //メニューエリアのコントローラ
-    module.controller('MenuController', ['$scope', function($scope) {
+    module.controller('MenuController', ['$scope', 'SharedScopes', function($scope, SharedScopes) {
       console.log("Menu is ready");
+
+      //戻るボタン用にscopeを他のコントローラとシェア
+      SharedScopes.setScope('MenuController', $scope);
+
       $scope.page_name = page_name;
       $scope.webView = function(url){
         window.open(url, '_system');
       };
-      $scope.curr_page = function($event) {
-        page_name = $event.target.getAttribute("id");
+      $scope.curr_page = function($event, pg_name) {
+        if($event !== "back"){
+          page_name = $event.target.getAttribute("id");  
+        }else{
+          page_name = pg_name;
+        }
+        
         $scope.page_name = page_name;
+        console.log("メニューの方が呼ばれたよ");
+        console.log(page_name+"に遷移");
       };
     }]);
 
@@ -183,21 +194,21 @@ var app = {
     }]);
     
     //マップページのコントローラ
-    module.controller('MapController', ['$scope', function($scope) {
-      console.log("Map page is ready.");
-      stopWatch();
-      page_name = "map";
-      $scope.touch = touch;
-    }]);
+    // module.controller('MapController', ['$scope', function($scope) {
+    //   console.log("Map page is ready.");
+    //   stopWatch();
+    //   page_name = "map";
+    //   $scope.touch = touch;
+    // }]);
   
     //キャラ紹介ページのコントローラ
-    module.controller('CharacterController', ['$scope', function($scope) {
+    module.controller('CharacterController', ['$scope', 'SharedScopes', function($scope, SharedScopes) {
       console.log("Character page is ready.");
       stopWatch();
-      var scope_target = document.getElementById('m_chara');
-      var menuScope = angular.element(scope_target).scope();
-      //console.log(menuScope);
-      menuScope.page_name = 'm_chara';
+      // var scope_target = document.getElementById('m_chara');
+      // var menuScope = angular.element(scope_target).scope();
+      // console.log(menuScope);
+      // menuScope.page_name = 'm_chara';
 
       var chara1 = document.getElementById("chara_foo");
       var chara2 = document.getElementById("chara_nazo");
@@ -246,10 +257,15 @@ var app = {
         document.getElementById("chara_4").style.display="none";
         document.getElementById("chara_5").style.display="block";
       }
-      //AngularJSのディレクティブの書式
-      //$scope.test = "公式サイトが表示されます";
-      //var ref = window.open('http://www.centrair.jp', '_blank', 'location=yes');
-      //ref.addEventListener('loadstart', function() { alert(event.url); });
+      
+
+      //戻るボタンが押された時
+      $scope.back_page = function($event){
+        console.log("back_pageが呼ばれた");
+        menu.setMainPage('sound.html');
+        SharedScopes.getScope('MenuController').curr_page("back", "m_music");
+      };
+
     }]);
 
     //プロモーションページのコントローラ
@@ -263,6 +279,21 @@ var app = {
       console.log("Disclaimer page is ready.");
       stopWatch();
     }]);
+
+    // scopeを共有するためのメソッド
+    module.factory('SharedScopes', function ($rootScope) {
+        var sharedScopes = {};
+
+        return {
+            setScope: function (key, value) {
+                sharedScopes[key] = value;
+            },
+            getScope: function (key) {
+                return sharedScopes[key];
+            }
+        };
+    });
+
   //========================/ここにイベントを書く=============================//
   },
   // deviceready Event Handler
@@ -316,8 +347,6 @@ var app = {
       console.log('Received Event: ' + id);*/
   }
 };
-
-
 
 app.initialize();//以上の設定でアプリを起動
 

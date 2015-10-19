@@ -1,20 +1,50 @@
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
 <ons-page ng-controller="DisclaimerController">
-    <!-- メニュー上部のツールバー -->
-    <ons-toolbar>
-      <div class="right"><!-- サイドバーを開くボタン -->
-          <ons-toolbar-button ng-click="menu.toggleMenu()"><ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon></ons-toolbar-button>
-      </div>
-      <div class="center">免責事項</div><!-- ページタイトル -->
-    </ons-toolbar>
-    <!-- end/メニュー上部のツールバー -->
-    <div class="app">
-      <h2>免責事項</h2>
-      <p>当アプリの情報は、全て無料で提供されています。当アプリを利用したウェブサイトの閲覧や情報収集については、情報がユーザーの需要に適合するものか否か、情報の保存や複製その他ユーザーによる任意の利用方法により必要な法的権利を有しているか否か、著作権、秘密保持、名誉毀損、品位保持および輸出に関する法規その他法令上の義務に従うことなど、ユーザーご自身の責任において行っていただきますようお願いいたします。</p>
-      <p>当アプリの御利用につき、何らかのトラブルや損失・損害等につきましては一切責任を問わないものとします。</p>
-      <p>当アプリが紹介しているウェブサイトやソフトウェアの合法性、正確性、道徳性、最新性、適切性、著作権の許諾や有無など、その内容については一切の保証を致しかねます。</p>
-      <p>当アプリからリンクやバナーなどによって他のサイトに移動された場合、移動先サイトで提供される情報、サービス等について一切の責任を負いません。</p>
-      <p>当アプリは端末を振ることで動作する機能、音が鳴る機能等がございます。これらの機能をご使用になられる際は、周囲の迷惑にならないよう十分確認してご利用下さい。</p>
-      <h2>著作権</h2>
-      <p>当アプリの著作権は中部国際空港株式会社にあります。当アプリに含まれる情報は、著作権法上認められた場合を除き、その目的を問わず中部国際空港株式会社の承認なく転写、複製、配信、販売などの行為をすることはできません。</p>
+  <!-- メニュー上部のツールバー -->
+  <ons-toolbar>
+    <div class="left">
+      <!-- <ons-back-button>楽器</ons-back-button> -->
+      <ons-toolbar-button ng-click="back_page($event);">
+        <i class="fa fa-music"></i>
+      </ons-toolbar-button>
     </div>
+    <div class="center">免責事項</div><!-- ページタイトル -->
+    <div class="right"><!-- サイドバーを開くボタン -->
+      <ons-toolbar-button ng-click="menu.toggleMenu()">
+        <ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon>
+      </ons-toolbar-button>
+    </div>
+  </ons-toolbar>
+  <!-- end/メニュー上部のツールバー -->
+  <div class="app">
+    <h2>免責事項</h2>
+    <p>当アプリの情報は、一部のサービスを除き、無料で提供されています。当アプリを利用したウェブサイトの閲覧や情報収集については、情報がユーザーの需要に適合するものか否か、情報の保存や複製その他ユーザーによる任意の利用方法により必要な法的権利を有しているか否か、著作権、秘密保持、名誉毀損、品位保持および輸出に関する法規その他法令上の義務に従うことなど、ユーザーご自身の責任において行っていただきますようお願いいたします。</p>
+    <p>当アプリの御利用につき、何らかのトラブルや損失・損害等につきましては一切責任を問わないものとします。</p>
+    <p>当アプリが紹介しているウェブサイトやソフトウェアの合法性、正確性、道徳性、最新性、適切性、著作権の許諾や有無など、その内容については一切の保証を致しかねます。</p>
+    <p>当アプリからリンクやバナーなどによって他のサイトに移動された場合、移動先サイトで提供される情報、サービス等について一切の責任を負いません。</p>
+    <p>当アプリは端末を振ることで動作する機能、音が鳴る機能等がございます。これらの機能をご使用になられる際は、周囲の迷惑にならないよう十分確認してご利用下さい。</p>
+    <h2>著作権</h2>
+    <p>当アプリの著作権は中部国際空港株式会社にあります。当アプリに含まれる情報は、著作権法上認められた場合を除き、その目的を問わず中部国際空港株式会社の承認なく転写、複製、配信、販売などの行為をすることはできません。</p>
+  </div>
+  <footer class="cfx">
+    <p class="ft">Copyright Central Japan International Airport Co., Ltd.</p>
+  </footer>
+  <link rel="stylesheet" type="text/css" href="css/disclaimer.css">
 </ons-page>

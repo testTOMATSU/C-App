@@ -1,3 +1,4 @@
+@charset "utf-8";
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -16,61 +17,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-@charset"utf-8";
-html,body {
-	margin: 0;
-	padding: 0;
-	height: 480px;
-}
-
-#wrapper {
-	height: 100%;
-	background-repeat:repeat;
-    background-position:left;
-    background-image:url("../img/haikei.gif");
-}
-
-ons-toolbar {
-	width: 100%;
-	height: 50px;
-	background-color: white;
-}
-
-ons-toolbar img {
-	margin-left: 10px;
-	height: 35px;
-	margin-top: 5px;
-}
-
-#main {
-	width: 260px;
-	height: 380px;
-	margin: -40px auto 0;
-}
-
-.title {
-	border-bottom: solid 1px;
-	width: 100px;
-}
-
-.shop img {
-	width: 280px;
-}
-
-.businesshours {
-	font-size: 11px;
-}
-
-.menu {
-	font-size: 11px;
-}
-
-.menu img {
-	width: 120px;
-	float: left;
-	margin-right: 5px;
-}
-
-.menu_name {
-	font-size: 15px;
+.app{
+	padding: 20px;
+	background-color: #f0f0f0;
+	color:#202020;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }

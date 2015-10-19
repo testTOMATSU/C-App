@@ -44,7 +44,7 @@
         HAL東京 真・戸松内閣 班
     </author>
     <content src="index.html" />
-    <access browserOnly="true" origin="*" />
+    <access browserOnly="true" origin="http://www.centrair.jp" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="http://mplus-fonts.sourceforge.jp/*" />
