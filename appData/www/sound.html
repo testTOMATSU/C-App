@@ -22,8 +22,9 @@
     <!-- メニュー上部のツールバー -->
     <ons-toolbar>
       <div class="left">
-        <img src="img/logo.png"><!-- ページタイトル -->
+        <img src="img/logo.png" id="logo"><!-- ページタイトル -->
       </div>
+      <div class="center">なぞの楽器</div><!-- ページタイトル -->
       <div class="right"><!-- サイドバーを開くボタン -->
         <ons-toolbar-button ng-click="menu.toggleMenu()">
           <ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon>
@@ -42,7 +43,7 @@
       <!-- end/サウンド読み込み -->
       
 
-      <div id="main"> 
+      <div id="main">
         <p id="balloon" class="right_balloon"><span id="balloon_text" ng-bind-html="describe"></span></p>
         <!-- <div class="foo" ng-click="CharacterNavigator.pushPage('character.html', { animation : 'slide' } )"><img src="img/foo.png"></div> -->
         <div class="inst_switch" ng-click="changeListener()">

@@ -269,15 +269,29 @@ var app = {
     }]);
 
     //プロモーションページのコントローラ
-    module.controller('PromotionController', ['$scope', function($scope) {
+    module.controller('PromotionController', ['$scope', 'SharedScopes', function($scope, SharedScopes) {
       console.log("Promotion page is ready.");
       stopWatch();
+
+      //戻るボタンが押された時
+      $scope.back_page = function($event){
+        console.log("back_pageが呼ばれた");
+        menu.setMainPage('sound.html');
+        SharedScopes.getScope('MenuController').curr_page("back", "m_music");
+      };
     }]);
 
     //免責事項ページのコントローラ
-    module.controller('DisclaimerController', ['$scope', function($scope) {
+    module.controller('DisclaimerController', ['$scope', 'SharedScopes', function($scope, SharedScopes) {
       console.log("Disclaimer page is ready.");
       stopWatch();
+
+      //戻るボタンが押された時
+      $scope.back_page = function($event){
+        console.log("back_pageが呼ばれた");
+        menu.setMainPage('sound.html');
+        SharedScopes.getScope('MenuController').curr_page("back", "m_music");
+      };
     }]);
 
     // scopeを共有するためのメソッド
