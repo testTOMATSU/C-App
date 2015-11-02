@@ -1,0 +1,396 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+@charset"utf-8";
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color:#E4E4E4;
+    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #A7A7A7),
+        color-stop(0.51, #E4E4E4)
+    );
+    background-attachment:fixed;
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:12px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    text-transform:uppercase;
+    width:100%;
+}
+
+/* Portrait layout (default) */
+.app {
+    /*background:url(../img/logo.png) no-repeat center top;*/ /* 170px x 200px */
+    background-repeat:repeat;
+    background-position:left;
+    background-image:url("../img/haikei.gif");
+    position:absolute;             /* position in the center of the screen */
+    left:50%;
+    top:50%;
+    height:50px;                   /* text area height */
+    width:225px;                   /* text area width */
+    text-align:center;
+    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+                                   /* offset horizontal: half of text area width */
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        background-position:left center;
+        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+                                      /* offset horizontal: half of image width and text area width */
+    }
+}
+
+#wrapper {
+	height: 100%;
+  overflow: scroll;
+  background:url('../img/haikei.gif') repeat-y;
+}
+
+/*#wrapper:after{
+  display:block;
+    clear:both;
+    height:0px;
+    visibility:hidden;
+    content:".";
+}
+*/
+/*#wrapper::before {
+  background:url('../img/haikei.gif') left top;
+  background-size: 100% auto;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 108px;
+  content: "";
+  z-index: -1;
+}*/
+
+ons-toolbar {
+	width: 100%;
+	height: 50px;
+	background-color: white;
+}
+
+ons-toolbar img {
+	margin-left: 10px;
+	height: 35px;
+	margin-top: 5px;
+}
+
+#logo{
+  height: 80%;
+}
+
+#main {
+	position: relative;
+	width: 270px;
+	height: 100%;
+	margin: 0 auto;
+  overflow-x: visible;
+  overflow-y: visible;
+}
+
+#instrumental{
+	position: absolute;
+	top: 100px;
+	left: 0;
+	right: 0;
+	margin: auto;
+  padding: 0 5px;
+	width: 100%;
+	height: 100%;
+  box-sizing: border-box;
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    content: " ";
+    clear: both;
+    height: 0;
+    }
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+
+
+.buttons{
+	position: relative;
+	float: left;
+	background-color: white;
+	border-radius: 50%;
+	text-align: center;
+}
+
+.buttons img{
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+
+.touch_area{
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0);
+	z-index: 9999;
+}
+
+/**********赤丸**********/
+.button_01,.button_05,.button_09{
+	width: 90px;
+	height: 90px;
+	margin-top: 10px;
+	border: solid 5px #DE4830;	
+}
+.button_01_play,.button_05_play,.button_09_play{
+	border: dotted 5px #DE4830;
+}
+/**********青丸**********/
+.button_02,.button_06,.button_10{
+	width: 130px;
+	height: 130px;
+	margin-top: 10px;
+	margin-left: 20px;
+	border: solid 5px #33BFDB;
+}
+.button_02_play,.button_06_play,.button_10_play{
+	border: dotted 5px #33BFDB;
+}
+/**********緑丸**********/
+.button_03,.button_07,.button_11{
+	width: 130px;
+	height: 130px;
+	margin-top: 10px;
+	border: solid 5px #8DCF3F;
+}
+.button_03_play,.button_07_play,.button_11_play{
+	border: dotted 5px #8DCF3F;
+}
+/**********黄丸**********/
+.button_04,.button_08{
+	width: 90px;
+	height: 90px;
+	margin-top: 10px;
+	margin-left: 20px;
+	margin-bottom: 40px;
+	border: solid 5px #FDC44F;
+}
+.button_04_play,.button_08_play{
+	border: dotted 5px #FDC44F;
+}
+
+/**********シンバル**********/
+.button_01 img {
+	width: 75px;
+	margin-top: 10px;
+}
+/**********マラカス**********/
+.button_02 img {
+	width: 110px;
+	margin-top: 15px;
+}
+/**********タンバリン**********/
+.button_03 img {
+	width: 100px;
+	margin-top: 10px;
+}
+/**********パフ音**********/
+.button_04 img {
+	height: 70px;
+	margin-top: 15px;
+}
+/**********鈴**********/
+.button_05 img {
+	width: 75px;
+	margin-top: 10px;
+}
+/**********トライアングル**********/
+.button_06 img {
+	width: 100px;
+	margin-top: 5px;
+}
+/**********カスタネット**********/
+.button_07 img {
+	width: 100px;
+	margin-top: 15px;
+}
+/**********スネアドラム**********/
+.button_08 img {
+	height: 60px;
+	margin-top: 18px;
+}
+/**********木琴**********/
+.button_09 img {
+	width: 75px;
+	margin-top: 30px;
+}
+/**********笛**********/
+.button_10 img {
+	height: 90px;
+	margin-top: 20px;
+}
+/**********太鼓**********/
+.button_11 img {
+	height: 100px;
+	margin-top: 15px;
+}
+
+/*吹き出し*/
+.right_balloon{
+    position: relative;
+    background: #fff;
+    border: 3px solid #FFD464;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 15px;
+    clear: both;
+    max-width: 500px;
+    float: left;
+}
+#balloon_text{
+  opacity: 1;
+}
+.right_balloon:after,
+.right_balloon:before{
+    left: 100%;
+    top: 50%;
+    border: solid 3px transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.balloon_fade{
+  transition-duration: 1s;
+  transition-property: opacity;
+}
+
+#menu_chara{
+  display: block;
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: url(../img/character_01.png) no-repeat;
+  background-size: contain;
+  overflow: hidden;
+}
+
+/*スイッチ*/
+.inst_switch{
+  position: absolute;
+  top: 60px;
+  float: right;
+  right: 0;
+  height: 80px;
+  margin-top: -40px;
+  z-index: 9999;
+}
+
+.inst_switch img {
+  height: 100%;
+}
+.spin_infinite {
+	animation: shake 0.5s linear infinite;
+    -webkit-animation: shake 0.5s linear infinite;
+}
+/*safari crome対応*/
+@-webkit-keyframes shake {
+    0% { -webkit-transform: translate(3px, 2px) rotate(0deg); }
+    10% { -webkit-transform: translate(-2px, -3px) rotate(-1deg); }
+    20% { -webkit-transform: translate(-4px, 0px) rotate(1deg); }
+    30% { -webkit-transform: translate(0px, 3px) rotate(0deg); }
+    40% { -webkit-transform: translate(2px, -2px) rotate(1deg); }
+    50% { -webkit-transform: translate(-2px, 3px) rotate(-1deg); }
+    60% { -webkit-transform: translate(-4px, 2px) rotate(0deg); }
+    70% { -webkit-transform: translate(3px, 2px) rotate(-1deg); }
+    80% { -webkit-transform: translate(-2px, -2px) rotate(1deg); }
+    90% { -webkit-transform: translate(2px, 4px) rotate(0deg); }
+    100% { -webkit-transform: translate(2px, -3px) rotate(-1deg); }
+}
+@keyframes shake {
+    0% { transform: translate(3px, 2px) rotate(0deg); }
+    10% { transform: translate(-2px, -3px) rotate(-1deg); }
+    20% { transform: translate(-4px, 0px) rotate(1deg); }
+    30% { transform: translate(0px, 3px) rotate(0deg); }
+    40% { transform: translate(2px, -2px) rotate(1deg); }
+    50% { transform: translate(-2px, 3px) rotate(-1deg); }
+    60% { transform: translate(-4px, 2px) rotate(0deg); }
+    70% { transform: translate(3px, 2px) rotate(-1deg); }
+    80% { transform: translate(-2px, -2px) rotate(1deg); }
+    90% { transform: translate(2px, 4px) rotate(0deg); }
+    100% { transform: translate(2px, -3px) rotate(-1deg); }
+}
+.tap{
+  position: relative;
+  overflow: hidden;
+}
+.tap:after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  border-radius: 50%;
+  opacity: 0;
+  background-color: rgba(116,217,232, 0.7);
+  transition: opacity 1s, width 1s, height 1s;
+}
+
+.tap_active:after{
+  content: "";
+  width: 0;
+  height: 0;
+  opacity: 1;
+  transition: opacity 0s, width 0s, height 0s;
+}
+.tap:active:after {
+  content: "";
+  width: 0;
+  height: 0;
+  opacity: 1;
+  transition: opacity 0s, width 0s, height 0s;
+}
+
+.left{
+  height: 80%;
+}

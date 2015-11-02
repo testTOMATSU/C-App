@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.example.centrair"
+        version="0.0.1"
+        xmlns="http://www.w3.org/ns/widgets"
+        xmlns:cdv="http://cordova.apache.org/ns/1.0"
+        xmlns:gap="http://phonegap.com/ns/1.0" 
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>CentrairApp</name>
+    <description>
+        中部国際空港主催、音楽祭のイベントアプリです。
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        HAL東京 真・戸松内閣 班
+    </author>
+    <content src="index.html" />
+    <plugin name="cordova-plugin-whitelist" version="1" />
+    <access origin="http://www.centrair.jp" browserOnly="true" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="http://mplus-fonts.sourceforge.jp/*" />
+    <allow-intent href="src:*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+    <feature name="InAppBrowser">
+        <param name="ios-package" value="CDVInAppBrowser" />
+    </feature>
+    <preference name="DisallowOverscroll" value="true"/>
+    <!-- <gap:config-file platform="android" parent="/manifest">
+        <application android:debuggable="true" />
+    </gap:config-file> -->
+</widget>
